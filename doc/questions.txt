@@ -1,0 +1,11 @@
+Questions
+
+QUe vamos a hacer con la transaccionabilidad de las tablas? 
+Es decir, con el seguimiento de quien, en que momento y en que tabla agrego o modifico algo.
+
+
+que significa el campo CM en las tablas? 
+Por ejemplo en tablas:
+
+Matriculas
+Mensajes
