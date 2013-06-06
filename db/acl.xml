@@ -3,96 +3,229 @@
   <VerLbl/>
   <VerNotes/>
   <DefTblOpts/>
-  <DocFolder>/var/www/repositorios/acl/sql</DocFolder>
+  <DocFolder>\var\www\repositorios\acl\sql</DocFolder>
   <Sch Cm="" nm="schemaA">
-    <Tbl UsSo="1" nm="cizacl_resources">
-      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="cizacl_resource_id" nm="pkcizacl_resources"/>
-      <Cl au="1" df="" nm="cizacl_resource_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_type" nu="0">
-        <DT arr="0" ds="Enum" en="'controller','function'" id="706" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_controller" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_function" nu="1">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_description" nu="1">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_added_by" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_edited_by" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_added_on" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="cizacl_resource_edited_on" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
+    <Tbl UsSo="1" nm="content_audios">
+      <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="cizacl_roles">
-      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="cizacl_role_id" nm="pkcizacl_roles"/>
-      <Cl au="1" df="" nm="cizacl_role_id" nu="0">
+    <Tbl UsSo="1" nm="content_documents">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="content_images">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="content_presentations">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="content_texts">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="content_videos">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="contents">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="course_audiences">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="course_categories">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="course_goals">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="course_requirements">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="courses">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="curriculums">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="languages">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="lectures">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="material_code">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="material_external">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="material_files">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="materials">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="question_type_blank">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="question_type_boolean">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="question_type_multi">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="questions">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="quizzes">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="register_modes">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="resources">
+      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
+      <Pk ClNs="id" nm="pkresources"/>
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_role_name" nu="0">
+      <Cl au="0" df="" nm="type" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="controller" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="function" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="description" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="added_by" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="edited_by" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="added_on" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="edited_on" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="roles">
+      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
+      <Pk ClNs="id" nm="pkroles"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_role_inherit_id" nu="1">
+      <Cl au="0" df="" nm="inherit_id" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_role_redirect" nu="0">
+      <Cl au="0" df="" nm="redirect" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_role_description" nu="1">
+      <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_role_default" nu="0">
+      <Cl au="0" df="" nm="default" nu="0">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="998" nm="cizacl_role_order" nu="0">
+      <Cl au="0" df="998" nm="order" nu="0">
         <DT arr="0" ds="SmallInt" en="" id="5" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="cizacl_rules">
+    <Tbl UsSo="1" nm="rules">
       <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="cizacl_rule_id" nm="pkcizacl_rules"/>
-      <Cl au="1" df="" nm="cizacl_rule_id" nu="0">
+      <Pk ClNs="id" nm="pkrules"/>
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_rule_cizacl_role_id" nu="1">
+      <Cl au="0" df="" nm="role_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_rule_type" nu="0">
-        <DT arr="0" ds="Enum" en="'allow','deny'" id="706" ln="null" sc="null" sg="1" un="0"/>
+      <Cl au="0" df="" nm="type" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_rule_cizacl_resource_controller" nu="0">
+      <Cl au="0" df="" nm="resource_controller" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_rule_cizacl_resource_function" nu="1">
+      <Cl au="0" df="" nm="resource_function" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="1" nm="cizacl_rule_status" nu="0">
+      <Cl au="0" df="1" nm="status" nu="0">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cizacl_rule_description" nu="1">
+      <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
       </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="cizacl_session">
+    <Tbl UsSo="1" nm="sections">
+      <TblOpts/>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="session">
       <TblOpts>ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="session_id" nm="pkcizacl_session"/>
-      <Cl au="0" df="0" nm="session_id" nu="0">
+      <Pk ClNs="id" nm="pksession"/>
+      <Cl au="0" df="0" nm="id" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="0" nm="ip_address" nu="0">
@@ -107,227 +240,133 @@
       <Cl au="0" df="" nm="user_data" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="content_audios">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="content_documents">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="content_images">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="content_presentations">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="content_texts">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="content_videos">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="contents">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="course_audiences">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="course_categories">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="course_goals">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="course_requirements">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="courses">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="curriculums">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="languages">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="lectures">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="material_code">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="material_external">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="material_files">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="materials">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="question_type_blank">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="question_type_boolean">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="question_type_multi">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="questions">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="quizzes">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="register_modes">
-      <TblOpts/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="sections">
-      <TblOpts/>
+    <Tbl UsSo="1" nm="status">
+      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
+      <Pk ClNs="id" nm="pkstatus"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="code" nu="0">
+        <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_interests">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_links">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_notifications">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_preferences">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_privacies">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_profiles">
       <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="user_profile_id" nm="pkuser_profiles"/>
-      <Cl au="1" df="" nm="user_profile_id" nu="0">
+      <Pk ClNs="id" nm="pkuser_profiles"/>
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_profile_user_id" nu="0">
+      <Cl au="0" df="" nm="user_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_profile_name" nu="0">
+      <Cl au="0" df="" nm="name" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_profile_surname" nu="0">
+      <Cl au="0" df="" nm="surname" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_profile_email" nu="1">
+      <Cl au="0" df="" nm="email" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_user_status_code" nu="0">
-        <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_lastaccess" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_added" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_edited" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_added_by" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_edited_by" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_desingnation" nu="1">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_subtitle" nu="1">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_biography" nu="1">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_profile_language_id" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="user_status">
-      <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="user_status_id" nm="pkuser_status"/>
-      <Cl au="1" df="" nm="user_status_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="user_status_name" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="user_status_code" nu="0">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="lastaccess" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="added" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="edited" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="added_by" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="edited_by" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="desingnation" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="subtitle" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="biography" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="language_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_thumbs">
       <TblOpts/>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="users">
       <TblOpts>ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="user_id" nm="pkusers"/>
-      <Cl au="1" df="" nm="user_id" nu="0">
+      <Pk ClNs="id" nm="pkusers"/>
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_username" nu="0">
+      <Cl au="0" df="" nm="username" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_password" nu="0">
+      <Cl au="0" df="" nm="password" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="64" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_cizacl_role_id" nu="0">
+      <Cl au="0" df="" nm="role_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_auth" nu="1">
+      <Cl au="0" df="" nm="auth" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="user_auth_date" nu="1">
+      <Cl au="0" df="" nm="date" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <CustomTypes/>
   </Sch>
   <Dgm nm="diagramA">
-    <RnCf FtSz="9" lkStgy="OffsetDirect" zm="1.25">
+    <RnCf ClkAct="true" FtSz="9" lkStgy="OffsetDirect" zm="1.5">
       <VbCfg>
         <Fg ky="Auto Number" vl="0"/>
         <Fg ky="Check" vl="0"/>
@@ -347,12 +386,12 @@
       <ErNotation>DbwErNotation</ErNotation>
       <svg path=""/>
     </DiaProps>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cizacl_resources" x="50" y="50"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cizacl_roles" x="381" y="52"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cizacl_rules" x="701" y="53"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cizacl_session" x="52" y="189"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="resources" x="50" y="50"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="roles" x="381" y="52"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="rules" x="701" y="53"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="session" x="52" y="189"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_profiles" x="384" y="189"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="704" y="193"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="status" x="704" y="193"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="users" x="55" y="297"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="register_modes" x="57" y="425"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbs" x="58" y="468"/>
@@ -389,7 +428,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="6">
+  <RnmMgr NxRnmId="61">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -400,10 +439,169 @@
       <Rnm id="3" nNm="register_modes" oNm="register_mode"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="38" nNm="subtitle" oNm="user_profile_subtitle"/>
       <Rnm id="4" nNm="user_profile_subtitle" oNm="user_profile_subtitulo"/>
     </RnmCh>
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="5" nNm="sections" oNm="sessions"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="6" nNm="roles" oNm="cizacl_roles"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="7" nNm="id" oNm="cizacl_role_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="8" nNm="name" oNm="cizacl_role_name"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="9" nNm="inherit_id" oNm="cizacl_role_inherit_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="10" nNm="redirect" oNm="cizacl_role_redirect"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="11" nNm="description" oNm="cizacl_role_description"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="12" nNm="default" oNm="cizacl_role_default"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="roles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="13" nNm="order" oNm="cizacl_role_order"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="14" nNm="resources" oNm="cizacl_resources"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="15" nNm="controller" oNm="cizacl_resource_controller"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="16" nNm="type" oNm="cizacl_resource_type"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="17" nNm="id" oNm="cizacl_resource_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="18" nNm="function" oNm="cizacl_resource_function"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="19" nNm="description" oNm="cizacl_resource_description"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="20" nNm="added_by" oNm="cizacl_resource_added_by"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="21" nNm="edited_by" oNm="cizacl_resource_edited_by"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="22" nNm="added_on" oNm="cizacl_resource_added_on"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="23" nNm="edited_on" oNm="cizacl_resource_edited_on"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="session" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="24" nNm="id" oNm="session_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="25" nNm="session" oNm="cizacl_session"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="26" nNm="id" oNm="user_profile_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="27" nNm="user_id" oNm="user_profile_user_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="28" nNm="name" oNm="user_profile_name"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="29" nNm="surname" oNm="user_profile_surname"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="30" nNm="email" oNm="user_profile_email"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="31" nNm="user_status_code" oNm="user_profile_user_status_code"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="32" nNm="lastaccess" oNm="user_profile_lastaccess"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="33" nNm="added" oNm="user_profile_added"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="34" nNm="edited" oNm="user_profile_edited"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="35" nNm="added_by" oNm="user_profile_added_by"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="36" nNm="edited_by" oNm="user_profile_edited_by"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="37" nNm="desingnation" oNm="user_profile_desingnation"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="39" nNm="biography" oNm="user_profile_biography"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="40" nNm="language_id" oNm="user_profile_language_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="41" nNm="id" oNm="user_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="42" nNm="username" oNm="user_username"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="43" nNm="password" oNm="user_password"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="44" nNm="role_id" oNm="user_cizacl_role_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="45" nNm="auth" oNm="user_auth"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="46" nNm="date" oNm="user_auth_date"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="47" nNm="status" oNm="user_status"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="status" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="48" nNm="id" oNm="user_status_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="status" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="49" nNm="name" oNm="user_status_name"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="status" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="50" nNm="code" oNm="user_status_code"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="51" nNm="id" oNm="cizacl_rule_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="60" nNm="role_id" oNm="cizacl_role_id"/>
+      <Rnm id="52" nNm="cizacl_role_id" oNm="cizacl_rule_cizacl_role_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="53" nNm="type" oNm="cizacl_rule_type"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="56" nNm="resource_controller" oNm="cizacl_resource_controller"/>
+      <Rnm id="54" nNm="cizacl_resource_controller" oNm="cizacl_rule_cizacl_resource_controller"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="55" nNm="resource_function" oNm="cizacl_rule_cizacl_resource_function"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="57" nNm="status" oNm="cizacl_rule_status"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="rules" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="58" nNm="description" oNm="cizacl_rule_description"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="59" nNm="rules" oNm="cizacl_rules"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
