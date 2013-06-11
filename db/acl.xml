@@ -31,42 +31,34 @@
         <CdTb mn="1" nm="adresses" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="adress_id" prCl="adress_id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_audios">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_documents">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_images">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_presentations">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_texts">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_videos">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="contents">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_audiences">
@@ -83,7 +75,6 @@
         <CdTb mn="1" nm="course_audiences" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="id" prCl="id_audience"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_categories">
@@ -103,7 +94,6 @@
         <CdTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_goals">
@@ -120,7 +110,6 @@
         <CdTb mn="1" nm="course_goals" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="id" prCl="id_goal"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_requirements">
@@ -137,7 +126,6 @@
         <CdTb mn="1" nm="course_requirements" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="id" prCl="id_requirement"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_user">
@@ -174,7 +162,6 @@
         <CdTb mn="0" nm="course_user" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="id_user" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="courses">
@@ -207,12 +194,10 @@
       <Cl au="0" df="" nm="id_FAQ" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="curriculums">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="despatchs">
@@ -242,7 +227,6 @@
         <CdTb mn="0" nm="despatchs" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="despatch_id" prCl="adress_id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="entry_control">
@@ -264,7 +248,6 @@
         <CdTb mn="1" nm="entry_control" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="FAQ">
@@ -284,37 +267,30 @@
         <CdTb mn="1" nm="FAQ" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="id" prCl="id_FAQ"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="languages">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lectures">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_code">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_external">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_files">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="materials">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="notifications">
@@ -331,37 +307,30 @@
         <CdTb mn="1" nm="notifications" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_blank">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_boolean">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_multi">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="questions">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="quizzes">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="register_modes">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="resources">
@@ -394,7 +363,6 @@
       <Cl au="0" df="" nm="edited_on" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="roles">
@@ -421,7 +389,6 @@
       <Cl au="0" df="998" nm="order" nu="0">
         <DT arr="0" ds="SmallInt" en="" id="5" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="rules">
@@ -448,12 +415,10 @@
       <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sections">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="session">
@@ -474,7 +439,6 @@
       <Cl au="0" df="" nm="user_data" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="status">
@@ -489,7 +453,6 @@
       <Cl au="0" df="" nm="code" nu="0">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="telephone_numbers">
@@ -510,7 +473,6 @@
         <CdTb mn="1" nm="telephone_numbers" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="telephone_number_id" prCl="telephon_number"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="testimonies">
@@ -525,12 +487,10 @@
       <Cl au="0" df="" nm="testimony" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="300" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="trending">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_category">
@@ -550,32 +510,26 @@
         <CdTb mn="0" nm="user_category" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="id" prCl="id_user_category"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_interests">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_links">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_notifications">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_preferences">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_privacies">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_profiles">
@@ -647,12 +601,24 @@
       <Cl au="0" df="" nm="first_entry" nu="0">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="user_status">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkuser_status"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="130" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="code" nu="1">
+        <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_thumbs">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="users">
@@ -676,13 +642,12 @@
       <Cl au="0" df="" nm="date" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <CustomTypes/>
   </Sch>
   <Dgm nm="diagramA">
-    <RnCf ClkAct="true" FtSz="9" lkStgy="OffsetDirect" zm="1.0">
+    <RnCf FtSz="9" lkStgy="OffsetDirect" zm="1.0">
       <VbCfg>
         <Fg ky="Auto Number" vl="0"/>
         <Fg ky="Check" vl="0"/>
@@ -749,6 +714,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_user" x="313" y="175"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_category" x="4" y="170"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="FAQ" x="11" y="388"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1851" y="265"/>
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adress_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_audiences.audience"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_categories.category"/>
