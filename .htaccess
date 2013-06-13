@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|assets|js|css|robots\.txt)
+RewriteRule ^(.*)$ /repositorios/aulavirtual/index.php/$1 [L]

@@ -282,7 +282,7 @@ class Cizacl_Js extends CI_Controller {
 	{
 		$jqgrid_name	= array('#roles_table','#resources_table','#rules_table');
 		$navgrid_name	= array('#roles_navigator','#resources_navigator','#rules_navigator');
-		$id_field_name	= array('role_id','resource_id','rule_id');
+		$id_field_name	= array('id','resource_id','rule_id');
 		
 		$output = '
 		var jqgrid_initialized = [false, false, false];
@@ -309,7 +309,7 @@ class Cizacl_Js extends CI_Controller {
 							setGridHeight: "100%",
 							rowNum: 20,
 							rowList:[10,20,30],
-							sortname: "cizacl_role_order",
+							sortname: "order",
 							sortorder: "asc",
 							viewrecords: true,
 							editurl: "'.site_url('cizacl/roles_op').'",
@@ -326,8 +326,8 @@ class Cizacl_Js extends CI_Controller {
 							colNames:["'.$this->lang->line('id').'", "'.$this->lang->line('controller').'", "'.$this->lang->line('function').'", "'.$this->lang->line('description').'", "'.$this->lang->line('created_by').'"],
 							colModel :[ 
 								{name:"id", index:"id", hidden:true}, 
-								{name:"controller", index:"controller"},
-								{name:"function", index:"function"},
+								{name:"resource_controller", index:"resource_controller"},
+								{name:"resource_function", index:"resource_function"},
 								{name:"description", index:"description"},
 								{name:"added_by", index:"added_by", hidden:true}
 							],
@@ -382,7 +382,7 @@ class Cizacl_Js extends CI_Controller {
 		
 		
 		function add_role()	{
-			colorbox("/cizacl/role_add/",550,400,null,"reloadGrid");
+			colorbox("cizacl/role_add/",550,400,null,"reloadGrid");
 		}
 		
 		function edit_role()	{
@@ -390,7 +390,7 @@ class Cizacl_Js extends CI_Controller {
 			var row	= $("'.$jqgrid_name[0].'").jqGrid("getRowData",id);
 			
 			if(id != null)
-				colorbox("/cizacl/role_edit/"+row.'.$id_field_name[0].',550,400,null,"reloadGrid");
+				colorbox("cizacl/role_edit/"+row.'.$id_field_name[0].',550,400,null,"reloadGrid");
 			else
 				alert("'.$this->lang->line('select_row').'");
 		}

@@ -7,11 +7,11 @@
   <Sch Cm="" nm="schemaA">
     <Tbl UsSo="1" nm="adresses">
       <TblOpts/>
-      <Pk ClNs="adress_id" nm="pkadresses"/>
-      <Cl au="0" df="" nm="adress_id" nu="0">
+      <Pk ClNs="id" nm="pkadresses"/>
+      <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="adress" nu="0">
+      <Cl au="0" df="" nm="stree" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="city" nu="0">
@@ -26,12 +26,12 @@
       <Cl au="0" df="" nm="country" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="adress_id" prLkCl="adress_id" upAc="3">
-        <PrTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="adresses" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="adress_id" prCl="adress_id"/>
-      </Fk>
-      <UniqueConstraints/>
+      <Cl au="0" df="" nm="number" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="observation" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_audios">
@@ -43,18 +43,17 @@
       <Cl au="0" df="" nm="link" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="content_audios_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_audios" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_documents">
@@ -69,15 +68,14 @@
       <Cl au="0" df="" nm="document" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="lcontent_documents_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_documents" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_images">
@@ -95,15 +93,14 @@
       <Cl au="0" df="" nm="link" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="content_images_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_images" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_presentations">
@@ -118,7 +115,7 @@
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="prestentation" nu="0">
@@ -127,12 +124,11 @@
       <Cl au="0" df="" nm="link" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="content_presentations_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_presentations" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_texts">
@@ -144,15 +140,14 @@
       <Cl au="0" df="" nm="text" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="content_texts_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_texts" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_videos">
@@ -167,20 +162,18 @@
       <Cl au="0" df="" nm="link" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="content_videos_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_videos" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="contents">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_audiences">
@@ -192,12 +185,14 @@
       <Cl au="0" df="" nm="type_audience" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="audience" prLkCl="id_audience" upAc="3">
+      <Cl au="0" df="" nm="course_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="course_audiences_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="course_audiences" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id" prCl="id_audience"/>
+        <CdTb mn="1" nm="course_audiences" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_categories">
@@ -212,12 +207,28 @@
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="category" prLkCl="id" upAc="3">
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="course_faqs">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkcourse_faqs"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="question" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="answer" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="course_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="course_faqs_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id" prCl="id"/>
+        <CdTb mn="1" nm="course_faqs" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_goals">
@@ -226,15 +237,17 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="goal" nu="0">
+      <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="goals" prLkCl="id_goal" upAc="3">
+      <Cl au="0" df="" nm="course_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="course_goals_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="course_goals" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id" prCl="id_goal"/>
+        <CdTb mn="1" nm="course_goals" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_requirements">
@@ -243,52 +256,58 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="requirement" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      <Cl au="0" df="" nm="description" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="requirements" prLkCl="id_requirement" upAc="3">
+      <Cl au="0" df="" nm="course_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="course_requirements_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="course_requirements" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id" prCl="id_requirement"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="course_user">
+    <Tbl UsSo="1" nm="course_users">
       <TblOpts/>
-      <Pk ClNs="id" nm="pkcourse_user"/>
+      <Pk ClNs="id" nm="pkcourse_users"/>
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_course" nu="0">
+      <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_user" nu="0">
+      <Cl au="0" df="" nm="user_profile_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="observations" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="state" nu="0">
+      <Cl au="0" df="" nm="status" nu="0">
         <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="testimony" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="300" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_user_category" nu="0">
+      <Cl au="0" df="" nm="user_category_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="course" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="course_users_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="course_user" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_course" prCl="id"/>
+        <CdTb mn="0" nm="course_users" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <Fk deAc="3" nm="user" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="course_users_user_category_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="user_categories" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="course_users" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="user_category_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="course_users_user_profile_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="course_user" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_user" prCl="id"/>
+        <CdTb mn="1" nm="course_users" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="user_profile_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="courses">
@@ -297,11 +316,11 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="Name" nu="0">
+      <Cl au="0" df="" nm="name" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="category" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      <Cl au="0" df="" nm="description" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="concurrence" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
@@ -309,19 +328,35 @@
       <Cl au="0" df="" nm="price" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_requirement" nu="0">
+      <Cl au="0" df="" nm="course_category_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_goal" nu="0">
+      <Cl au="0" df="" nm="hours" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_audience" nu="0">
+      <Cl au="0" df="" nm="timing" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="130" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cost" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="discount" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="promo_date_to" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="quota" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_FAQ" nu="0">
+      <Cl au="0" df="" nm="status_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
+      <Fk deAc="3" nm="courses_course_category_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="course_category_id" prCl="id"/>
+      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="curriculums">
@@ -330,22 +365,21 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_course" nu="0">
+      <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="course" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="curriculums_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="0" nm="curriculums" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_course" prCl="id"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="despatchs">
       <Cm>This are the despatchs of the diplom or certificate</Cm>
       <TblOpts/>
-      <Pk ClNs="despatch_id" nm="pkdespatchs"/>
-      <Cl au="0" df="" nm="despatch_id" nu="0">
+      <Pk ClNs="id" nm="pkdespatchs"/>
+      <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="delivery_day" nu="0">
@@ -363,12 +397,14 @@
       <Cl au="0" df="" nm="comments" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="despatch" prLkCl="adress_id" upAc="3">
+      <Cl au="0" df="" nm="addres_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="despatchs_adress_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="adresses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="despatchs" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="despatch_id" prCl="adress_id"/>
+        <CdTb mn="1" nm="despatchs" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="addres_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="entry_control">
@@ -385,37 +421,10 @@
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
         <Cm>who much time what activ the session of the user</Cm>
       </Cl>
-      <Fk deAc="3" nm="entry_control" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="entry_control" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id" prCl="id"/>
-      </Fk>
-      <UniqueConstraints/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="FAQ">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pkFAQ"/>
-      <Cl au="0" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="question" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="answer" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="3" nm="FAQ" prLkCl="id_FAQ" upAc="3">
-        <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="FAQ" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id" prCl="id_FAQ"/>
-      </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="languages">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lessons">
@@ -424,28 +433,25 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_section" nu="0">
+      <Cl au="0" df="" nm="section_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_content" nu="0">
+      <Cl au="0" df="" nm="content_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="section" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="sections" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="lessons" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_section" prCl="id"/>
+        <ClPr cdCl="section_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_code">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_external">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="material_files">
@@ -463,20 +469,18 @@
       <Cl au="0" df="" nm="link" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="material_files_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="material_files" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="materials">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="notifications">
@@ -488,12 +492,9 @@
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="notifications" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="notifications" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id" prCl="id"/>
-      </Fk>
-      <UniqueConstraints/>
+      <Cl au="0" df="" nm="user_profile_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_answer">
@@ -508,15 +509,14 @@
       <Cl au="0" df="" nm="correct" nu="0">
         <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_question_type_multi" nu="0">
+      <Cl au="0" df="" nm="question_type_multi_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="answer" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="question_type_multi" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="question_answer" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_question_type_multi" prCl="id"/>
+        <ClPr cdCl="question_type_multi_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_blank">
@@ -528,15 +528,14 @@
       <Cl au="0" df="" nm="question" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_quiz" nu="0">
+      <Cl au="0" df="" nm="quiz_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="quiz" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="question_type_blank_quiz_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="question_type_blank" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_quiz" prCl="id"/>
+        <ClPr cdCl="quiz_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_boolean">
@@ -548,18 +547,17 @@
       <Cl au="0" df="" nm="question" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="true" nu="0">
+      <Cl au="0" df="" nm="status" nu="0">
         <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_quiz" nu="0">
+      <Cl au="0" df="" nm="quiz_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="quiz" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="question_type_boolean_quiz_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="question_type_boolean" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_quiz" prCl="id"/>
+        <ClPr cdCl="quiz_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_multi">
@@ -571,20 +569,18 @@
       <Cl au="0" df="" nm="question" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_quiz" nu="0">
+      <Cl au="0" df="" nm="quiz_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="quiz" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="question_type_multi_quiz_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="question_type_multi" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_quiz" prCl="id"/>
+        <ClPr cdCl="quiz_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="questions">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="quizzes">
@@ -593,23 +589,21 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_lesson" nu="0">
+      <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="lesson" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="quizzes_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="quizzes" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="id_lesson" prCl="id"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="register_modes">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="resources">
@@ -619,12 +613,12 @@
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="type" nu="0">
-        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="controller" nu="0">
+      <Cl au="0" df="" nm="resource_controller" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="function" nu="1">
+      <Cl au="0" df="" nm="resource_function" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="1">
@@ -642,7 +636,6 @@
       <Cl au="0" df="" nm="edited_on" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="roles">
@@ -669,7 +662,6 @@
       <Cl au="0" df="998" nm="order" nu="0">
         <DT arr="0" ds="SmallInt" en="" id="5" ln="null" sc="null" sg="0" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="rules">
@@ -696,7 +688,6 @@
       <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="255" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sections">
@@ -705,24 +696,23 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_curriculum" nu="0">
+      <Cl au="0" df="" nm="curriculum_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="name" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="curriculum" prLkCl="id" upAc="3">
+      <Fk deAc="3" nm="sections_curriculum_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="curriculums" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="sections" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id_curriculum" prCl="id"/>
+        <ClPr cdCl="curriculum_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="session">
+    <Tbl UsSo="1" nm="sessions">
       <TblOpts>ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC</TblOpts>
-      <Pk ClNs="id" nm="pksession"/>
-      <Cl au="0" df="0" nm="id" nu="0">
+      <Pk ClNs="session_id" nm="pksessions"/>
+      <Cl au="0" df="0" nm="session_id" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="0" nm="ip_address" nu="0">
@@ -737,7 +727,6 @@
       <Cl au="0" df="" nm="user_data" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="status">
@@ -752,28 +741,40 @@
       <Cl au="0" df="" nm="code" nu="0">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="telephone_numbers">
-      <Cm>telefon numbers of the users</Cm>
-      <TblOpts/>
-      <Pk ClNs="telephone_number_id" nm="pktelephone_numbers"/>
-      <Cl au="0" df="" nm="telephone_number_id" nu="0">
+      <Cl au="0" df="" nm="status_group_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="telephone_number" nu="0">
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="status_groups">
+      <TblOpts/>
+      <Cl au="0" df="" nm="id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="description" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="130" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="telephones">
+      <Cm>telefon numbers of the users</Cm>
+      <TblOpts/>
+      <Pk ClNs="id" nm="pktelephones"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="number" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="telephone_number_id" prLkCl="telephon_number" upAc="3">
-        <PrTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="telephone_numbers" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="telephone_number_id" prCl="telephon_number"/>
-      </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="testimonies">
@@ -788,17 +789,15 @@
       <Cl au="0" df="" nm="testimony" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="300" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="trending">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="user_category">
+    <Tbl UsSo="1" nm="user_categories">
       <TblOpts/>
-      <Pk ClNs="id" nm="pkuser_category"/>
+      <Pk ClNs="id" nm="pkuser_categories"/>
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -808,37 +807,26 @@
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="id_user_category" prLkCl="id_user_category" upAc="3">
-        <PrTb mn="0" nm="course_user" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="user_category" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="id" prCl="id_user_category"/>
-      </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_interests">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_links">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_notifications">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_preferences">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_privacies">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_profiles">
@@ -895,7 +883,7 @@
       <Cl au="0" df="" nm="document_number" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="24" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="telephon_number" nu="0">
+      <Cl au="0" df="" nm="telephone_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="studies" nu="0">
@@ -904,13 +892,27 @@
       <Cl au="0" df="" nm="adress_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="picture" nu="0">
-        <DT arr="0" ds="BLOB" en="" id="2004" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
       <Cl au="0" df="" nm="first_entry" nu="0">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
+      <Cl au="0" df="" nm="despath_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="user_profiles_adress_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="adresses" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="adress_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="user_profiles_despath_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="despatchs" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="despath_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="user_profiles_telephone_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="telephones" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="user_profiles" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="telephone_id" prCl="id"/>
+      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_status">
@@ -925,12 +927,10 @@
       <Cl au="0" df="" nm="code" nu="1">
         <DT arr="0" ds="TinyInt" en="" id="-6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="user_thumbs">
       <TblOpts/>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="users">
@@ -954,13 +954,12 @@
       <Cl au="0" df="" nm="date" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <CustomTypes/>
   </Sch>
   <Dgm nm="diagramA">
-    <RnCf ClkAct="true" FtSz="9" lkStgy="OffsetDirect" zm="0.5">
+    <RnCf FtSz="9" lkStgy="OffsetDirect" zm="1.0">
       <VbCfg>
         <Fg ky="Auto Number" vl="0"/>
         <Fg ky="Check" vl="0"/>
@@ -983,9 +982,9 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="resources" x="1628" y="138"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="roles" x="1637" y="497"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="rules" x="1630" y="19"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="session" x="1630" y="277"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sessions" x="1630" y="277"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_profiles" x="868" y="175"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="status" x="1640" y="616"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="status" x="1460" y="626"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="users" x="1633" y="385"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="register_modes" x="25" y="1046"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbs" x="25" y="1089"/>
@@ -1003,7 +1002,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_type_boolean" x="60" y="961"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="sections" x="689" y="667"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="lessons" x="721" y="850"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="contents" x="861" y="785"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="contents" x="892" y="706"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_videos" x="1079" y="603"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_images" x="1080" y="720"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_presentations" x="1080" y="816"/>
@@ -1019,48 +1018,48 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_goals" x="634" y="271"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="638" y="485"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_requirements" x="640" y="388"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="telephone_numbers" x="1251" y="180"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="telephones" x="1251" y="180"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="adresses" x="1251" y="262"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="despatchs" x="1373" y="413"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="despatchs" x="1372" y="431"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="entry_control" x="1123" y="486"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="897" y="495"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_user" x="313" y="175"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_category" x="4" y="170"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="FAQ" x="11" y="388"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="313" y="175"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="4" y="170"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="11" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1851" y="265"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="52" y="653"/>
-    <FkGl bkCl="ff000000" nm="schemaA.adresses.adress_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_audios.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_documents.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_images.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_presentations.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_texts.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_videos.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_audiences.audience"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_categories.category"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_goals.goals"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_requirements.requirements"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_user.course"/>
-    <FkGl bkCl="ff000000" nm="schemaA.course_user.user"/>
-    <FkGl bkCl="ff000000" nm="schemaA.curriculums.course"/>
-    <FkGl bkCl="ff000000" nm="schemaA.despatchs.despatch"/>
-    <FkGl bkCl="ff000000" nm="schemaA.entry_control.entry_control"/>
-    <FkGl bkCl="ff000000" nm="schemaA.FAQ.FAQ"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="status_groups" x="1461" y="731"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_documents.lcontent_documents_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_images.content_images_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_presentations.content_presentations_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_texts.content_texts_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_videos.content_videos_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_audiences.course_audiences_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_faqs.course_faqs_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_goals.course_goals_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_requirements.course_requirements_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_category_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_profile_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.courses.courses_course_category_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.curriculums.curriculums_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.despatchs.despatchs_adress_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.lessons.section"/>
-    <FkGl bkCl="ff000000" nm="schemaA.material_files.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.notifications.notifications"/>
+    <FkGl bkCl="ff000000" nm="schemaA.material_files.material_files_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.question_answer.answer"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_blank.quiz"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_boolean.quiz"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_multi.quiz"/>
-    <FkGl bkCl="ff000000" nm="schemaA.quizzes.lesson"/>
-    <FkGl bkCl="ff000000" nm="schemaA.sections.curriculum"/>
-    <FkGl bkCl="ff000000" nm="schemaA.telephone_numbers.telephone_number_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.user_category.id_user_category"/>
+    <FkGl bkCl="ff000000" nm="schemaA.question_type_blank.question_type_blank_quiz_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.question_type_boolean.question_type_boolean_quiz_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.question_type_multi.question_type_multi_quiz_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.quizzes.quizzes_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sections.sections_curriculum_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.user_profiles.user_profiles_adress_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.user_profiles.user_profiles_despath_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.user_profiles.user_profiles_telephone_id"/>
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="76">
+  <RnmMgr NxRnmId="128">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1105,6 +1104,7 @@
       <Rnm id="14" nNm="resources" oNm="cizacl_resources"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="126" nNm="resource_controller" oNm="controller"/>
       <Rnm id="15" nNm="controller" oNm="cizacl_resource_controller"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
@@ -1114,6 +1114,7 @@
       <Rnm id="17" nNm="id" oNm="cizacl_resource_id"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="127" nNm="resource_function" oNm="function"/>
       <Rnm id="18" nNm="function" oNm="cizacl_resource_function"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
@@ -1131,10 +1132,12 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="resources" SupCls="Schema" SupNme="schemaA">
       <Rnm id="23" nNm="edited_on" oNm="cizacl_resource_edited_on"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="session" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sessions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="124" nNm="session_id" oNm="id"/>
       <Rnm id="24" nNm="id" oNm="session_id"/>
     </RnmCh>
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="125" nNm="sessions" oNm="session"/>
       <Rnm id="25" nNm="session" oNm="cizacl_session"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
@@ -1144,6 +1147,9 @@
       <Rnm id="27" nNm="user_id" oNm="user_profile_user_id"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="123" nNm="name" oNm="fname"/>
+      <Rnm id="122" nNm="fname" oNm="first_name"/>
+      <Rnm id="121" nNm="first_name" oNm="name"/>
       <Rnm id="28" nNm="name" oNm="user_profile_name"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
@@ -1235,19 +1241,23 @@
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="59" nNm="rules" oNm="cizacl_rules"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="telephone_numbers" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="telephones" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="104" nNm="id" oNm="telephone_number_id"/>
       <Rnm id="66" nNm="telephone_number_id" oNm="telephone_number"/>
       <Rnm id="61" nNm="telephone_number" oNm="telephone_numbersId"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="telephone_numbers" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="telephones" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="105" nNm="number" oNm="telephone_number"/>
       <Rnm id="67" nNm="telephone_number" oNm="description"/>
       <Rnm id="62" nNm="description" oNm="telephone_numbersName"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="adresses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="106" nNm="id" oNm="adress_id"/>
       <Rnm id="69" nNm="adress_id" oNm="id"/>
       <Rnm id="63" nNm="id" oNm="consignmentId"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="adresses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="107" nNm="stree" oNm="adress"/>
       <Rnm id="65" nNm="adress" oNm="city"/>
       <Rnm id="64" nNm="city" oNm="consignmentName"/>
     </RnmCh>
@@ -1265,10 +1275,121 @@
       <Rnm id="73" nNm="id" oNm="notificationsId"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="78" nNm="course_requirement_id" oNm="id_requirement"/>
       <Rnm id="74" nNm="id_requirement" oNm="id_requirements"/>
     </RnmCh>
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="75" nNm="lessons" oNm="lectures"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="77" nNm="user_category_id" oNm="category_user_id"/>
+      <Rnm id="76" nNm="category_user_id" oNm="id_user_category"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="79" nNm="course_goal_id" oNm="id_goal"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="80" nNm="course_audience_id" oNm="id_audience"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="81" nNm="faq_id" oNm="id_FAQ"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_goals" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="82" nNm="description" oNm="goal"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_requirements" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="83" nNm="description" oNm="requirement"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="84" nNm="course_id" oNm="id_course"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="86" nNm="user_profile_id" oNm="user_id"/>
+      <Rnm id="85" nNm="user_id" oNm="id_user"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="curriculums" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="87" nNm="course_id" oNm="id_course"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sections" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="88" nNm="curriculum_id" oNm="id_curriculum"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lessons" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="89" nNm="section_id" oNm="id_section"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lessons" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="90" nNm="content_id" oNm="id_content"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_videos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="91" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_images" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="92" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_presentations" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="93" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_documents" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="94" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_texts" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="95" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_audios" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="96" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="material_files" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="103" nNm="lesson_id" oNm="lesson"/>
+      <Rnm id="97" nNm="lesson" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="quizzes" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="98" nNm="lesson_id" oNm="id_lesson"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_multi" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="99" nNm="quiz_id" oNm="id_quiz"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_blank" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="100" nNm="quiz_id" oNm="id_quiz"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_boolean" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="101" nNm="quiz_id" oNm="id_quiz"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_answer" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="102" nNm="question_type_multi_id" oNm="id_question_type_multi"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="despatchs" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="108" nNm="id" oNm="despatch_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="113" nNm="course_faqs" oNm="faq"/>
+      <Rnm id="109" nNm="faq" oNm="FAQ"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="110" nNm="name" oNm="Name"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="111" nNm="description" oNm="category"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="112" nNm="status_groups" oNm="status_group"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="114" nNm="user_categories" oNm="user_category"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="115" nNm="course_users" oNm="course_user"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="user_profiles" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="118" nNm="telephone_id" oNm="telephon_id"/>
+      <Rnm id="116" nNm="telephon_id" oNm="telephon_number"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="117" nNm="telephones" oNm="telephone_numbers"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_boolean" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="119" nNm="status" oNm="true"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="120" nNm="status" oNm="state"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

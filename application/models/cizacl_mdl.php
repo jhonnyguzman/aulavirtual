@@ -83,23 +83,23 @@ class Cizacl_Mdl extends CI_Model	{
 	function getResources()
 	{
 		$this->db->where('type','controller');
-		$this->db->order_by('controller');
+		$this->db->order_by('resource_controller');
 		$query = $this->db->get('resources');
 		
 		foreach($query->result() as $row)	{
 			$data->rows[] = array(
-				'value'	=> $row->controller,
-				'name'	=> $row->controller
+				'value'	=> $row->resource_controller,
+				'name'	=> $row->resource_controller
 			);
-			$this->db->where('controller',$row->controller);
+			$this->db->where('resource_controller',$row->resource_controller);
 			$this->db->where('type','function');
-			$this->db->order_by('function');
+			$this->db->order_by('resource_function');
 			$subquery = $this->db->get('resources');
 
 			foreach($subquery->result() as $subrow)	{
 				$data->rows[] = array(
-					'value'	=> $row->controller . '/' . $subrow->function,
-					'name'	=> $row->controller . '/' . $subrow->function,
+					'value'	=> $row->resource_controller . '/' . $subrow->resource_function,
+					'name'	=> $row->resource_controller . '/' . $subrow->resource_function,
 				);
 			}
 			
@@ -117,8 +117,8 @@ class Cizacl_Mdl extends CI_Model	{
 	function getFunctions()
 	{
 		$this->db->where('type','function');
-		$this->db->group_by('function');
-		$this->db->order_by('function');
+		$this->db->group_by('resource_function');
+		$this->db->order_by('resource_function');
 		$query = $this->db->get('resources');
 		
 		$data->rows[] = array(
@@ -130,8 +130,8 @@ class Cizacl_Mdl extends CI_Model	{
 		foreach($query->result() as $row)	{
 			$data->rows[] = array(
 				'id'	=> $row->id,
-				'value'	=> $row->function,
-				'name'	=> $row->function
+				'value'	=> $row->resource_function,
+				'name'	=> $row->resource_function
 			);
 		}
 		
@@ -145,10 +145,10 @@ class Cizacl_Mdl extends CI_Model	{
 	
 	function getFunctionId($name)
 	{
-		$this->db->where('function',$name);
+		$this->db->where('resource_function',$name);
 		$this->db->where('type','function');
-		$this->db->group_by('function');
-		$this->db->order_by('function');
+		$this->db->group_by('resource_function');
+		$this->db->order_by('resource_function');
 		$this->db->limit(1);
 		$query = $this->db->get('resources');
 		
@@ -163,7 +163,7 @@ class Cizacl_Mdl extends CI_Model	{
 	function getControllers()
 	{
 		$this->db->where('type','controller');
-		$this->db->order_by('controller');
+		$this->db->order_by('resource_controller');
 		$query = $this->db->get('resources');
 		
 		$data->rows[] = array(
@@ -175,8 +175,8 @@ class Cizacl_Mdl extends CI_Model	{
 		foreach($query->result() as $row)	{
 			$data->rows[] = array(
 				'id'	=> $row->id,
-				'value'	=> $row->controller,
-				'name'	=> $row->controller
+				'value'	=> $row->resource_controller,
+				'name'	=> $row->resource_controller
 			);
 		}
 		
@@ -190,9 +190,9 @@ class Cizacl_Mdl extends CI_Model	{
 	
 	function getControllerId($name)
 	{
-		$this->db->where('controller',$name);
+		$this->db->where('resource_controller',$name);
 		$this->db->where('type','controller');
-		$this->db->order_by('controller');
+		$this->db->order_by('resource_controller');
 		$this->db->limit(1);
 		$query = $this->db->get('resources');
 		

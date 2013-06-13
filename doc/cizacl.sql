@@ -30,87 +30,87 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cizacl_resources`
+-- Struttura della tabella `resources`
 --
 
-CREATE TABLE IF NOT EXISTS `cizacl_resources` (
-  `cizacl_resource_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cizacl_resource_type` enum('controller','function') NOT NULL,
-  `cizacl_resource_controller` varchar(50) NOT NULL,
-  `cizacl_resource_function` varchar(50) DEFAULT NULL,
-  `cizacl_resource_description` varchar(255) DEFAULT NULL,
-  `cizacl_resource_added_by` int(10) NOT NULL,
-  `cizacl_resource_edited_by` int(10) DEFAULT NULL,
-  `cizacl_resource_added_on` int(10) NOT NULL,
-  `cizacl_resource_edited_on` int(10) DEFAULT NULL,
-  PRIMARY KEY (`cizacl_resource_id`)
+CREATE TABLE IF NOT EXISTS `resources` (
+  `resource_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `resource_type` enum('controller','function') NOT NULL,
+  `resource_controller` varchar(50) NOT NULL,
+  `resource_function` varchar(50) DEFAULT NULL,
+  `resource_description` varchar(255) DEFAULT NULL,
+  `resource_added_by` int(10) NOT NULL,
+  `resource_edited_by` int(10) DEFAULT NULL,
+  `resource_added_on` int(10) NOT NULL,
+  `resource_edited_on` int(10) DEFAULT NULL,
+  PRIMARY KEY (`resource_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `cizacl_resources`
+-- Dump dei dati per la tabella `resources`
 --
 
-INSERT INTO `cizacl_resources` (`cizacl_resource_id`, `cizacl_resource_type`, `cizacl_resource_controller`, `cizacl_resource_function`, `cizacl_resource_description`, `cizacl_resource_added_by`, `cizacl_resource_edited_by`, `cizacl_resource_added_on`, `cizacl_resource_edited_on`) VALUES
+INSERT INTO `resources` (`resource_id`, `resource_type`, `resource_controller`, `resource_function`, `resource_description`, `resource_added_by`, `resource_edited_by`, `resource_added_on`, `resource_edited_on`) VALUES
 (1, 'controller', 'login', NULL, NULL, 0, NULL, 1311112800, NULL),
 (2, 'controller', 'cizacl', NULL, NULL, 0, NULL, 1311112800, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cizacl_roles`
+-- Struttura della tabella `roles`
 --
 
-CREATE TABLE IF NOT EXISTS `cizacl_roles` (
-  `cizacl_role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cizacl_role_name` varchar(20) NOT NULL,
-  `cizacl_role_inherit_id` varchar(50) DEFAULT NULL,
-  `cizacl_role_redirect` varchar(255) NOT NULL,
-  `cizacl_role_description` varchar(255) DEFAULT NULL,
-  `cizacl_role_default` tinyint(1) unsigned NOT NULL,
-  `cizacl_role_order` smallint(3) unsigned NOT NULL DEFAULT '998',
-  PRIMARY KEY (`cizacl_role_id`)
+CREATE TABLE IF NOT EXISTS `roles` (
+  `role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(20) NOT NULL,
+  `role_inherit_id` varchar(50) DEFAULT NULL,
+  `role_redirect` varchar(255) NOT NULL,
+  `role_description` varchar(255) DEFAULT NULL,
+  `role_default` tinyint(1) unsigned NOT NULL,
+  `role_order` smallint(3) unsigned NOT NULL DEFAULT '998',
+  PRIMARY KEY (`role_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `cizacl_roles`
+-- Dump dei dati per la tabella `roles`
 --
 
-INSERT INTO `cizacl_roles` (`cizacl_role_id`, `cizacl_role_name`, `cizacl_role_inherit_id`, `cizacl_role_redirect`, `cizacl_role_description`, `cizacl_role_default`, `cizacl_role_order`) VALUES
+INSERT INTO `roles` (`role_id`, `role_name`, `role_inherit_id`, `role_redirect`, `role_description`, `role_default`, `role_order`) VALUES
 (1, 'Administrator', NULL, 'cizacl', '', 0, 1),
 (2, 'Guest', NULL, 'login', NULL, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cizacl_rules`
+-- Struttura della tabella `rules`
 --
 
-CREATE TABLE IF NOT EXISTS `cizacl_rules` (
-  `cizacl_rule_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cizacl_rule_cizacl_role_id` int(11) DEFAULT NULL,
-  `cizacl_rule_type` enum('allow','deny') NOT NULL,
-  `cizacl_rule_cizacl_resource_controller` text NOT NULL,
-  `cizacl_rule_cizacl_resource_function` text,
-  `cizacl_rule_status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `cizacl_rule_description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`cizacl_rule_id`)
+CREATE TABLE IF NOT EXISTS `rules` (
+  `rule_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rule_role_id` int(11) DEFAULT NULL,
+  `rule_type` enum('allow','deny') NOT NULL,
+  `rule_resource_controller` text NOT NULL,
+  `rule_resource_function` text,
+  `rule_status` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `rule_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`rule_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `cizacl_rules`
+-- Dump dei dati per la tabella `rules`
 --
 
-INSERT INTO `cizacl_rules` (`cizacl_rule_id`, `cizacl_rule_cizacl_role_id`, `cizacl_rule_type`, `cizacl_rule_cizacl_resource_controller`, `cizacl_rule_cizacl_resource_function`, `cizacl_rule_status`, `cizacl_rule_description`) VALUES
+INSERT INTO `rules` (`rule_id`, `rule_role_id`, `rule_type`, `rule_resource_controller`, `rule_resource_function`, `rule_status`, `rule_description`) VALUES
 (1, 1, 'allow', '[null]', '[null]', 1, ''),
 (2, 2, 'allow', '["login"]', '[null]', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cizacl_session`
+-- Struttura della tabella `session`
 --
 
-CREATE TABLE IF NOT EXISTS `cizacl_session` (
+CREATE TABLE IF NOT EXISTS `session` (
   `session_id` varchar(40) NOT NULL DEFAULT '0',
   `ip_address` varchar(16) NOT NULL DEFAULT '0',
   `user_agent` varchar(120) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `cizacl_session` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
--- Dump dei dati per la tabella `cizacl_session`
+-- Dump dei dati per la tabella `session`
 --
 
 
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_username` varchar(80) NOT NULL,
   `user_password` varchar(64) NOT NULL,
-  `user_cizacl_role_id` int(11) NOT NULL,
+  `user_role_id` int(11) NOT NULL,
   `user_auth` int(11) DEFAULT NULL,
   `user_auth_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dump dei dati per la tabella `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_username`, `user_password`, `user_cizacl_role_id`, `user_auth`, `user_auth_date`) VALUES
+INSERT INTO `users` (`user_id`, `user_username`, `user_password`, `user_role_id`, `user_auth`, `user_auth_date`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, NULL);
 
 -- --------------------------------------------------------

@@ -49,17 +49,17 @@ class Cizacl extends CI_Controller	{
 		if($query->num_rows())	{
 			$data['summary'] .= '<p align="center" class="summary">';
 			foreach($query->result() as $row)	{
-				$this->db->where('user_status_code = '.$row->user_status_code);
+				$this->db->where('user_status_code = '.$row->code);
 				$data['summary'] .= ucwords(str_replace(array('enabled','disabled','blocked'),array($this->lang->line('enabled'),$this->lang->line('disabled'),$this->lang->line('blocked')),$row->name)).': <strong>'.$this->db->count_all_results('user_profiles').'</strong>, ';
 			}
 			$data['summary'] = substr($data['summary'],0,-2);
 			$data['summary'] .= '</p>';
 		}
 		$data['summary'] .= '<p>&nbsp;</p>';
-		$this->db->order_by('controller');
+		$this->db->order_by('resource_controller');
 		$data['summary'] .= '<p align="center" class="summary">'.$this->lang->line('controllers').': <strong>'.$this->db->count_all_results('resources').'</strong>, ';
-		$this->db->where('function IS NOT NULL');
-		$this->db->order_by('function');
+		$this->db->where('resource_function IS NOT NULL');
+		$this->db->order_by('resource_function');
 		$data['summary'] .= $this->lang->line('functions').': <strong>'.$this->db->count_all_results('resources').'</strong></p>';
 		$this->load->view('cizacl/main', $data);
 	}
@@ -728,7 +728,7 @@ class Cizacl extends CI_Controller	{
 		$sidx	= $this->input->post('sidx');
 		$sord	= $this->input->post('sord');
 		
-		$count = $this->db->count_all_results('cizacl_roles');
+		$count = $this->db->count_all_results('roles');
 		
 		$total_pages = $count > 0 ? ceil($count/$limit) : 0;
 		

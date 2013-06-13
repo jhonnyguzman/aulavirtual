@@ -57,7 +57,7 @@ class CI_Cizacl
 		$this->db->order_by('order');
 		$qRoles = $this->db->get('roles');
 		
-		$this->db->order_by('controller');
+		$this->db->order_by('resource_controller');
 		$this->db->order_by('id');
 		$qResources = $this->db->get('resources');
 		
@@ -89,16 +89,16 @@ class CI_Cizacl
 		//Set Resources
 		foreach($qResources->result() as $resources)	{
 			if($resources->type == 'controller')
-				$this->cizacl->add(new Zend_Acl_Resource($resources->controller));
+				$this->cizacl->add(new Zend_Acl_Resource($resources->resource_controller));
 			else
-				$this->cizacl->add(new Zend_Acl_Resource($resources->function),$resources->controller);
+				$this->cizacl->add(new Zend_Acl_Resource($resources->resource_function),$resources->resource_controller);
 		}
 		if(isset($qResources)) $qResources->free_result();
 		if(isset($qPrivileges)) $qPrivileges->free_result();
 		unset($resources);
 		 		
 		//Set Rules
-		foreach($qRules->result() as $rules)	{
+		/*foreach($qRules->result() as $rules)	{
 			$privileges = array();
 			if(!empty($rules->resource_function))	{
 				foreach(json_decode($rules->resource_function) as $privilege)	{
@@ -126,7 +126,7 @@ class CI_Cizacl
 		
 		// run the access control check now
 		if($this->_config['cizacl_status'])
-			$this->check_cizacl();
+			$this->check_cizacl();*/
 	}
 	
 	function check_cizacl()
