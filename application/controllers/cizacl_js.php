@@ -147,7 +147,7 @@ class Cizacl_Js extends CI_Controller {
 	{
 		$jqgrid_name	= '#users_table';
 		$navgrid_name	= '#users_navigator';
-		$id_field_name	= 'user_id';
+		$id_field_name	= 'id';
 		
 		$output = '
 		$(document).ready(function()	{
@@ -157,7 +157,7 @@ class Cizacl_Js extends CI_Controller {
 				mtype: "POST",
 				colNames:["'.$this->lang->line('id').'", "'.$this->lang->line('surname').'", "'.$this->lang->line('name').'", "'.$this->lang->line('email').'", "'.$this->lang->line('role').'", "'.$this->lang->line('state').'", "'.$this->lang->line('last_access').'", "'.$this->lang->line('created_by').'", "'.$this->lang->line('created_by').'"],
 				colModel :[ 
-					{name:"user_id", index:"user_id", hidden: true}, 
+					{name:"id", index:"user_id", hidden: true}, 
 					{name:"surname", index:"surname"},
 					{name:"name", index:"name"}, 
 					{name:"email", index:"email", align:"center"},
@@ -282,7 +282,7 @@ class Cizacl_Js extends CI_Controller {
 	{
 		$jqgrid_name	= array('#roles_table','#resources_table','#rules_table');
 		$navgrid_name	= array('#roles_navigator','#resources_navigator','#rules_navigator');
-		$id_field_name	= array('id','resource_id','rule_id');
+		$id_field_name	= array('id','id','id'); //role_id, resource_id, rule_id
 		
 		$output = '
 		var jqgrid_initialized = [false, false, false];
@@ -336,7 +336,7 @@ class Cizacl_Js extends CI_Controller {
 							setGridHeight: "100%",
 							rowNum: 20,
 							rowList:[10,20,30],
-							sortname: "cizacl_resource_controller",
+							sortname: "resource_controller",
 							sortorder: "asc",
 							viewrecords: true,
 							editurl: "'.site_url('cizacl/resources_op').'",
@@ -366,7 +366,7 @@ class Cizacl_Js extends CI_Controller {
 							setGridHeight: "100%",
 							rowNum: 20,
 							rowList:[10,20,30],
-							sortname: "cizacl_rule_cizacl_role_id",
+							sortname: "role_id",
 							sortorder: "asc",
 							viewrecords: true,
 							editurl: "'.site_url('cizacl/rules_op').'",

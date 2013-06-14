@@ -30,6 +30,12 @@ class Cizacl extends CI_Controller	{
 	
 	public function index()	{
 		
+		if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'cizacl', 'index')){
+			echo "tiene permisos";
+		}else{
+			echo "No tiene permisos";
+		}
+
 		$data['summary'] = '<p align="center" class="summary">'.$this->lang->line('accounts').': <strong>'.$this->db->count_all_results('users').'</strong></p>';
 		$data['summary'] .= '<p>&nbsp;</p>';
 		$this->db->order_by('name');
@@ -363,14 +369,14 @@ class Cizacl extends CI_Controller	{
 					$this->db->or_where($value['field'].' '.$this->cizacl_mdl->jqgrid_operator($value['op'],$value['data']));
 			}
 		}
-		$this->select("u.id, u.username, u.password, u.role_id, u.auth, u.date, up.*, us.name as user_status_name, r.name as role_name");
+		$this->db->select("u.id, u.username, u.password, u.role_id, u.auth, u.date, up.*, us.name as user_status_name, r.name as role_name");
 		$this->db->from('users as u');
 		$this->db->from('user_profiles as up');
 		$this->db->from('user_status as us');
 		$this->db->from('roles as r');
 		$this->db->where('u.id = up.user_id');
-		$this->db->where('u.role_id = r.role_id');
-		$this->db->where('u.user_status_code = us.code');
+		$this->db->where('u.role_id = r.id');
+		$this->db->where('up.user_status_code = us.code');
 		$this->db->order_by($sidx,$sord);
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
@@ -792,12 +798,12 @@ class Cizacl extends CI_Controller	{
 	{
 		$this->load->helper('form');
 		
-		$this->db->where('function');
-		$this->db->order_by('controller');
+		$this->db->where('resource_function');
+		$this->db->order_by('resource_controller');
 		$query = $this->db->get('resources');
 		$controllers[0] = $this->lang->line('select_option');
 		foreach($query->result() as $controller)	{
-			$controllers[strtolower($controller->controller)] = $controller->controller;
+			$controllers[strtolower($controller->resource_controller)] = $controller->resource_controller;
 		}
 
 		$data['body'] = array(
@@ -849,12 +855,12 @@ class Cizacl extends CI_Controller	{
 	{
 		$this->load->helper('form');
 
-		$this->db->where('function');
-		$this->db->order_by('controller');
+		$this->db->where('resource_function');
+		$this->db->order_by('resource_controller');
 		$query = $this->db->get('resources');
 		$controllers[0] = $this->lang->line('select_option');
 		foreach($query->result() as $controller)	{
-			$controllers[strtolower($controller->controller)] = $controller->controller;
+			$controllers[strtolower($controller->resource_controller)] = $controller->resource_controller;
 		}
 
 		$this->db->where('id = '.$this->uri->segment(3));
@@ -862,9 +868,9 @@ class Cizacl extends CI_Controller	{
 		$row = $query->row();
 		
 		if($row->type == 'controller')
-			$name = $row->controller;
+			$name = $row->resource_controller;
 		else
-			$name = $row->function;
+			$name = $row->resource_function;
 		
 		$data['body'] = array(
 			'title'	=> $this->lang->line('edit_resource')
@@ -900,7 +906,7 @@ class Cizacl extends CI_Controller	{
 				'name'		=> 'controller',
 				'attributes'=> 'id = "controller"',
 				'options'	=> $controllers,
-				'selected'	=> $row->controller
+				'selected'	=> $row->resource_controller
 			),
 			'description'		=> array(
 				'name'		=> 'description',
@@ -930,8 +936,8 @@ class Cizacl extends CI_Controller	{
 				if($this->input->post('type') == 'controller')	{
 					$addnew = array(
 						'type'			=> $this->input->post('type',true),
-						'controller'	=> strtolower($this->input->post('name',true)),
-						'function'		=> NULL,
+						'resource_controller'	=> strtolower($this->input->post('name',true)),
+						'resource_function'		=> NULL,
 						'description'	=> $this->input->post('description',true),
 						'added_on'		=> mktime(),
 						'added_by'		=> $this->session->userdata('user_id')
@@ -940,8 +946,8 @@ class Cizacl extends CI_Controller	{
 				else	{
 					$addnew = array(
 						'type'			=> $this->input->post('type',true),
-						'controller'	=> $this->input->post('controller',true),
-						'function'		=> strtolower($this->input->post('name',true)),
+						'resource_controller'	=> $this->input->post('controller',true),
+						'resource_function'		=> strtolower($this->input->post('name',true)),
 						'description'	=> $this->input->post('description',true),
 						'added_on'		=> mktime(),
 						'added_by'		=> $this->session->userdata('user_id')
@@ -967,8 +973,8 @@ class Cizacl extends CI_Controller	{
 				if($this->input->post('type',true) == 'controller')	{
 					$update = array(
 						'type'			=> $this->input->post('type',true),
-						'controller'	=> strtolower($this->input->post('name',true)),
-						'function'		=> NULL,
+						'resource_controller'	=> strtolower($this->input->post('name',true)),
+						'resource_function'		=> NULL,
 						'description'	=> $this->input->post('description',true),
 						'edited_on'	=> mktime(),
 						'edited_by'	=> $this->session->userdata('user_id')
@@ -977,8 +983,8 @@ class Cizacl extends CI_Controller	{
 				else	{
 					$update = array(
 						'type'			=> $this->input->post('type',true),
-						'controller'	=> $this->input->post('controller',true),
-						'function'		=> strtolower($this->input->post('name',true)),
+						'resource_controller'	=> $this->input->post('controller',true),
+						'resource_function'		=> strtolower($this->input->post('name',true)),
 						'description'	=> $this->input->post('description',true),
 						'edited_on'	=> mktime(),
 						'edited_by'	=> $this->session->userdata('user_id')
@@ -997,7 +1003,7 @@ class Cizacl extends CI_Controller	{
 				$row = $query->row();
 				if((string)$row->added_by !== "0")	{	// Protect system's data
 					if($row->type == 'controller')	{
-						if($this->db->delete('resources', array('controller' => $row->controller)))
+						if($this->db->delete('resources', array('resource_controller' => $row->resource_controller)))
 							die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
 						else
 							die($this->cizacl->json_msg('error',$this->lang->line('attention'),$this->lang->line('error')));
@@ -1047,7 +1053,7 @@ class Cizacl extends CI_Controller	{
 		}
 		
 		$this->db->order_by($sidx,$sord);
-		$this->db->order_by('function');
+		$this->db->order_by('resource_function');
 		$this->db->limit($limit,$start);
 		$query = $this->db->get('resources');
 
@@ -1059,8 +1065,8 @@ class Cizacl extends CI_Controller	{
 			$data->rows[$i]['id'] = $row->id;
 			$data->rows[$i]['cell'] = array(
 				$row->id,
-				$row->controller,
-				$row->function,
+				$row->resource_controller,
+				$row->resource_function,
 				$row->description,
 				$row->added_by,
 			);
@@ -1338,7 +1344,7 @@ class Cizacl extends CI_Controller	{
 			$data->rows[$i]['cell'] = array(
 				$row->id,
 				ucwords($row->type),
-				$subrow->role_id,
+				$subrow->id,
 				$subrow->name,
 				implode(', ', $row->resource_controller),
 				implode(', ', $row->resource_function),

@@ -6,17 +6,32 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->lang->load('cizacl',$this->config->item('language'));
-		$this->load->model('cizacl_mdl');
+		//$this->load->model('cizacl_mdl');
 	}
 
-	public function index()
-	{
-		echo "hola index";
-	}
 
 	public function test()
 	{
-		echo "hola test";
+		echo "role_id: ".$this->session->userdata("role_id")."<br>";
+		//var_dump($this->cizacl->check_isAllowed("secretaria", 'welcome'));
+
+		var_dump($this->cizacl->check_hasRole($this->session->userdata("role_id")));
+		var_dump($this->cizacl->check_has('welcome'));
+		var_dump($this->cizacl->check_has('test'));
+
+		if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'welcome')){
+			echo "tiene permisos";
+		}else{
+			echo "No tiene permisos";
+		}
+	}
+
+	public function test2(){
+		if($this->cizacl->check_isAllowed("secretaria", 'welcome','test2')){
+			echo "tiene permisos";
+		}else{
+			echo "No tiene permisos";
+		}	
 	}
 }
 
