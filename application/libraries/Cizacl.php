@@ -98,7 +98,7 @@ class CI_Cizacl
 		unset($resources);
 		 		
 		//Set Rules
-		/*foreach($qRules->result() as $rules)	{
+		foreach($qRules->result() as $rules)	{
 			$privileges = array();
 			if(!empty($rules->resource_function))	{
 				foreach(json_decode($rules->resource_function) as $privilege)	{
@@ -111,7 +111,7 @@ class CI_Cizacl
 				if(!empty($resource))
 					$resources[] = $resource;
 			}
-			if($rules->cizacl_rule_type == 'allow')	{
+			if($rules->type == 'allow')	{
 				$this->cizacl->allow($rules->role_id,$resources,$privileges);
 			}
 			else
@@ -126,7 +126,7 @@ class CI_Cizacl
 		
 		// run the access control check now
 		if($this->_config['cizacl_status'])
-			$this->check_cizacl();*/
+			$this->check_cizacl();
 	}
 	
 	function check_cizacl()

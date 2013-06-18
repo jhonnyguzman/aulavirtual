@@ -831,8 +831,6 @@ class Zend_Acl
         $this->_isAllowedResource = null;
         $this->_isAllowedPrivilege = null;
 
-        echo "_isAllowedRole: ".$this->_isAllowedRole."<br>";
-
         if (null !== $role) {
             // keep track of originally called role
             $this->_isAllowedRole = $role;
@@ -842,7 +840,6 @@ class Zend_Acl
             }
         }
 
-        echo "_isAllowedRole: ".$this->_isAllowedRole."<br>";
         if (null !== $resource) {
             // keep track of originally called resource
             $this->_isAllowedResource = $resource;
@@ -851,7 +848,6 @@ class Zend_Acl
                 $this->_isAllowedResource = $resource;
             }
 
-            echo "_isAllowedResource: ".$this->_isAllowedResource."<br>";
         }
 
         

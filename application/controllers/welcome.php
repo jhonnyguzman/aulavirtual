@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 		var_dump($this->cizacl->check_has('welcome'));
 		var_dump($this->cizacl->check_has('test'));
 
-		if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'welcome')){
+		if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'welcome','test')){
 			echo "tiene permisos";
 		}else{
 			echo "No tiene permisos";
