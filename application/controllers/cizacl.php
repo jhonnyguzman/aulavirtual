@@ -30,11 +30,11 @@ class Cizacl extends CI_Controller	{
 	
 	public function index()	{
 		
-		if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'cizacl', 'index')){
+		/*if($this->cizacl->check_isAllowed($this->session->userdata("role_id"), 'cizacl', 'index')){
 			echo "tiene permisos";
 		}else{
 			echo "No tiene permisos";
-		}
+		}*/
 
 		$data['summary'] = '<p align="center" class="summary">'.$this->lang->line('accounts').': <strong>'.$this->db->count_all_results('users').'</strong></p>';
 		$data['summary'] .= '<p>&nbsp;</p>';
@@ -56,7 +56,7 @@ class Cizacl extends CI_Controller	{
 			$data['summary'] .= '<p align="center" class="summary">';
 			foreach($query->result() as $row)	{
 				$this->db->where('user_status_code = '.$row->code);
-				$data['summary'] .= ucwords(str_replace(array('enabled','disabled','blocked'),array($this->lang->line('enabled'),$this->lang->line('disabled'),$this->lang->line('blocked')),$row->name)).': <strong>'.$this->db->count_all_results('user_profiles').'</strong>, ';
+				$data['summary'] .= ucwords(str_replace(array('enabled','disabled','blocked'),array($this->lang->line('enabled'),$this->lang->line('disabled'),$this->lang->line('blocked')),$row->name)).': <strong>'.$this->db->count_all_results('users').'</strong>, ';
 			}
 			$data['summary'] = substr($data['summary'],0,-2);
 			$data['summary'] .= '</p>';
@@ -177,10 +177,8 @@ class Cizacl extends CI_Controller	{
 		foreach($query->result() as $row)
 			$status[$row->id] = $this->lang->line(strtolower($row->name));
 		
-		$this->db->from('users as u');
-		$this->db->from('user_profiles as up');
-		$this->db->where('u.id = '.$id);
-		$this->db->where('u.id = up.user_id');
+		$this->db->from('users');
+		$this->db->where('id = '.$id);
 		$query = $this->db->get();
 		$row = $query->row();
 
@@ -261,21 +259,16 @@ class Cizacl extends CI_Controller	{
 				$addnew = array(
 					'username'		=> $this->input->post('username',true),
 					'password'		=> md5($this->input->post('pwd',true)),
-					'role_id'	=> $this->input->post('role',true)
+					'role_id'	=> $this->input->post('role',true),
+					'user_status_code'	=> $this->input->post('status',true),
+					'name'				=> $this->input->post('name',true),
+					'surname'			=> $this->input->post('surname',true),
+					'email'			=> $this->input->post('email',true),
+					'added'			=> mktime(),
+					'added_by'			=> $this->session->userdata('user_id')
 				);
 				if($this->db->insert('users',$addnew))	{
-					unset($addnew);
-					$addnew = array(
-						'user_id'			=> $this->db->insert_id(),
-						'user_status_code'	=> $this->input->post('status',true),
-						'name'				=> $this->input->post('name',true),
-						'surname'			=> $this->input->post('surname',true),
-						'email'			=> $this->input->post('email',true),
-						'added'			=> mktime(),
-						'added_by'			=> $this->session->userdata('user_id')
-					);
-					if($this->db->insert('user_profiles',$addnew))
-						die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
+					die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
 				}
 				else
 					die($this->cizacl->json_msg('error',$this->lang->line('attention'),$this->lang->line('error')));
@@ -297,41 +290,35 @@ class Cizacl extends CI_Controller	{
 			}
 			else	{
 				$update = array(
-					'username'		=> $this->input->post('username',true),
-					'role_id'	=> $this->input->post('role',true)
+					'id'			=> $this->input->post('id',true),
+					'username'			=> $this->input->post('username',true),
+					'role_id'			=> $this->input->post('role',true),
+					'user_status_code'	=> $this->input->post('status',true),
+					'name'				=> $this->input->post('name',true),
+					'surname'			=> $this->input->post('surname',true),
+					'email'				=> $this->input->post('email',true),
+					'edited'			=> mktime(),
+					'edited_by'			=> $this->session->userdata('user_id')
 				);
 				$pwd = $this->input->post('pwd');
 				if(!empty($pwd))	{
 					$update['password'] = md5($this->input->post('pwd',true));
 				}
 				if($this->db->update('users', $update, 'id = '.$this->input->post('id')))	{
-					unset($update);
-					$update = array(
-						'user_id'			=> $this->input->post('id',true),
-						'user_status_code'	=> $this->input->post('status',true),
-						'name'				=> $this->input->post('name',true),
-						'surname'			=> $this->input->post('surname',true),
-						'email'			=> $this->input->post('email',true),
-						'edited'			=> mktime(),
-						'edited_by'		=> $this->session->userdata('user_id')
-					);
-					
-					if($this->db->update('user_profiles', $update, 'user_id = '.$this->input->post('id',true)))
-						die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
+					die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
 				}
 				else
 					die($this->cizacl->json_msg('error',$this->lang->line('attention'),$this->lang->line('error')));
 			}
 		}
 		elseif($this->input->post('oper') == 'del')	{
-			$this->db->where('user_id = '.$this->input->post('id',true));
-			$query = $this->db->get('user_profiles');
+			$this->db->where('id = '.$this->input->post('id',true));
+			$query = $this->db->get('users');
 			if($query->num_rows())	{
 				$row = $query->row();
 				if((string)$row->added_by !== "0")	{	// Protect system's data
 					if($this->db->delete('users', array('id' => $this->input->post('id'))))
-						if($this->db->delete('user_profiles', array('user_id' => $this->input->post('id',true))))
-							die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
+						die($this->cizacl->json_msg('success',$this->lang->line('completed'),$this->lang->line('operation_done')));
 					else
 						die($this->cizacl->json_msg('error',$this->lang->line('attention'),$this->lang->line('error')));
 				}
@@ -369,14 +356,12 @@ class Cizacl extends CI_Controller	{
 					$this->db->or_where($value['field'].' '.$this->cizacl_mdl->jqgrid_operator($value['op'],$value['data']));
 			}
 		}
-		$this->db->select("u.id, u.username, u.password, u.role_id, u.auth, u.date, up.*, us.name as user_status_name, r.name as role_name");
+		$this->db->select("u.*, us.name as user_status_name, r.name as role_name");
 		$this->db->from('users as u');
-		$this->db->from('user_profiles as up');
 		$this->db->from('user_status as us');
 		$this->db->from('roles as r');
-		$this->db->where('u.id = up.user_id');
 		$this->db->where('u.role_id = r.id');
-		$this->db->where('up.user_status_code = us.code');
+		$this->db->where('u.user_status_code = us.code');
 		$this->db->order_by($sidx,$sord);
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
@@ -386,7 +371,7 @@ class Cizacl extends CI_Controller	{
 		$data->records = (string)$count;
 		$i = 0;
 		foreach($query->result() as $row)	{
-			$data->rows[$i]['id'] = $row->user_id;
+			$data->rows[$i]['id'] = $row->id;
 			$data->rows[$i]['cell'] = array(
 				$row->id,
 				$row->surname,
@@ -430,7 +415,7 @@ class Cizacl extends CI_Controller	{
 		$sidx	= $this->input->post('sidx');
 		$sord	= $this->input->post('sord');
 		
-		$count = $this->db->count_all_results('session');
+		$count = $this->db->count_all_results('sessions');
 		
 		$total_pages = $count > 0 ? ceil($count/$limit) : 0;
 		
@@ -455,7 +440,7 @@ class Cizacl extends CI_Controller	{
 		
 		$this->db->order_by($sidx,$sord);
 		$this->db->limit($limit,$start);
-		$query = $this->db->get('session');
+		$query = $this->db->get('sessions');
 
 		$data->page = (string)$page;
 		$data->total = (string)$total_pages;
@@ -466,7 +451,7 @@ class Cizacl extends CI_Controller	{
 			$data->rows[$i]['id'] = $row->session_id;
 			$data->rows[$i]['cell'] = array(
 				$this->cizacl_mdl->getUser($array['user_id']),
-				$row->id,
+				$row->session_id,
 				$row->ip_address,
 				$row->user_agent,
 				date('d/m/Y H:i:s',$row->last_activity),

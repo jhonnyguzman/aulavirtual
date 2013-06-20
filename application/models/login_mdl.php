@@ -35,10 +35,8 @@ class Login_Mdl extends CI_Model	{
 	function check_user_disabled($user,$pwd)
 	{
 		$this->db->from('users as u');
-		$this->db->from('user_profiles as up');
 		$this->db->where('u.username',$user);
 		$this->db->where('u.password',md5($pwd));
-		$this->db->where('u.id = up.user_id');
 		$query = $this->db->get();
 		$row = $query->row();
 		if($row->user_status_code == 2)
@@ -48,10 +46,8 @@ class Login_Mdl extends CI_Model	{
 	function check_user_block($user,$pwd)
 	{
 		$this->db->from('users as u');
-		$this->db->from('user_profiles as up');
 		$this->db->where('username',$user);
 		$this->db->where('password',md5($pwd));
-		$this->db->where('u.id = up.user_id');
 		$query = $this->db->get();
 		$row = $query->row();
 		if($row->user_status_code == 3)

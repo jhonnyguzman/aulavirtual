@@ -57,12 +57,11 @@ class Login extends CI_Controller {
 					die($this->cizacl->json_msg('error',$this->lang->line('attention'),$this->lang->line('user_block'),true));
 				}
 				else	{
+					$this->db->select("u.*, r.name as role_name, r.inherit_id, r.redirect, r.description, r.default, r.order");
 					$this->db->from('users as u');
-					$this->db->from('user_profiles as up');
 					$this->db->from('roles as r');
 					$this->db->where('username',$this->input->post('username',true));
 					$this->db->where('password',md5($this->input->post('password',true)));
-					$this->db->where('u.id = up.user_id');
 					$this->db->where('u.role_id = r.id');
 					$query = $this->db->get();
 					$row = $query->row();
@@ -71,14 +70,14 @@ class Login extends CI_Controller {
 					$user_lastaccess = !empty($row->lastaccess) ? $this->cizacl_mdl->mktime_format($row->lastaccess) : '-';
 			
 					$session = array(
-						'user_id'				=> $row->user_id,
+						'user_id'				=> $row->id,
 						'user_name'				=> $row->name,
 						'user_surname'			=> $row->surname,
 						'user_lastaccess'		=> $row->lastaccess,
 						'role_id'	=> $row->role_id
 					);
 					
-					$this->db->update('user_profiles', array('lastaccess ' => mktime()), 'id = '.$row->user_id);
+					$this->db->update('users', array('lastaccess ' => mktime()), 'id = '.$row->id);
 					
 					$this->session->set_userdata($session);
 					

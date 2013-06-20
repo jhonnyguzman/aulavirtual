@@ -256,8 +256,8 @@ class Cizacl_Mdl extends CI_Model	{
 				return '-';
 		}
 		elseif(isset($id))	{
-			$this->db->where('user_id = '.$id);
-			$query = $this->db->get('user_profiles');
+			$this->db->where('id = '.$id);
+			$query = $this->db->get('users');
 			if($query->num_rows())	{
 				$row = $query->row();
 				return $row->surname . ' ' . $row->name;

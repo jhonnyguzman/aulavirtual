@@ -162,10 +162,10 @@ class CI_Cizacl
 		);
 		$data = '';
 		foreach($array as $value)	{
-			$data .= '<link href="'.base_url().'css/cizacl/'.$value.'.css" rel="stylesheet" type="text/css" />'.PHP_EOL;
+			$data .= '<link href="'.base_url().'assets/css/cizacl/'.$value.'.css" rel="stylesheet" type="text/css" />'.PHP_EOL;
 		}
 		$data .=	'<!--[if lte IE 8]>'.PHP_EOL.
-					'<link href="'.base_url().'css/cizacl/cizaclIE.css" rel="stylesheet" type="text/css" />'.PHP_EOL.
+					'<link href="'.base_url().'assets/css/cizacl/cizaclIE.css" rel="stylesheet" type="text/css" />'.PHP_EOL.
 					'<![endif]-->'.PHP_EOL;
 		return $data;
 	}
@@ -176,12 +176,12 @@ class CI_Cizacl
 			'jquery-1.6.1.min',
 			'jquery-ui-1.8.14.custom.min',
 			'jquery.colorbox.min',
-			'i18n/jqgrid/grid.locale-'.$this->cizacl_mdl->getAbbr('js/cizacl/i18n/jqgrid/','grid.locale-xx.js'),
+			'i18n/jqgrid/grid.locale-'.$this->cizacl_mdl->getAbbr('assets/js/cizacl/i18n/jqgrid/','grid.locale-xx.js'),
 			'jquery.jqGrid.min',
 		);
 		$data = '';
 		foreach($array as $value)	{
-			$data .= '<script type="text/javascript" src="'.base_url().'js/cizacl/'.$value.'.js"></script>'.PHP_EOL;
+			$data .= '<script type="text/javascript" src="'.base_url().'assets/js/cizacl/'.$value.'.js"></script>'.PHP_EOL;
 		}
 		$data .= '<script type="text/javascript" src="'.site_url('cizacl_js/scripts').'"></script>'.PHP_EOL;
 		return $data;

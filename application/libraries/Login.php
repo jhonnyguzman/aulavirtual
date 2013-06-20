@@ -28,7 +28,7 @@ class CI_Login
 		);
 		$data = '';
 		foreach($array as $value)	{
-			$data .= '<link href="'.base_url().'css/cizacl/'.$value.'.css" rel="stylesheet" type="text/css" />';
+			$data .= '<link href="'.base_url().'assets/css/cizacl/'.$value.'.css" rel="stylesheet" type="text/css" />';
 		}
 		return $data;
 	}
@@ -41,7 +41,7 @@ class CI_Login
 		);
 		$data = '';
 		foreach($array as $value)	{
-			$data .= '<script type="text/javascript" src="'.base_url().'js/cizacl/'.$value.'.js"></script>';
+			$data .= '<script type="text/javascript" src="'.base_url().'assets/js/cizacl/'.$value.'.js"></script>';
 		}
 		$data .= '<script type="text/javascript" src="'.site_url('login_js/scripts').'"></script>';
 		return $data;

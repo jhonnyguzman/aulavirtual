@@ -157,7 +157,7 @@ class Cizacl_Js extends CI_Controller {
 				mtype: "POST",
 				colNames:["'.$this->lang->line('id').'", "'.$this->lang->line('surname').'", "'.$this->lang->line('name').'", "'.$this->lang->line('email').'", "'.$this->lang->line('role').'", "'.$this->lang->line('state').'", "'.$this->lang->line('last_access').'", "'.$this->lang->line('created_by').'", "'.$this->lang->line('created_by').'"],
 				colModel :[ 
-					{name:"id", index:"user_id", hidden: true}, 
+					{name:"id", index:"id", hidden: true}, 
 					{name:"surname", index:"surname"},
 					{name:"name", index:"name"}, 
 					{name:"email", index:"email", align:"center"},
