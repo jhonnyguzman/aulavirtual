@@ -7,6 +7,10 @@ body {
 	margin-left: 0px;
 }
 
+.content-thumbnails ul li div.thumbnail{
+	width: 320px;
+}
+
 .form-signin {
 	max-width: 300px;
 	padding: 0px 19px 20px;

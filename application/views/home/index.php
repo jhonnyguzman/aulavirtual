@@ -39,7 +39,7 @@
               </div>
             </form>
       </div>
-      <div class="row">
+      <div class="row content-thumbnails">
           <ul class="thumbnails">
             <li class="span4">
               <div class="thumbnail">
