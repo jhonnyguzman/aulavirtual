@@ -80,7 +80,6 @@ class Login extends CI_Controller {
 					$this->db->update('users', array('lastaccess ' => mktime()), 'id = '.$row->id);
 					
 					$this->session->set_userdata($session);
-					
 					die($this->cizacl->json_msg('success',$this->lang->line('wait'),$this->lang->line('login_progress'),false,site_url($row->redirect)));
 				}
 			}

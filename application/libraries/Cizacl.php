@@ -189,6 +189,7 @@ class CI_Cizacl
 
 	function json_msg($type,$title,$msg,$form_validation=false,$more=NULL)
 	{
+		$data = new stdClass();
 		if($type == 'success')	{
 			$data->response	= 'success';
 			$data->msg		= '<div class="ui-state-highlight ui-corner-all ui-msg"><h3>'.$title.'</h3><p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>'.$msg.'</p></div>';

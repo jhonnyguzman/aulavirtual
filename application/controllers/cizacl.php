@@ -330,6 +330,7 @@ class Cizacl extends CI_Controller	{
 	
 	public function users_load_data()
 	{
+		$data = new stdClass();
 		$page	= $this->input->post('page');
 		$limit	= $this->input->post('rows');
 		$sidx	= $this->input->post('sidx');
@@ -410,6 +411,7 @@ class Cizacl extends CI_Controller	{
 	
 	public function sessions_load_data()
 	{
+		$data = new stdClass();
 		$page	= $this->input->post('page');
 		$limit	= $this->input->post('rows');
 		$sidx	= $this->input->post('sidx');
@@ -714,6 +716,7 @@ class Cizacl extends CI_Controller	{
 	
 	public function roles_load_data()
 	{
+		$data = new stdClass();
 		$page	= $this->input->post('page');
 		$limit	= $this->input->post('rows');
 		$sidx	= $this->input->post('sidx');
@@ -1009,6 +1012,7 @@ class Cizacl extends CI_Controller	{
 	
 	public function resources_load_data()
 	{
+		$data = new stdClass();
 		$page	= $this->input->post('page');
 		$limit	= $this->input->post('rows');
 		$sidx	= $this->input->post('sidx');
@@ -1259,6 +1263,7 @@ class Cizacl extends CI_Controller	{
 	
 	public function rules_load_data()
 	{
+		$data = new stdClass();
 		$page	= $this->input->post('page');
 		$limit	= $this->input->post('rows');
 		$sidx	= $this->input->post('sidx');
