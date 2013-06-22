@@ -52,7 +52,7 @@ class Manage extends CI_Controller	{
 			$data['summary'] .= '<p align="center" class="summary">';
 			foreach($query->result() as $row)	{
 				$this->db->where('user_status_code = '.$row->code);
-				$data['summary'] .= ucwords(str_replace(array('enabled','disabled','blocked'),array($this->lang->line('enabled'),$this->lang->line('disabled'),$this->lang->line('blocked')),$row->name)).': <strong>'.$this->db->count_all_results('user_profiles').'</strong>, ';
+				$data['summary'] .= ucwords(str_replace(array('enabled','disabled','blocked'),array($this->lang->line('enabled'),$this->lang->line('disabled'),$this->lang->line('blocked')),$row->name)).': <strong>'.$this->db->count_all_results('users').'</strong>, ';
 			}
 			$data['summary'] = substr($data['summary'],0,-2);
 			$data['summary'] .= '</p>';

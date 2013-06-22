@@ -24,7 +24,7 @@ class CI_Login
 	{
 		$array = array(
 			'login',
-			'ui-cizacl/jquery-ui-1.8.14.custom'
+			'ui-cizacl/jquery-ui-1.10.3.custom'
 		);
 		$data = '';
 		foreach($array as $value)	{
@@ -36,8 +36,8 @@ class CI_Login
 	function getScripts()
 	{
 		$array = array(
-			'jquery-1.6.1.min',
-			'jquery-ui-1.8.14.custom.min'
+			'jquery-1.10.1.min',
+			'jquery-ui-1.10.3.custom.min'
 		);
 		$data = '';
 		foreach($array as $value)	{

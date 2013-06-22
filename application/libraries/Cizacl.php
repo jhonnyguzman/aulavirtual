@@ -24,7 +24,7 @@ class CI_Cizacl
 	
 	function __construct()
 	{
-		$this->name		= 'CIzACL';
+		$this->name		= 'Aula Virtual';
 		$this->version	= '1.2';
 		
 		//Load
@@ -173,9 +173,9 @@ class CI_Cizacl
 	function scripts()
 	{
 		$array = array(
-			'jquery-1.6.1.min',
+			'jquery-1.10.1.min',
 			'jquery-ui-1.8.14.custom.min',
-			'jquery.colorbox.min',
+			'jquery.colorbox-min',
 			'i18n/jqgrid/grid.locale-'.$this->cizacl_mdl->getAbbr('assets/js/cizacl/i18n/jqgrid/','grid.locale-xx.js'),
 			'jquery.jqGrid.min',
 		);

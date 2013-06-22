@@ -29,7 +29,7 @@ class Cizacl_Js extends CI_Controller {
 	{
 		$output = '
 		$(document).ready(function()	{
-			make_menu();
+			/*make_menu();*/
 			$(".cizacl_btn_add").button({
 				icons: {
 					primary: "ui-icon-plus"

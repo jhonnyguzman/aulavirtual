@@ -52,10 +52,10 @@ h3 {
 	margin-bottom: 8px;
 	padding: 0px;
 }
-#header {
+/*#header {
 	background: url(ui-cizacl/images/header-acl.jpg) no-repeat;
 	height: 230px;
-}
+}*/
 #header_cb {
 	background: url(ui-cizacl/images/header-cb-acl.jpg) no-repeat;
 	height: 60px;

@@ -70,6 +70,8 @@ class Login extends CI_Controller {
 					$user_lastaccess = !empty($row->lastaccess) ? $this->cizacl_mdl->mktime_format($row->lastaccess) : '-';
 			
 					$session = array(
+						'logged_in'				=> true, 
+						'user_email'			=> $row->email,
 						'user_id'				=> $row->id,
 						'user_name'				=> $row->name,
 						'user_surname'			=> $row->surname,

@@ -9,19 +9,31 @@
             </div>
         </div>
         <div class="span4">
-            <form class="form-signin">
+            <form action="<?=site_url('signup/register')?>" method="post" name="formsigninfront" id="formsigninfront" class="form-signin">
               <h3 class="form-signin-heading">Registrate</h3>
-              <div class="input-prepend">
+              <div class="input-prepend"> 
                 <span class="add-on"><i class="icon-user"></i></span>
-                <input type="text" class="input-block-level" placeholder="Nombre Completo">
+                <input type="text" name="username" class="input-block-level" placeholder="Nombre de Usuario" required>
               </div>
               <div class="input-prepend">
                 <span class="add-on"><i class="icon-envelope"></i></span>
-                <input type="text" class="input-block-level" placeholder="Correo Electrónico">
+                <input type="email" name="email" class="input-block-level" placeholder="Correo Electrónico" required>
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <input type="text" name="name" class="input-block-level" placeholder="Nombre" required>
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <input type="text" name="surname" class="input-block-level" placeholder="Apellido" required>
               </div>
               <div class="input-prepend">
                 <span class="add-on"><i class="icon-lock"></i></span>
-                <input type="password" class="input-block-level" placeholder="Contraseña">
+                <input type="password" name="password" class="input-block-level" placeholder="Contraseña" required>
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span>
+                <input type="password" name="confirm_password" class="input-block-level" placeholder="Confirmar Contraseña" required>
               </div>
               
               <button class="btn btn-mediun btn-primary" type="submit">Registrate</button>

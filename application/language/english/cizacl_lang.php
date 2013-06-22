@@ -88,7 +88,7 @@ $lang["ip_address"]				= "IP Address";
 $lang["user_agent"]				= "User Agent";
 $lang["user_datas"]				= "User Datas";
 
-$lang["cizacl_management"]		= "CIzACL Management";
+$lang["cizacl_management"]		= "Management";
 $lang["roles"]					= "Roles";
 $lang["resources"]				= "Resources";
 $lang["rules"]					= "Rules";
