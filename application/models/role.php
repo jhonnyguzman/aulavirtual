@@ -4,7 +4,7 @@ class Role extends DataMapper {
 
 	var $table = 'roles';
     
-    var $has_many = array("user");
+    var $has_many = array("user","login");
 
     function __construct($id = NULL)
     {

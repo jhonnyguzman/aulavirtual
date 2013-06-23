@@ -930,4 +930,12 @@ class BasiCrud {
 		}
 		return $data;
 	}
+
+	public function mktime_format($input,$format='Y-m-d H:i:s')
+	{
+		if(!empty($input))
+			return date($format, $input);
+		else
+			return '-';
+	}
 }

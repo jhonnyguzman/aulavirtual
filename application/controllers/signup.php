@@ -108,7 +108,6 @@ class Signup extends CI_Controller {
 		//verificar si coincide activationcode con el almancenado en la base de datos
 		//Ademas se agrega verificacion de user_status_code => 1 "activado"
 		$u = new User();
-		$u->get_by_activationcode($activationcode);
 		$u->where('activationcode', $activationcode)->where('user_status_code',4)->get();
 		if ($u->exists())
         {

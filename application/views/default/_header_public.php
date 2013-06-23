@@ -46,17 +46,17 @@
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar Sessi&oacute;n <b class="caret"></b></a>
 	                <ul class="dropdown-menu">
 	                	<div class="modal-login">
-		                  <form>
+		                  <form action="<?=site_url('signin/login')?>" method="post" name="formlogin">
 		                  	  <label>Correo Electr&oacute;nico:</label>
-				              <input class="input-xlarge" type="text" placeholder="Correo Electrónico">
-				              <label>Contrase&ntilde;a:</label>
-				              <input  class="input-xlarge" type="password" placeholder="Contraseña">
-				              <label class="checkbox">
-						        <input type="checkbox"> Recordar mis datos
-						      </label>
-						      <a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
-				              <button type="submit" class="btn btn-success">Iniciar Sessión</button>
-				          </form>
+    				              <input name="email" class="input-xlarge" type="text" placeholder="Correo Electrónico">
+    				              <label>Contrase&ntilde;a:</label>
+    				              <input name="password" class="input-xlarge" type="password" placeholder="Contraseña">
+    				              <label class="checkbox">
+    						            <input type="checkbox"> Recordar mis datos
+    						          </label>
+    						          <a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
+    				              <button type="submit" class="btn btn-success">Iniciar Sessión</button>
+				              </form>
 				        </div>
 	                </ul>
 	              </li>
