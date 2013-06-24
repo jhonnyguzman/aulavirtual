@@ -18,8 +18,10 @@
 	            <label class="checkbox">
 			        <input type="checkbox"> Recordar mis datos
 			    </label>
-			    <a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
-	            <button type="submit" class="btn btn-success">Iniciar Sessión</button>
+			    <button type="submit" class="btn btn-success">Iniciar Sessión</button>
+			    <br><a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
+			    <br><a href="<?=site_url('signup/register')?>">No tienes cuenta? Crea una aqui</a>
+	            
 			  </fieldset>
 		</form>
     </div>
