@@ -1,12 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * CIzACL
+ * AulaVirtual
  * 
  * @copyright	Copyright (c) Schizzoweb Web Agency
- * @website		http://www.schizzoweb.com
- * @version		1.2
-* @revision	2013-06-20
+ * @version		1
+ * @revision	2013-06-20
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

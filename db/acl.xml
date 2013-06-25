@@ -32,6 +32,14 @@
       <Cl au="0" df="" nm="observation" nu="0">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="user_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="adresses_user_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="adresses" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="user_id" prCl="id"/>
+      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="content_audios">
@@ -269,6 +277,23 @@
       </Fk>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="course_status">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkcourse_status"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="130" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="course_users">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_users"/>
@@ -316,19 +341,19 @@
       <Cl au="0" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="name" nu="0">
+      <Cl au="0" df="" nm="name" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="description" nu="0">
+      <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="concurrence" nu="0">
+      <Cl au="0" df="" nm="concurrence" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="price" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      <Cl au="0" df="" nm="price" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="course_category_id" nu="0">
+      <Cl au="0" df="" nm="course_category_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="hours" nu="1">
@@ -349,13 +374,34 @@
       <Cl au="0" df="" nm="quota" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="status_id" nu="1">
+      <Cl au="0" df="" nm="course_state_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="languaje_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="owner_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="courses_course_category_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
         <ClPr cdCl="course_category_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="courses_course_state_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="course_status" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="courses" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_state_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="courses_language_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="languages" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="courses" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="languaje_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="courses_owner_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="courses" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="owner_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
     </Tbl>
@@ -425,6 +471,13 @@
     </Tbl>
     <Tbl UsSo="1" nm="languages">
       <TblOpts/>
+      <Pk ClNs="id" nm="pklanguages"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lessons">
@@ -860,6 +913,37 @@
       </Cl>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="user_thumbnails">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkuser_thumbnails"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="user_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_name" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_size" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="user_thumbnails_user_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="user_thumbnails" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="user_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="user_thumbs">
       <TblOpts/>
       <SchTrHis/>
@@ -912,23 +996,14 @@
       <Cl au="0" df="" nm="gender" nu="0">
         <DT arr="0" ds="Char" en="" id="1" ln="1" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="document_number" nu="0">
+      <Cl au="0" df="" nm="dni" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="24" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="telephone_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="studies" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="adress_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
       <Cl au="0" df="" nm="first_entry" nu="0">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="despath_id" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="username" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
@@ -951,25 +1026,24 @@
       <Cl au="0" df="" nm="tokenforgotpassword" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="users_adress_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="adresses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="adress_id" prCl="id"/>
-      </Fk>
-      <Fk deAc="3" nm="users_despath_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="despatchs" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="despath_id" prCl="id"/>
+      <Cl au="0" df="" nm="movil_tel" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="home_tel" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="observations" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="users_language_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="languages" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="users" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="language_id" prCl="id"/>
       </Fk>
       <Fk deAc="3" nm="users_role_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="roles" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="users" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="role_id" prCl="id"/>
-      </Fk>
-      <Fk deAc="3" nm="users_telephone_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="telephones" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="telephone_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
     </Tbl>
@@ -997,10 +1071,10 @@
       <svg path=""/>
     </DiaProps>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="resources" x="1542" y="18"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="roles" x="884" y="17"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="rules" x="1241" y="16"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sessions" x="1541" y="182"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="users" x="869" y="161"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="roles" x="881" y="4"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="rules" x="1231" y="6"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sessions" x="1525" y="149"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="users" x="866" y="171"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="status" x="1460" y="626"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="register_modes" x="25" y="1046"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbs" x="25" y="1089"/>
@@ -1009,7 +1083,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_preferences" x="27" y="1209"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_interests" x="30" y="1280"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_links" x="30" y="1243"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="languages" x="31" y="1320"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="languages" x="686" y="604"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="curriculums" x="361" y="657"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="quizzes" x="383" y="858"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="questions" x="325" y="797"/>
@@ -1029,22 +1103,25 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_files" x="1094" y="1215"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_external" x="1442" y="1229"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_code" x="1446" y="1268"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="courses" x="319" y="363"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="courses" x="305" y="299"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_categories" x="0" y="273"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_goals" x="634" y="271"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="638" y="485"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="646" y="459"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_requirements" x="640" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="telephones" x="1251" y="180"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="adresses" x="1251" y="262"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="despatchs" x="1372" y="431"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="entry_control" x="1123" y="486"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="897" y="495"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="899" y="530"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="313" y="175"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="4" y="170"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="11" y="388"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1762" y="179"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1700" y="151"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="52" y="653"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="status_groups" x="1461" y="731"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbnails" x="611" y="18"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_status" x="110" y="518"/>
+    <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_documents.lcontent_documents_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_images.content_images_lesson_id"/>
@@ -1059,6 +1136,9 @@
     <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_category_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_profile_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.courses.courses_course_category_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.courses.courses_course_state_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.courses.courses_language_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.courses.courses_owner_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.curriculums.curriculums_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.despatchs.despatchs_adress_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.lessons.section"/>
@@ -1070,14 +1150,13 @@
     <FkGl bkCl="ff000000" nm="schemaA.quizzes.quizzes_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.rules.rules_role_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.sections.sections_curriculum_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.users.users_adress_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.users.users_despath_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.user_thumbnails.user_thumbnails_user_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.users.users_language_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.users.users_role_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.users.users_telephone_id"/>
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="131">
+  <RnmMgr NxRnmId="134">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1416,6 +1495,13 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="notifications" SupCls="Schema" SupNme="schemaA">
       <Rnm id="130" nNm="user_id" oNm="user_profile_id"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="131" nNm="dni" oNm="document_number"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="133" nNm="course_state_id" oNm="course_status_id"/>
+      <Rnm id="132" nNm="course_status_id" oNm="status_id"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1439,7 +1525,7 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (51)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (53)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
     <TreePath>/Diagrams (1)/diagramA/Notes (0)</TreePath>
