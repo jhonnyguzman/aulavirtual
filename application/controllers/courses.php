@@ -44,6 +44,7 @@ class Courses extends CI_Controller {
 	public function createTitle(){
 		$c = new Course();
 		$c->title = $this->input->post("title");
+		$c->owner_id = $this->session->userdata("user_id");
 		if($c->save()){
 			redirect("courses/course-manage/".$c->id);
 		}else{
@@ -55,7 +56,8 @@ class Courses extends CI_Controller {
 	public function manage($course_id = "")
 	{
 		if($course_id != ""){
-			$c = new Course($course_id);
+			$c = new Course();
+			$c->where("id", $course_id)->where("owner_id", $this->session->userdata("user_id"))->get();
 			if($c->exists()){
 				$data["course"] = $c;
 				$this->load->view("courses/manage",$data);
