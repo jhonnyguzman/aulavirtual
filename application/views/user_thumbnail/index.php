@@ -5,7 +5,7 @@
 	</div>
     <div class="span9">
     	<div class="page-header">
-		  <h2>Im&aacute;gen de perfil <small>Personaliza tu avatar aqui</small></h2>
+		  <h3>Im&aacute;gen de perfil <small>Personaliza tu avatar aqui</small></h3>
 		</div>
     	<ul class="thumbnails">
             <li class="span4">

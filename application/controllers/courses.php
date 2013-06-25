@@ -69,6 +69,54 @@ class Courses extends CI_Controller {
 		}
 	}
 
+	public function edit_basics($course_id = "")
+	{
+		if($course_id != ""){
+			$c = new Course();
+			$c->where("id", $course_id)->where("owner_id", $this->session->userdata("user_id"))->get();
+			if($c->exists()){
+				$languages = new Language();
+				$course_categories = new Course_category();
+				$data["course"] = $c;
+				$data['languages'] = $languages->get();
+				$data['course_categories'] = $course_categories->get();
+				$this->load->view("courses/edit_basics",$data);
+			}else{
+				show_404('page',FALSE);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
+
+	public function update_basics()
+	{
+		$post = $this->input->post(NULL,TRUE);
+		$c = new Course();
+		$c->where("id", $post['id'] )->where("owner_id", $this->session->userdata("user_id"))->get();
+		if($c->exists()){
+			$c->title = $post["title"];
+			$c->subtitle = $post["subtitle"];
+			$c->keywords = $post["keywords"];
+			$c->course_category_id = $post["course_category_id"];
+			$c->language_id = $post["language_id"];
+			if($c->save()){
+				$this->session->set_flashdata('flashConfirm', "Informaci&oacute;n Actualizada correctamente."); 
+				redirect("courses/course-edit-basics/".$c->id);
+			}else{
+				$languages = new Language();
+				$course_categories = new Course_category();
+				$data['languages'] = $languages->get();
+				$data["course"] = $c;
+				$data['course_categories'] = $course_categories->get();
+				$data['errors'] = $c->error->string;
+				$this->load->view("courses/edit_basics",$data);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
+
 	public function create()
 	{
 

@@ -6,9 +6,11 @@
     <!-- Bootstrap -->
     <link href="<?=site_url()?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<?=site_url()?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="<?=site_url()?>assets/css/chosen/chosen.css" rel="stylesheet" media="screen">
     <link href="<?=site_url()?>assets/css/extras.css" rel="stylesheet" media="screen">
     <script src="<?=site_url()?>assets/js/jquery-1.10.1.min.js"></script>
     <script src="<?=site_url()?>assets/js/bootstrap.min.js"></script>
+    <script src="<?=site_url()?>assets/js/chosen/chosen.jquery.js"></script>
   </head>
   <body>
   	<div class="navbar navbar-inverse navbar-fixed-top">

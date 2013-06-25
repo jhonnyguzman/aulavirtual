@@ -2,7 +2,7 @@
 <div class="row-fluid show-grid">
 	<div class="row">
 		<div class="page-header">
-          <h1><?=$course->title?></h1>
+          <h2><?=$course->title?></h2>
         </div>
 	</div>
 	<div class="row">

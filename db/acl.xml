@@ -374,7 +374,7 @@
     <Tbl UsSo="1" nm="courses">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourses"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="name" nu="1">
@@ -413,7 +413,7 @@
       <Cl au="0" df="" nm="course_state_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="languaje_id" nu="1">
+      <Cl au="0" df="" nm="language_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="owner_id" nu="1">
@@ -447,7 +447,7 @@
       <Fk deAc="3" nm="courses_language_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="languages" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="courses" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="languaje_id" prCl="id"/>
+        <ClPr cdCl="language_id" prCl="id"/>
       </Fk>
       <Fk deAc="3" nm="courses_owner_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="users" oe="1" sch="schemaA" zr="0"/>
@@ -1207,7 +1207,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="138">
+  <RnmMgr NxRnmId="139">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1564,6 +1564,9 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
       <Rnm id="137" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="138" nNm="language_id" oNm="languaje_id"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

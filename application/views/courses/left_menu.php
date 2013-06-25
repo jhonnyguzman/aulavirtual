@@ -2,7 +2,7 @@
     <li class="nav-header">Contenido del Curso</li>
     <li class="active"><a href="#">Curr&iacute;culo</a></li>
     <li class="nav-header">Informaci&oacute;n del Curso</li>
-    <li><a href="#">Informaci&oacute;n b&aacute;sica</a></li>
+    <li><a href="<?=site_url('courses/course-edit-basics/'.$course->id)?>">Informaci&oacute;n b&aacute;sica</a></li>
     <li><a href="#">Detalles</a></li>
     <li><a href="#">Im&aacute;gen</a></li>
     <li><a href="#">Video de promoci&oacute;n</a></li>
