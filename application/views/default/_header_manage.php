@@ -40,7 +40,7 @@
             </ul>
             
             <ul class="nav pull-right">
-	              <li><a href="#">Link</a></li>
+	              <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-create-course">Crear Curso</a></li>
 	              <li class="divider-vertical"></li>
 	              <?php if($this->session->userdata("logged_in")): ?>
                     <li class="dropdown">

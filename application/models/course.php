@@ -6,8 +6,12 @@ class Course extends DataMapper {
 	
 	var $has_many = array("couse_goals");
 
-	var $created_field = 'added';
-    var $updated_field = 'edited';
+	var $validation = array(
+	    'title' => array(
+	        'label' => 'Título',
+	        'rules' => array('required', 'trim')
+	    ),
+	);
 
     function __construct($id = NULL)
     {

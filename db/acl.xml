@@ -196,6 +196,12 @@
       <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Fk deAc="3" nm="course_audiences_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="course_audiences" oe="0" sch="schemaA" zr="1"/>
@@ -215,6 +221,12 @@
       <Cl au="0" df="" nm="description" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="course_faqs">
@@ -231,6 +243,12 @@
       </Cl>
       <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="course_faqs_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
@@ -251,6 +269,12 @@
       <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Fk deAc="3" nm="course_goals_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="course_goals" oe="0" sch="schemaA" zr="1"/>
@@ -269,6 +293,12 @@
       </Cl>
       <Cl au="0" df="" nm="course_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="course_requirements_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
@@ -317,6 +347,12 @@
       </Cl>
       <Cl au="0" df="" nm="user_category_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="course_users_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
@@ -382,6 +418,21 @@
       </Cl>
       <Cl au="0" df="" nm="owner_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="title" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="subtitle" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="keywords" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="courses_course_category_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
@@ -476,7 +527,7 @@
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="name" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+        <DT arr="0" ds="VarChar" en="" id="12" ln="130" sc="null" sg="1" un="0"/>
       </Cl>
       <SchTrHis/>
     </Tbl>
@@ -1104,17 +1155,17 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_external" x="1442" y="1229"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_code" x="1446" y="1268"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="courses" x="305" y="299"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_categories" x="0" y="273"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_categories" x="14" y="285"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_goals" x="634" y="271"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="646" y="459"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="648" y="475"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_requirements" x="640" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="telephones" x="1251" y="180"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="adresses" x="1251" y="262"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="despatchs" x="1372" y="431"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="entry_control" x="1123" y="486"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="899" y="530"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="313" y="175"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="4" y="170"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="313" y="151"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="18" y="168"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="11" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1700" y="151"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="52" y="653"/>
@@ -1156,7 +1207,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="134">
+  <RnmMgr NxRnmId="138">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1501,6 +1552,18 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
       <Rnm id="133" nNm="course_state_id" oNm="course_status_id"/>
       <Rnm id="132" nNm="course_status_id" oNm="status_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="134" nNm="title" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="135" nNm="subtitle" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="136" nNm="keywords" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="137" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

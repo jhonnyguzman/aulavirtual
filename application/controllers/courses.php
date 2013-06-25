@@ -36,30 +36,58 @@ class Courses extends CI_Controller {
 		
 	}
 
+	public function newTitle()
+	{
+		$this->load->view("courses/newtitle");
+	}
+
+	public function createTitle(){
+		$c = new Course();
+		$c->title = $this->input->post("title");
+		if($c->save()){
+			redirect("courses/course-manage/".$c->id);
+		}else{
+			$data['errors'] = $c->error->string;
+			$this->load->view("courses/newtitle",$data);
+		}
+	}
+
+	public function manage($course_id = "")
+	{
+		if($course_id != ""){
+			$c = new Course($course_id);
+			if($c->exists()){
+				$data["course"] = $c;
+				$this->load->view("courses/manage",$data);
+			}else{
+				show_404('page',FALSE);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
 
 	public function create()
 	{
 
-    //TODO: Validar Usuario?
-
-	$u = new Course();
-	$post = $this->input->post(NULL,TRUE);
-	$u->name = $post['name'];
-	$u->description = $post['description'];
-	$u->concurrence = $post['concurrence'];
-	$u->price = $post['price'];
-	$u->course_category_id = $post['course_category_id'];
-	$u->hours = $post['hours'];
-	$u->timing = $post['timing'];
-	$u->cost = $post['cost'];
-	$u->discount = $post['discount'];
-	$u->promo_date_to = $post['promo_date_to'];
-	$u->quota = $post['quota'];
-	$u->course_state_id = $post['course_state_id'];
-	$u->languague_id = $post['languague_id'];
-	$u->owner_id = $post['owner_id'];
-	$u->added = $post['added'];
-	$u->edited = $post['edited'];
+		$u = new Course();
+		$post = $this->input->post(NULL,TRUE);
+		$u->name = $post['name'];
+		$u->description = $post['description'];
+		$u->concurrence = $post['concurrence'];
+		$u->price = $post['price'];
+		$u->course_category_id = $post['course_category_id'];
+		$u->hours = $post['hours'];
+		$u->timing = $post['timing'];
+		$u->cost = $post['cost'];
+		$u->discount = $post['discount'];
+		$u->promo_date_to = $post['promo_date_to'];
+		$u->quota = $post['quota'];
+		$u->course_state_id = $post['course_state_id'];
+		$u->languague_id = $post['languague_id'];
+		$u->owner_id = $post['owner_id'];
+		$u->added = $post['added'];
+		$u->edited = $post['edited'];
 		if($u->save()){
 			if(!$this->sendMailToUser($u))
 			{

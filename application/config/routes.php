@@ -38,6 +38,9 @@
 |
 */
 
+$route['courses/course-manage/(:num)'] = "courses/manage/$1";
+
+
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 

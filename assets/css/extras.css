@@ -3,6 +3,18 @@ body {
     padding-bottom: 40px;
 }
 
+.btn-create-course{
+	color: #fff !important;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	padding: 5px !important;
+}
+
+.btn-create-course:hover{
+	color: #ffffff !important;
+    background-color: #51a351 !important;
+    *background-color: #499249 !important;
+}
+
 .content-hero-unit{
 	margin-left: 0px;
 }
