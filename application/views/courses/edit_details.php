@@ -31,37 +31,63 @@
 				    <textarea name="summary" class="span8" style="height:200px;"><?=$course->summary?></textarea>
 				    
 				    <label>Metas y Objetivos del curso:</label>
-				    <ul class="nav-goals"></ul>
+				    <?php if($course_goals_count > 0): ?>
+				    	<ul class="nav nav-tabs nav-stacked nav-goals">
+						    <?php foreach($course_goals as $cg): ?>
+						    	<li><a href="#" data-description="<?=$cg->description?>" data-id="<?=$cg->id?>" class="items-details"><i class='icon-ok'></i> <?=$cg->description?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php else: ?>
+				    	<ul class="nav-goals"></ul>
+					<?php endif; ?>
 				    <input type="text" id="input_goal">
 				    <a href="#" class="btn" id="btnAddGoal">Agregar</a>
 
 				    <label>Audiencia:</label>
-				    <ul class="nav-audiences"></ul>
+				    <?php if($course_audiences_count > 0): ?>
+				    	<ul class="nav nav-tabs nav-stacked nav-audiences">
+						    <?php foreach($course_audiences as $ca): ?>
+						    	<li><a href="#" data-description="<?=$ca->description?>" data-id="<?=$ca->id?>" class="items-details"><i class='icon-ok'></i> <?=$ca->description?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php else: ?>
+				    	<ul class="nav-audiences"></ul>
+					<?php endif; ?>
+
 				    <input type="text" id="input_audience">
 				    <a href="" class="btn" id="btnAddAudience">Agregar</a>
 				    
 				    <label>Requisitos del Curso:</label>
-				    <ul class="nav-requirements"></ul>
+				    <?php if($course_requirements_count > 0): ?>
+				    	<ul class="nav nav-tabs nav-stacked nav-requirements">
+						    <?php foreach($course_requirements as $cr): ?>
+						    	<li><a href="#" data-description="<?=$cr->description?>" data-id="<?=$cr->id?>" class="items-details"><i class='icon-ok'></i> <?=$cr->description?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php else: ?>
+				    	<ul class="nav-requirements"></ul>
+					<?php endif; ?>
+
 				    <input type="text" id="input_requirement">
 				    <a href="" class="btn" id="btnAddRequirement">Agregar</a>
 				    
 				    <label>Nivel de Intrucci&oacute;n:</label>
-				    <label class="radio inline">
-					  <input type="radio" name="instruction" value="1" checked>
-					  Introductorio
-					</label>
-					<label class="radio inline">
-					  <input type="radio" name="instruction" value="2">
-					  Intermedio
-					</label>
-					<label class="radio inline">
-					  <input type="radio" name="instruction" value="3">
-					  Avanzado
-					</label>
-					<label class="radio inline">
-					  <input type="radio" name="instruction" value="4">
-					  Todos los niveles
-					</label><br>
+					    <label class="radio inline">
+						  <input type="radio" name="instruction" value="1" <?php if($course->instruction == 1) echo"checked"?> >
+						  Introductorio
+						</label>
+						<label class="radio inline">
+						  <input type="radio" name="instruction" value="2" <?php if($course->instruction == 2) echo"checked"?>>
+						  Intermedio
+						</label>
+						<label class="radio inline">
+						  <input type="radio" name="instruction" value="3" <?php if($course->instruction == 3) echo"checked"?>>
+						  Avanzado
+						</label>
+						<label class="radio inline">
+						  <input type="radio" name="instruction" value="4" <?php if($course->instruction == 4) echo"checked"?>>
+						  Todos los niveles
+						</label><br>
 				    <button type="submit" class="btn btn-primary">Guardar</button>
 			</form>
 	    </div>
@@ -87,13 +113,13 @@
 
 	$(document).on("submit","#updateInfoDetail",function(){
 		var goals = $('.nav-goals li a').map(function(i,n) {
-			return $(n).attr('id');
+			return $(n).data('description');
 		}).get().join(',');
-		var audiences = $('.nav-audiences li').map(function(i,n) {
-    		return $(n).attr('id');
+		var audiences = $('.nav-audiences li a').map(function(i,n) {
+    		return $(n).data('description');
 		}).get().join(',');
-		var requirements = $('.nav-requirements li').map(function(i,n) {
-    		return $(n).attr('id');
+		var requirements = $('.nav-requirements li a').map(function(i,n) {
+    		return $(n).data('description');
 		}).get().join(',');
 		$("#goals").val(goals);
 		$("#audiences").val(audiences);
@@ -118,14 +144,17 @@
 		var item = $("#"+input).val();
 		if(item != "")
 		{
-			var cList = $('ul.'+ul).addClass('nav nav-tabs nav-stacked');
+			var cList = $('ul.'+ul);
+			if (!cList.hasClass('nav-stacked')) {
+				cList.addClass('nav nav-tabs nav-stacked');
+			}
 			var li = $('<li/>')
-		        .attr('role', 'goalitem')
 		        .appendTo(cList);
 		    var a = $('<a/>')
 		    	.addClass("items-details")
 		        .html("<i class='icon-ok'></i> "+item)
-		        .attr("id",item)
+		        .attr("data-id","")
+		        .attr("data-description",item)
 		        .appendTo(li);
 		}
 	}

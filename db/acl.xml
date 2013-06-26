@@ -187,10 +187,10 @@
     <Tbl UsSo="1" nm="course_audiences">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_audiences"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="type_audience" nu="0">
+      <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="course_id" nu="0">
@@ -260,7 +260,7 @@
     <Tbl UsSo="1" nm="course_goals">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_goals"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="0">
@@ -285,7 +285,7 @@
     <Tbl UsSo="1" nm="course_requirements">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_requirements"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="description" nu="0">
@@ -430,6 +430,9 @@
       </Cl>
       <Cl au="0" df="" nm="summary" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="instruction" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="created_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
@@ -1210,7 +1213,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="141">
+  <RnmMgr NxRnmId="145">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1573,7 +1576,15 @@
       <Rnm id="138" nNm="language_id" oNm="languaje_id"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="142" nNm="instruction" oNm="instructions"/>
+      <Rnm id="141" nNm="instructions" oNm="created_at"/>
       <Rnm id="140" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="143" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_audiences" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="144" nNm="description" oNm="type_audience"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

@@ -4,7 +4,7 @@ class Course extends DataMapper {
 
 	var $table = 'courses';
 	
-	var $has_many = array("couse_goals");
+	var $has_many = array("course_goal","course_audience","course_requirement");
 
 	var $validation = array(
 	    'title' => array(
