@@ -428,6 +428,9 @@
       <Cl au="0" df="" nm="keywords" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="summary" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="" nm="created_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -1207,7 +1210,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="139">
+  <RnmMgr NxRnmId="141">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1563,10 +1566,14 @@
       <Rnm id="136" nNm="keywords" oNm="created_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="139" nNm="summary" oNm="created_at"/>
       <Rnm id="137" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
       <Rnm id="138" nNm="language_id" oNm="languaje_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="140" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
