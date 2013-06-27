@@ -324,6 +324,37 @@
       </Cl>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="course_thumbnails">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkcourse_thumbnails"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="course_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_name" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_size" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="course_thumbnails_course_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="0" nm="course_thumbnails" oe="1" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="course_users">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_users"/>
@@ -1174,10 +1205,11 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="18" y="168"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="11" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1700" y="151"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="52" y="653"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="45" y="687"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="status_groups" x="1461" y="731"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbnails" x="611" y="18"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_status" x="110" y="518"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_status" x="66" y="482"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_thumbnails" x="143" y="581"/>
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_documents.lcontent_documents_lesson_id"/>
@@ -1189,6 +1221,7 @@
     <FkGl bkCl="ff000000" nm="schemaA.course_faqs.course_faqs_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_goals.course_goals_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_requirements.course_requirements_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_thumbnails.course_thumbnails_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_category_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_users.course_users_user_profile_id"/>
@@ -1213,7 +1246,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="145">
+  <RnmMgr NxRnmId="146">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1586,6 +1619,9 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_audiences" SupCls="Schema" SupNme="schemaA">
       <Rnm id="144" nNm="description" oNm="type_audience"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_thumbnails" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="145" nNm="course_id" oNm="user_id"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1609,7 +1645,7 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (53)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (54)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
     <TreePath>/Diagrams (1)/diagramA/Notes (0)</TreePath>

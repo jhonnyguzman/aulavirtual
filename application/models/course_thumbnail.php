@@ -9,14 +9,18 @@ class Course_thumbnail extends DataMapper {
     var $validation = array(
 	    'file_name' => array(
 	        'label' => 'File Name',
-	        'rules' => array('required')
+	        'rules' => array('required','trim')
 	    ),
 	    'file_type' => array(
 	        'label' => 'File Type',
-	        'rules' => array('required')
+	        'rules' => array('required','trim')
 	    ),
 	    'file_size' => array( // accessed via $this->confirm_password
 	        'label' => 'File Size',
+	        'rules' => array('required','trim')
+	    ),
+	    'course_id' => array( // accessed via $this->confirm_password
+	        'label' => 'Course',
 	        'rules' => array('required')
 	    ),
 	);

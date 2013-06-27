@@ -24,68 +24,64 @@ class Course_thumbnails extends CI_Controller {
 	}
 
 
-	//Observacion: Metodo Incompleto. Le falta completar la busqueda del ID del curso modificar la imagen
-	public function index()
+	public function edit($course_id)
 	{
-
-		$course_image = new Course_thumbnail();
-		
-		//TODO: Completar la busqueda del id del curso
-		//Pregunta, Como obtengo el ID del Curso en cuestion? 		
-		//podria ser asi?    $data['course_thumbnail'] = $course_image->where('course_id', $course_id )->get();
-		$data['course_thumbnail'] = $course_image->where('course_id', $course_id )->get();
-		
-		//$data['user_thumbnail'] = $user_avatar->where('user_id',$this->session->userdata('user_id'))->get();
-
-
-		$this->load->view('course_thumbnail/index',$data);	
+		$ct = new Course_thumbnail();
+		$course = new Course($course_id);
+		$data['course_thumbnail'] = $ct->where('course_id', $course_id )->get();
+		$data['course'] = $course; 
+		$this->load->view('course_thumbnail/edit',$data);	
 	}
-
 
 	public function update()
 	{
-		//$ua = new User_thumbnail();
-		$ua = new Course_thumbnail();
-		$ua->where('course_id', $course_id)->get();
-		if($ua->exists())
+		$ct = new Course_thumbnail();
+		$ct->where('course_id', $this->input->post("course_id"))->get();
+		if($ct->exists())
 		{
-			$result = $this->do_upload($ua->where('course_id', $course_id)->get());
+			$result = $this->do_upload($ct->course_id);
         	if($result['error']){
+        		$data['course'] = new Course($ct->course_id);
+        		$data['course_thumbnail'] = $ct;
         		$data['errors'] = $result['error'];
-				$this->load->view('course_thumbnail/index',$data);
+				$this->load->view('course_thumbnail/edit',$data);
         	}else{
-        		$ua->course_id = $ua->where('course_id', $course_id)->get();
-        		$ua->file_name = $result['data']['file_name'];
-	        	$ua->file_type = $result['data']['file_type'];
-	        	$ua->file_size = $result['data']['file_size'];
-	        	if($ua->save()){
+        		$ct->course_id = $ct->course_id;
+        		$ct->file_name = $result['data']['file_name'];
+	        	$ct->file_type = $result['data']['file_type'];
+	        	$ct->file_size = $result['data']['file_size'];
+	        	if($ct->save()){
 	        		$this->session->set_flashdata('flashConfirm', "Imágen Principal del Curso actualizada correctamente."); 
-	        		redirect('course_thumbnails');
+	        		redirect('courses/course-edit-image/'.$ct->course_id);
 	        	}else{
+	        		$data['course'] = new Course($ct->course_id);
+	        		$data['course_thumbnail'] = $ct;
 	        		$data['errors'] = $ua->error->string;
-					$this->load->view('course_thumbnail/index',$data);
-	        	}
-        	}	
-			}else{
-        	$result = $this->do_upload($ua->where('course_id', $course_id)->get());
+					$this->load->view('course_thumbnail/edit',$data);
+	        	}	
+			}
+		}else{
+        	$result = $this->do_upload($this->input->post("course_id"));
         	if($result['error']){
+        		$data['course'] = new Course($this->input->post("course_id"));
         		$data['errors'] = $result['error'];
-				$this->load->view('course_thumbnail/index',$data);
+				$this->load->view('course_thumbnail/edit',$data);
         	}else{
-        		$ua_new = new Course_thumbnail();
-        		$ua->course_id = $ua->where('course_id', $course_id)->get();
-        		$ua_new->file_name = $result['data']['file_name'];
-	        	$ua_new->file_type = $result['data']['file_type'];
-	        	$ua_new->file_size = $result['data']['file_size'];
-	        	if($ua_new->save()){
+        		$ct_new = new Course_thumbnail();
+        		$ct_new->course_id = $this->input->post("course_id");
+        		$ct_new->file_name = $result['data']['file_name'];
+	        	$ct_new->file_type = $result['data']['file_type'];
+	        	$ct_new->file_size = $result['data']['file_size'];
+	        	if($ct_new->save()){
 	        		$this->session->set_flashdata('flashConfirm', "Imágen Principal del Curso actualizada correctamente."); 
-	        		redirect('course_thumbnails');
+	        		redirect('courses/course-edit-image/'.$ct_new->course_id);
 	        	}else{
-	        		$data['errors'] = $ua_new->error->string;
-					$this->load->view('course_thumbnail/index',$data);
+	        		$data['course'] = new Course($this->input->post("course_id"));
+	        		$data['errors'] = $ct_new->error->string;
+					$this->load->view('course_thumbnail/edit',$data);
 	        	}
         	}
-        }
+       	}
 	}
 
 
