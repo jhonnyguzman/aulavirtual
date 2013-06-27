@@ -8,7 +8,7 @@
     <li><a href="#">Video de promoci&oacute;n</a></li>
     <li class="nav-header">Configuraci&oacute;n del Curso</li>
     <li><a href="#">Privacidad</a></li>
-    <li><a href="#">Precio</a></li>
+    <li><a href="<?=site_url('courses/course-edit-price/'.$course->id)?>">Precio</a></li>
     <li><a href="#">Deshabilitar Curso</a></li>
     <li class="divider"></li>
     <li><a href="#">Ayuda</a></li>

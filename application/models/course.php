@@ -16,6 +16,11 @@ class Course extends DataMapper {
 	        'label' => 'Subtítulo',
 	        'rules' => array('trim')
 	    ),
+		'price' => array(
+	        'label' => 'Price',
+	        'rules' => array('trim', 'max_length' => 4)
+	    ),
+
 	);
 
     function __construct($id = NULL)
