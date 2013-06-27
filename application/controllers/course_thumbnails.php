@@ -26,11 +26,21 @@ class Course_thumbnails extends CI_Controller {
 
 	public function edit($course_id)
 	{
-		$ct = new Course_thumbnail();
-		$course = new Course($course_id);
-		$data['course_thumbnail'] = $ct->where('course_id', $course_id )->get();
-		$data['course'] = $course; 
-		$this->load->view('course_thumbnail/edit',$data);	
+		if($course_id != "")
+		{
+			$course = new Course($course_id);
+			if($course->exists())
+			{
+				$ct = new Course_thumbnail();
+				$data['course_thumbnail'] = $ct->where('course_id', $course_id )->get();
+				$data['course'] = $course; 
+				$this->load->view('course_thumbnail/edit',$data);	
+			}else{
+				show_404('page',FALSE);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
 	}
 
 	public function update()

@@ -23,7 +23,7 @@
         </ul>
         <?php echo $this->load->view("default/_result_messages"); ?>
 
-        	<form action="<?=site_url('course_thumbnails/update')?>" method="post" name="updateCourseThumbnail" id="updateCourseThumbnail" enctype="multipart/form-data">
+        	<form action="<?=site_url('courses/course-edit-update')?>" method="post" name="updateCourseThumbnail" id="updateCourseThumbnail" enctype="multipart/form-data">
     			    <?php if(isset($errors)): ?>
                 <div class="alert alert-error">
                   <a class="close" data-dismiss="alert" href="#">×</a>
