@@ -1,6 +1,6 @@
 <ul class="nav nav-list">
     <li class="nav-header">Contenido del Curso</li>
-    <li class="active"><a href="#">Curr&iacute;culo</a></li>
+    <li class="active"><a href="<?=site_url('courses/course-edit-curriculum/'.$course->id)?>">Curr&iacute;culo</a></li>
     <li class="nav-header">Informaci&oacute;n del Curso</li>
     <li><a href="<?=site_url('courses/course-edit-basics/'.$course->id)?>">Informaci&oacute;n b&aacute;sica</a></li>
     <li><a href="<?=site_url('courses/course-edit-details/'.$course->id)?>">Detalles</a></li>

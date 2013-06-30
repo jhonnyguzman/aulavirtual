@@ -44,6 +44,7 @@ $route['courses/course-edit-details/(:num)'] = "courses/edit_details/$1";
 $route['courses/course-edit-price/(:num)'] = "courses/edit_price/$1";
 $route['courses/course-edit-image/(:num)'] = "course_thumbnails/edit/$1";
 $route['courses/course-edit-update'] = "course_thumbnails/update";
+$route['courses/course-edit-curriculum/(:num)'] = "courses/edit_curriculum/$1";
 
 
 $route['default_controller'] = "home";

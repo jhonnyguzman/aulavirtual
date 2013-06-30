@@ -118,7 +118,7 @@ class Courses extends CI_Controller {
 	}
 
 
-public function edit_price($course_id = "")
+	public function edit_price($course_id = "")
 	{
 		if($course_id != ""){
 			$c = new Course();
@@ -216,7 +216,21 @@ public function edit_price($course_id = "")
 
 	
 
-
+	public function edit_curriculum($course_id = "")
+	{
+		if($course_id != ""){
+			$c = new Course();
+			$c->where("id", $course_id)->where("owner_id", $this->session->userdata("user_id"))->get();
+			if($c->exists()){
+				$data["course"] = $c;
+				$this->load->view("courses/edit_curriculum",$data);
+			}else{
+				show_404('page',FALSE);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
 
 
 
