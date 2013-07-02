@@ -47,6 +47,11 @@ $route['courses/course-edit-update'] = "course_thumbnails/update";
 $route['courses/course-edit-curriculum/(:num)'] = "courses/edit_curriculum/$1";
 
 
+$route['profiles/profile-edit-password/(:num)'] = "profiles/edit_password/$1";
+
+
+
+
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 

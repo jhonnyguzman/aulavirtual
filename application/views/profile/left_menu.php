@@ -6,5 +6,6 @@
   <li><a href="#">Notificaciones</a></li>
   <li><a href="#">Preferencias</a></li>
   <li><a href="#">Intereses</a></li>
+  <li><a href="<?=site_url('profiles/edit_password')?>">Cambiar Contraseña</a></li>
   <li><a href="#">Deshabilitar Cuenta</a></li>
 </ul>
