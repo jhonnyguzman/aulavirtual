@@ -9,6 +9,7 @@
     <link href="<?=site_url()?>assets/css/chosen/chosen.css" rel="stylesheet" media="screen">
     <link href="<?=site_url()?>assets/css/extras.css" rel="stylesheet" media="screen">
     <script src="<?=site_url()?>assets/js/jquery-1.10.1.min.js"></script>
+    <script src="<?=site_url()?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="<?=site_url()?>assets/js/bootstrap.min.js"></script>
     <script src="<?=site_url()?>assets/js/chosen/chosen.jquery.js"></script>
   </head>

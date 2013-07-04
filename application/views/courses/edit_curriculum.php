@@ -27,138 +27,140 @@
 				    
 				    
 			</form>-->
-			<div class="menu">
-			<div class="accordion">
-    
-			    <!-- Aplications -->
-			    <div class="accordion-group">
-			      
-			      <!-- Application -->
-			      
-			          <div class="accordion-heading application">
-			            
-			            <a class="accordion-toggle" data-toggle="collapse" href="#application_3">Application 1</a>
+			<ul id="newChapter" class="item-list newChapter">
+				<li>
+					<div class="title-chapter" id="div-add-title">
+						Agregar Capitulo
+					</div>
+			  		<div class="title-chapter" id="add-chapter"> 
+			  			<form class="form-horizontal">
+						  <div class="control-group">
+						    <label class="control-label" for="inputEmail">Agregar Capitulo</label>
+						    <div class="controls">
+						      <input type="text" id="inputEmail" placeholder="Titulo">
+						    </div>
+						  </div>
+						  <div class="control-group">
+						  	<div class="controls">
+						  		<button type="submit" class="btn btn-success" id="btnAddChapter">Guardar</button>
+						  		<button type="btn" class="btn" id="btnCancelAddChapter">Cancelar</button>
+						  	</div>
+						  </div>
+						</form>
+			  		</div>
+			  	</li>
+			</ul>
+			<ul id="chapters" class="item-list">
+			  <li class="item-blue">
+			  	<div class="title-chapter"> Item 1</div>
+			  	<ul id="lessons1" class="item-list">
+			  		<li>
+			  			<div class="title-lesson">Item 1.1</div>
+			  			<div class="lesson-content">
+			  				<div class="single-item">Contenido 1.1</div>
+			  				<div class="details">Contenido 1.2</div>
+			  				<div class="bottom-btns">Contenido 1.3</div>
+			  			</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 1.2</div>
+			  			<div class="lesson-content">
+			  				<div class="single-item">Contenido 1.1</div>
+			  				<div class="details">Contenido 1.2</div>
+			  				<div class="bottom-btns">Contenido 1.3</div>
+			  			</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 1.3</div>
+			  			<div class="lesson-content">
+			  				<div class="single-item">Contenido 1.1</div>
+			  				<div class="details">Contenido 1.2</div>
+			  				<div class="bottom-btns">Contenido 1.3</div>
+			  			</div>
+			  		</li>
+			  	</ul>
+			  </li>
+			  <li class="item-orange">
+			  	<div class="title-chapter"> Item 2</div>
+			  	<ul id="lessons2" class="item-list">
+			  		<li>
+			  			<div class="title-lesson">Item 2.1</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 2.2</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 2.3</div>
+			  		</li>
+			  	</ul>
+			  </li>
+			  <li class="item-pink">
+			  	<div class="title-chapter"> Item 3</div>
+			  	<ul id="lessons3" class="item-list">
+			  		<li>
+			  			<div class="title-lesson">Item 3.1</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 3.2</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 3.3</div>
+			  		</li>
+			  	</ul>
+			  </li>
+			  <li class="item-green">
+			  	<div class="title-chapter"> Item 4</div>
+			  	<ul id="lessons4" class="item-list">
+			  		<li>
+			  			<div class="title-lesson">Item 4.1</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 4.2</div>
+			  		</li>
+			  		<li>
+			  			<div class="title-lesson">Item 4.3</div>
+			  		</li>
+			  	</ul>
+			  </li>
+			  <li>Item 5</li>
+			</ul>
 
-			            <div class="dropdown edit">
-			              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> </a>
-			              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			                <!-- Add Application -->
-			                <li><a href="http://localhost/repositorios/gesturekit/gesturesets/add/3"><i class="icon-plus"></i> Add Gesture Set</a></li>
-			                <li class="divider"></li>
-			                
-			                <!-- Edit application -->
-			                <li><a href="#"><i class="icon-pencil"></i> Edit Application </a></li>
-			                <li class="divider"></li>
-			                
-			                <!-- Delete Application -->
-			                <li><a href="#remove" class="danger"><i class="icon-remove"></i> Delete Application</a></li>
-			              </ul>
-			            </div>
-			          </div>
-
-	                      <div id="application_3" class="accordion-body collapse">
-			                  <div class="accordion-inner">
-			                   
-			                                        
-		                          <div class="accordion" id="gestureset_1">
-		                            
-		                            <!-- GestureSets -->
-		                            
-		                            <div class="accordion-group">
-		                              
-		                              <div class="accordion-heading gestureset">
-		                                <a class="accordion-toggle" data-parent="#gestureset_1" href="http://localhost/repositorios/gesturekit/gestures/index/1">My Activity</a>
-		                                <div>
-		                                	I'm working with the collapse plugin and I'm wondering how I can enable multiple groups to be open at the same time. In their demo page:
-
-http://twitter.github.com/bootstrap/javascript.html#collapse
-
-Only one is allowed to be open at a given time. I suppose this is the expected behavior of accordions, but how can I change it so that opening one group does not collapse the others?
-		                                </div>
-		                                <div class="dropdown edit">
-		                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> </a>
-		                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-		                                    
-		                                    <!-- Edit GestureSet -->
-		                                    <li><a href="#"><i class="icon-pencil"></i> Edit Gesture Set</a></li>
-		                                    <li class="divider"></li>
-		                                    
-		                                    <!-- Delete GestureSets -->
-		                                    <li><a href="#" class="danger"><i class="icon-remove"></i> Delete Gesture Set</a></li>
-		                                  </ul>
-		                                </div>
-		                              </div>
-		                            </div>
-		                          </div>
-
-		                                        
-		                          <div class="accordion" id="gestureset_4">
-		                            
-		                            <!-- GestureSets -->
-		                            
-		                            <div class="accordion-group">
-		                              
-		                              <div class="accordion-heading gestureset">
-		                                <a class="accordion-toggle" data-parent="#gestureset_4" href="http://localhost/repositorios/gesturekit/gestures/index/4">My Activity 2</a>
-		                                <div class="dropdown edit">
-		                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> </a>
-		                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-		                                    
-		                                    <!-- Edit GestureSet -->
-		                                    <li><a href="#"><i class="icon-pencil"></i> Edit Gesture Set</a></li>
-		                                    <li class="divider"></li>
-		                                    
-		                                    <!-- Delete GestureSets -->
-		                                    <li><a href="#" class="danger"><i class="icon-remove"></i> Delete Gesture Set</a></li>
-		                                  </ul>
-		                                </div>
-		                              </div>
-		                            </div>
-		                          </div>
-
-	                            
-	                    	</div>
-	              		</div>
-			          
-
-			      
-			          <div class="accordion-heading application">
-			            
-			            <a class="accordion-toggle" data-toggle="collapse" href="#application_6">Application 4</a>
-
-			            <div class="dropdown edit">
-			              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> </a>
-			              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			                <!-- Add Application -->
-			                <li><a href="http://localhost/repositorios/gesturekit/gesturesets/add/6"><i class="icon-plus"></i> Add Gesture Set</a></li>
-			                <li class="divider"></li>
-			                
-			                <!-- Edit application -->
-			                <li><a href="#"><i class="icon-pencil"></i> Edit Application </a></li>
-			                <li class="divider"></li>
-			                
-			                <!-- Delete Application -->
-			                <li><a href="#remove" class="danger"><i class="icon-remove"></i> Delete Application</a></li>
-			              </ul>
-			            </div>
-			          </div>
-
-			          <!-- //Application -->
-			      
-			     
-			      
-
-			    </div>
-			    
-			  </div><!-- /accordion -->
-			</div>
 	    </div>
 	</div>
 </div><!-- /row -->
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".select-chosen").chosen();
+	$("#chapters").sortable({
+      placeholder: "ui-state-highlight"
+    });
+    //$("#chapters").disableSelection();
+    $("#lessons1,#lessons2").sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $("#div-add-title").click(function(){
+    	$(this).css("display","none");
+    	$("#add-chapter").css("display","block");
+    });
+	$("#btnCancelAddChapter").click(function(){
+		$("#div-add-title").css("display","block");
+    	$("#add-chapter").css("display","none");
+		return false;
+	});
+	$("#btnAddChapter").click(function(){
+		$.ajax({
+				url: "data.json",
+				type: "POST",
+				dataType: "json",
+				success: function(data){
+					
+					
+				},
+				error: function(data){
+					alert("ERROR");
+				}
+			});
+		});
 });
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>

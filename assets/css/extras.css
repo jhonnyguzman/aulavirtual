@@ -3,6 +3,29 @@ body {
     padding-bottom: 40px;
 }
 
+.accordion-heading:hover
+{
+    background-color: #FFFAD9;
+}
+#add-chapter{
+	display: none;
+}
+
+#div-add-title:hover{
+	background-color: #333;
+}
+
+.bar-search{
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 2% 0;
+	margin-bottom: 10px;
+}
+
+.btn-search-child{
+	margin-left: 0px;
+}
+
 .btn-create-course{
 	color: #fff !important;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -71,15 +94,48 @@ body {
 	margin-bottom: 0px;
 }
 
-.bar-search{
-	border-top: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
-	padding: 2% 0;
-	margin-bottom: 10px;
+
+.item-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
-.btn-search-child{
-	margin-left: 0px;
+.item-list>li {
+	/*border: 1px solid #DDD;*/
+	/*border-left-width: 3px;*/
+	padding: 9px;
+	background-color: #FFF;
+	margin-top: -1px;
+	position: relative;
+}
+.item-list>li.item-default {
+	border-left-color: #abbac3;
+}
+.item-list>li.item-blue {
+	border-left-color: #569add;
+}
+.item-list>li.item-orange {
+	border-left-color: #eccb71;
+}
+.item-list>li.item-pink {
+	border-left-color: #dd56c0;
+}
+.item-list>li.item-green {
+	border-left-color: #9ecf6a;
+}
+.item-list>li.item-red {
+	border-left-color: #e05656;
+}
+.item-list>li.item-grey {
+	border-left-color: #999;
+}
+
+.ui-state-highlight { 
+	background-color: #F6F698 !important; 
+	height: 1.5em; 
+	line-height: 1.2em; 
+	border: dashed 1px gray; 
 }
 
 .modal-login{
@@ -116,7 +172,29 @@ body {
 	overflow: visible; 
 }
 
-.accordion-heading:hover
-{
-    background-color: #FFFAD9;
+
+
+.title-chapter{
+	background-color: #666;
+	color: #fff;
+	margin-left: -9px;
+	margin-right: -9px;
+	margin-top: -9px;
+	margin-bottom: 1px;
+	padding: 10px;
+	border-radius: 4px;
+}
+.title-lesson{
+	background-color: #f38787;
+	color: #fff;
+	margin-left: -9px;
+	margin-right: -9px;
+	margin-bottom: -9px;
+	padding: 10px;
+	border-radius: 4px;
+}
+.lesson-content{
+	background-color: #65c465;
+	margin-top: 9px;
+	padding: 10px;
 }
