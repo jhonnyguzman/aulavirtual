@@ -38,12 +38,35 @@ body {
     *background-color: #499249 !important;
 }
 
+.btnDeleteChapter{
+	text-align: right !important;
+}
+
 .content-hero-unit{
 	margin-left: 0px;
 }
 
 .content-thumbnails ul li div.thumbnail{
 	width: 320px;
+}
+
+.chapter-hidden{
+	display: none;
+}
+
+.chapter-edit-hidden{
+	display: none;
+}
+
+.chapter-title-edit{
+	background-color: #666;
+	color: #fff;
+	margin-left: -9px;
+	margin-right: -9px;
+	margin-top: -9px;
+	margin-bottom: 1px;
+	padding: 10px;
+	border-radius: 4px;
 }
 
 .form-signin {
@@ -184,6 +207,7 @@ body {
 	padding: 10px;
 	border-radius: 4px;
 }
+
 .title-lesson{
 	background-color: #f38787;
 	color: #fff;
@@ -197,4 +221,10 @@ body {
 	background-color: #65c465;
 	margin-top: 9px;
 	padding: 10px;
+}
+
+.remove-chapter{
+	display: inline-block;
+	width: 70%;
+	text-align: right;
 }
