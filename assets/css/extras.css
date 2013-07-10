@@ -10,8 +10,14 @@ body {
 #add-chapter{
 	display: none;
 }
+.add-lesson{
+	display: none;
+}
 
 #div-add-title:hover{
+	background-color: #333;
+}
+.div-add-lesson:hover{
 	background-color: #333;
 }
 
@@ -42,6 +48,10 @@ body {
 	text-align: right !important;
 }
 
+.btns-list-my-courses{
+	text-align: right;
+}
+
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -50,11 +60,12 @@ body {
 	width: 320px;
 }
 
-.chapter-hidden{
+.chapter-hidden, .lesson-hidden{
 	display: none;
 }
 
-.chapter-edit-hidden{
+
+.chapter-edit-hidden, .lesson-edit-hidden{
 	display: none;
 }
 
@@ -222,8 +233,21 @@ body {
 	margin-top: 9px;
 	padding: 10px;
 }
-
+.lesson-title-edit{
+	background-color: #f38787;
+	color: #fff;
+	margin-left: -9px;
+	margin-right: -9px;
+	margin-bottom: 1px;
+	padding: 10px;
+	border-radius: 4px;
+}
 .remove-chapter{
+	display: inline-block;
+	width: 70%;
+	text-align: right;
+}
+.remove-lesson{
 	display: inline-block;
 	width: 70%;
 	text-align: right;

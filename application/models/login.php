@@ -29,7 +29,7 @@ class Login extends DataMapper {
 	function _encrypt($field) // optional second parameter is not used
 	{
 	    // Don't encrypt an empty string
-	    if (!empty($this->{$field}))
+	    /*if (!empty($this->{$field}))
 	    {
 	        // Generate a random salt if empty
 	        if (empty($this->salt))
@@ -39,7 +39,7 @@ class Login extends DataMapper {
 
 	       // $this->{$field} = sha1($this->salt . $this->{$field});
 	       //$this->{$field} = md5($this->{$field});
-	    }
+	    }*/
 
 	    $this->{$field} = md5($this->{$field});
 	}

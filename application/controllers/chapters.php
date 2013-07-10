@@ -23,19 +23,6 @@ class Chapters extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		$languages = new Language();
-		$user = new Profile();
-		$data['languages'] = $languages->get();
-		$data['user'] = $user->where('id',$this->session->userdata('user_id'))->get();
-		
-		//TODO: Cargar vista de Courses		
-		
-		//$this->load->view('profile/index',$data);	
-		
-	}
-
 	public function create()
 	{
 		$result = array();

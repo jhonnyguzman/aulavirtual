@@ -36,6 +36,14 @@ class Courses extends CI_Controller {
 		
 	}
 
+	public function my_courses()
+	{
+		$courses = new Course();
+		$courses->where("owner_id", $this->session->userdata("user_id"))->get();
+		$data["courses"] = $courses;
+		$this->load->view("courses/my_courses",$data);
+	}
+
 	public function newTitle()
 	{
 		$this->load->view("courses/newtitle");

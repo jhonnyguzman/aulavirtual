@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">FormaNube</a>
+          <a class="brand" href="<?=site_url('home')?>">FormaNube</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -40,26 +40,44 @@
             </ul>
             
             <ul class="nav pull-right">
-	              <li><a href="#">Link</a></li>
-	              <li class="divider-vertical"></li>
-	              <li class="dropdown">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar Sessi&oacute;n <b class="caret"></b></a>
-	                <ul class="dropdown-menu">
-	                	<div class="modal-login">
-		                  <form action="<?=site_url('signin/login')?>" method="post" name="formlogin">
-		                  	  <label>Correo Electr&oacute;nico:</label>
-    				              <input name="email" class="input-xlarge" type="text" placeholder="Correo Electrónico">
-    				              <label>Contrase&ntilde;a:</label>
-    				              <input name="password" class="input-xlarge" type="password" placeholder="Contraseña">
-    				              <label class="checkbox">
-    						            <input type="checkbox"> Recordar mis datos
-    						          </label>
-    						          <a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
-    				              <button type="submit" class="btn btn-success">Iniciar Sessión</button>
-				              </form>
-				        </div>
-	                </ul>
-	              </li>
+                <?php if(!$this->session->userdata("logged_in")): ?>
+                  <li><a href="#">Link</a></li>
+                  <li class="divider-vertical"></li>
+  	              <li class="dropdown">
+  	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar Sessi&oacute;n <b class="caret"></b></a>
+  	                <ul class="dropdown-menu">
+  	                	<div class="modal-login">
+  		                  <form action="<?=site_url('signin/login')?>" method="post" name="formlogin">
+  		                  	  <label>Correo Electr&oacute;nico:</label>
+      				              <input name="email" class="input-xlarge" type="text" placeholder="Correo Electrónico">
+      				              <label>Contrase&ntilde;a:</label>
+      				              <input name="password" class="input-xlarge" type="password" placeholder="Contraseña">
+      				              <label class="checkbox">
+      						            <input type="checkbox"> Recordar mis datos
+      						          </label>
+      						          <a href="#">¿Olvidaste tu Contrase&ntilde;a?</a>
+      				              <button type="submit" class="btn btn-success">Iniciar Sessión</button>
+  				              </form>
+  				            </div>
+  	                </ul>
+  	              </li>
+                <?php else: ?>
+                  <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-create-course">Crear Curso</a></li>
+                  <li class="divider-vertical"></li>
+                  <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->session->userdata("user_surname")." ".$this->session->userdata("user_name")?><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <div class="modal-login">
+                            <form>
+                                <label><?=$this->session->userdata("user_email")?></label>
+                                <a href="<?=site_url('profiles')?>">Editar Perfil</a><br>
+                                <a href="<?=site_url('courses/my_courses')?>">Mis Cursos</a><br><br>
+                                <a href="<?=site_url('login/logout')?>"><?=$this->lang->line('logout')?></a>
+                            </form>
+                          </div>
+                        </ul>
+                    </li>
+                <?php endif; ?>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

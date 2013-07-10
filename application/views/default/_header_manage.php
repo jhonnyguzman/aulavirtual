@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">FormaNube</a>
+          <a class="brand" href="<?=site_url('home')?>">FormaNube</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -53,6 +53,7 @@
                           <form>
                               <label><?=$this->session->userdata("user_email")?></label>
                               <a href="<?=site_url('profiles')?>">Editar Perfil</a><br>
+                              <a href="<?=site_url('courses/my_courses')?>">Mis Cursos</a><br><br>
                               <a href="<?=site_url('login/logout')?>"><?=$this->lang->line('logout')?></a>
                           </form>
                         </div>
