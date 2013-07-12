@@ -48,6 +48,8 @@ $route['courses/course-edit-curriculum/(:num)'] = "courses/edit_curriculum/$1";
 
 
 $route['profiles/profile-edit-password/(:num)'] = "profiles/edit_password/$1";
+$route['profiles/profile-edit-preferences/(:num)'] = "profiles/edit_preferences/$1";
+//$route['courses/course-edit-details/(:num)'] = "courses/edit_details/$1";
 
 
 

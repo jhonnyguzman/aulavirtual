@@ -106,57 +106,6 @@ public function edit_password()
 	}
 
 
-
-
-
-// public function update()
-// 	{
-// 		$ua = new User_thumbnail();
-// 		$ua->where('user_id', $this->session->userdata("user_id"))->get();
-// 		if ($ua->exists())
-//         {
-//         	$result = $this->do_upload($this->session->userdata('user_id'));
-//         	if($result['error']){
-//         		$data['errors'] = $result['error'];
-// 				$this->load->view('user_thumbnail/index',$data);
-//         	}else{
-//         		$ua->user_id = $this->session->userdata('user_id');
-//         		$ua->file_name = $result['data']['file_name'];
-// 	        	$ua->file_type = $result['data']['file_type'];
-// 	        	$ua->file_size = $result['data']['file_size'];
-// 	        	if($ua->save()){
-// 	        		$this->session->set_flashdata('flashConfirm', "Imágen de perfil actualizada correctamente."); 
-// 	        		redirect('user_thumbnails');
-// 	        	}else{
-// 	        		$data['errors'] = $ua->error->string;
-// 					$this->load->view('user_thumbnail/index',$data);
-// 	        	}
-//         	}
-//         }else{
-//         	$result = $this->do_upload($this->session->userdata('user_id'));
-//         	if($result['error']){
-//         		$data['errors'] = $result['error'];
-// 				$this->load->view('user_thumbnail/index',$data);
-//         	}else{
-//         		$ua_new = new User_thumbnail();
-//         		$ua_new->user_id = $this->session->userdata('user_id');
-//         		$ua_new->file_name = $result['data']['file_name'];
-// 	        	$ua_new->file_type = $result['data']['file_type'];
-// 	        	$ua_new->file_size = $result['data']['file_size'];
-// 	        	if($ua_new->save()){
-// 	        		$this->session->set_flashdata('flashConfirm', "Imágen de perfil actualizada correctamente."); 
-// 	        		redirect('user_thumbnails');
-// 	        	}else{
-// 	        		$data['errors'] = $ua_new->error->string;
-// 					$this->load->view('user_thumbnail/index',$data);
-// 	        	}
-//         	}
-//         }
-// 	}
-
-
-
-
 	public function update_password()
 	{
 		//$post = $this->input->post(NULL,TRUE);
@@ -180,34 +129,178 @@ public function edit_password()
 
 
 
-
-
-	public function update_p98assword($user_id)
+public function edit_preferences($user_id = "")
 	{
-		$result = array();
-		$config['upload_path'] 		= './uploads/user_thumbnails/';
-		$config['allowed_types'] 	= 'gif|jpg|png';
-		$config['max_size']			= '300';
-		$config['max_width']  		= '500';
-		$config['max_height']  		= '600';
-		$config['overwrite']  		= TRUE;
-		$config['file_name']  		= 'user_thumbnail_'.$user_id;
-
-		$this->load->library('upload', $config);
-
-		if ( ! $this->upload->do_upload('user_thumbnail'))
-		{
-			$result["error"] = $this->upload->display_errors();
+		if($user_id != ""){
+			$c = new User();
+			$c->where('id', $this->session->userdata("id"))->get();
+			if($c->exists()){
+				$user_preferences = new User_preference();				
+				$data["user"] = $c;				
+				$data["user_preferences"] = $user_preferences->where("user_id", $c->id)->get();
+				$data["user_preferences_count"] = $user_preferences->result_count();
+				
+				$this->load->view("profiles/edit_preferences",$data);
+			}else{
+				//show_404('page',FALSE);
+				echo "error 1";
+			}
+		}else{
+			//show_404('page',FALSE);
+			echo "aqui estamos";
+			$nuevo = new User();
+			$nuevo->id =5;
+			$as = $nuevo->id;
+			echo $as;
 		}
-		else
-		{
-			$result['data'] = $this->upload->data();
-			$result['data']['file_name'] = $config['file_name'].$result['data']['file_ext'];
-		}
-
-		return $result;
 	}
 
+
+
+public function update_preferences()
+	{
+		$c = new User();
+		$c->where('id', $this->session->userdata("id"))->get();
+		
+		if($c->exists()){
+			// $c->summary = $this->input->post("summary",TRUE);
+			// $c->instruction = $this->input->post("instruction");
+			
+			if($c->save()){
+				$this->savePreferences($c->id);				
+				$this->session->set_flashdata('flashConfirm', "Preferencia del usuario actualizada correctamente."); 
+				
+				redirect("profiles/profile-edit-preferences/".$c->id);
+			
+			}else{
+				$user_preferences = new User_preference();				
+				$data["user"] = $c;				
+				$data["user_preferences"] = $user_preferences->where("user_id", $c->id)->get();
+				$data["user_preferences_count"] = $user_preferences->result_count();				
+				$data['errors'] = $c->error->string;
+				
+				$this->load->view("profiles/edit_preferences",$data);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
+
+
+
+
+	//private functions here
+
+	private function savePreferences($user_id)
+	{
+		$arr_preferences = explode(",",$this->input->post("preferences"));
+
+		//delete all preferences
+		$user_preferences = new User_preference();
+		$user_preferences->where("user_id", $user_id)->get();
+		$user_preferences->delete_all();
+
+		//add new preferences
+		if(count($arr_preferences) > 0){
+			foreach ($arr_preferences as $p) {
+				$prefenrece = new User_preference();
+				$prefenrece->description = $p;
+				$prefenrece->user_id = $user_id;
+				$preference->save();
+			}
+		}
+	}
+
+
+
+///////////////////// EXAMPLE
+
+public function edit_details($course_id = "")
+	{
+		if($course_id != ""){
+			$c = new Course();
+			$c->where("id", $course_id)->where("owner_id", $this->session->userdata("user_id"))->get();
+			if($c->exists()){
+				$course_goals = new Course_goal();
+				$course_audiences = new Course_audience();
+				$course_requirements = new Course_requirement();
+				$data["course"] = $c;
+				$data["course_goals"] = $course_goals->where("course_id", $c->id)->get();
+				$data["course_goals_count"] = $course_goals->result_count();
+				$data["course_audiences"] = $course_audiences->where("course_id", $c->id)->get();
+				$data["course_audiences_count"] = $course_audiences->result_count();
+				$data["course_requirements"] = $course_requirements->where("course_id", $c->id)->get();
+				$data["course_requirements_count"] = $course_requirements->result_count();
+				
+				$this->load->view("courses/edit_details",$data);
+
+			}else{
+				show_404('page',FALSE);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
+
+	public function update_details()
+	{
+		$c = new Course();
+		$c->where("id", $this->input->post('id') )->where("owner_id", $this->session->userdata("user_id"))->get();
+		if($c->exists()){
+			// $c->summary = $this->input->post("summary",TRUE);
+			// $c->instruction = $this->input->post("instruction");
+			if($c->save()){
+				$this->saveGoals($c->id);
+				$this->saveAudiences($c->id);
+				$this->saveRequirements($c->id);
+				$this->session->set_flashdata('flashConfirm', "Detalle de Curso actualizado correctamente."); 
+				redirect("courses/course-edit-details/".$c->id);
+			}else{
+				$course_goals = new Course_goal();
+				$course_audiences = new Course_audience();
+				$course_requirements = new Course_requirement();
+				$data["course"] = $c;
+				$data["course_goals"] = $course_goals->where("course_id", $c->id)->get();
+				$data["course_goals_count"] = $course_goals->result_count();
+				$data["course_audiences"] = $course_audiences->where("course_id", $c->id)->get();
+				$data["course_audiences_count"] = $course_audiences->result_count();
+				$data["course_requirements"] = $course_requirements->where("course_id", $c->id)->get();
+				$data["course_requirements_count"] = $course_requirements->result_count();
+				$data['errors'] = $c->error->string;
+				$this->load->view("courses/edit_details",$data);
+			}
+		}else{
+			show_404('page',FALSE);
+		}
+	}
+
+
+
+
+
+	private function saveGoals($course_id)
+	{
+		$arr_goals = explode(",",$this->input->post("goals"));
+
+		//delete all goals
+		$course_goals = new Course_goal();
+		$course_goals->where("course_id", $course_id)->get();
+		$course_goals->delete_all();
+
+		//add new goals
+		if(count($arr_goals) > 0){
+			foreach ($arr_goals as $g) {
+				$goal = new Course_goal();
+				$goal->description = $g;
+				$goal->course_id = $course_id;
+				$goal->save();
+			}
+		}
+	}
+
+
+
+	/////////////////  END OF EXAMPLE
 
 
 
