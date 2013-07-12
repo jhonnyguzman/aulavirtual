@@ -30,7 +30,7 @@ class Signin extends CI_Controller {
 
 		$u->where('email', $post['email']);
 		$u->where('password', md5($post['password']));
-		$u->where('role_id',1);
+		$u->where('role_id',4);
 		$u->where('user_status_code',1);
 		$u->get();
 

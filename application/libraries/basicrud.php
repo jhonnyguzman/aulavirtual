@@ -938,4 +938,22 @@ class BasiCrud {
 		else
 			return '-';
 	}
+
+	public function cretateHtmlMsg($message_status = '', $message_description = '', $errors = '')
+	{
+		$html = "";
+		if($message_status == 'error'){
+          $html.="<div class='alert alert-error'>";
+          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          $html.=$errors;
+          $html.="</div>";
+        }elseif($message_status == 'success'){
+          $html.="<div class='alert alert-success'>";
+          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          $html.=$message_description;
+          $html.="</div>";
+        }
+	   
+	   return $html;
+	}
 }

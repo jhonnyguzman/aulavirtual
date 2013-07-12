@@ -6,11 +6,35 @@
     <!-- Bootstrap -->
     <link href="<?=site_url()?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<?=site_url()?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="<?=site_url()?>assets/css/font-awesome.min.css" />
     <link href="<?=site_url()?>assets/css/chosen/chosen.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <!--fonts-->
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-fonts.css" />
+
+    <!--ace styles-->
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/ace.min.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-responsive.min.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-skins.min.css" />
+
     <link href="<?=site_url()?>assets/css/extras.css" rel="stylesheet" media="screen">
     <script src="<?=site_url()?>assets/js/jquery-1.10.1.min.js"></script>
+    <script src="<?=site_url()?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="<?=site_url()?>assets/js/bootstrap.min.js"></script>
     <script src="<?=site_url()?>assets/js/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+      if("ontouchend" in document) document.write("<script src='<?=base_url()?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="<?=base_url()?>assets/js/markdown/markdown.min.js"></script>
+    <script src="<?=base_url()?>assets/js/markdown/bootstrap-markdown.min.js"></script>
+    <script src="<?=base_url()?>assets/js/jquery.hotkeys.min.js"></script>
+    <script src="<?=base_url()?>assets/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="<?=base_url()?>assets/js/bootbox.min.js"></script>
+    <!--ace scripts-->
+    <script src="<?=base_url()?>assets/js/ace-elements.min.js"></script>
+    <script src="<?=base_url()?>assets/js/ace.min.js"></script>
+
   </head>
   <body>
   	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,7 +45,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">FormaNube</a>
+          <a class="brand" href="<?=site_url('home')?>">FormaNube</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -42,7 +66,7 @@
             </ul>
             
             <ul class="nav pull-right">
-	              <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-create-course">Crear Curso</a></li>
+	              <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-small btn-success btn-create-course">Crear Curso</a></li>
 	              <li class="divider-vertical"></li>
 	              <?php if($this->session->userdata("logged_in")): ?>
                     <li class="dropdown">
@@ -52,6 +76,7 @@
                           <form>
                               <label><?=$this->session->userdata("user_email")?></label>
                               <a href="<?=site_url('profiles')?>">Editar Perfil</a><br>
+                              <a href="<?=site_url('courses/my_courses')?>">Mis Cursos</a><br><br>
                               <a href="<?=site_url('login/logout')?>"><?=$this->lang->line('logout')?></a>
                           </form>
                         </div>
