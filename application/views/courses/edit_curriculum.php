@@ -1,4 +1,5 @@
 <?php echo $this->load->view("default/_header_manage"); ?>
+
 <div class="row-fluid show-grid">
 	<div class="row">
 		<div class="page-header">
@@ -15,20 +16,10 @@
 				  <h3>Curr&iacute;culo <small>Crea el esquema de tu curso y agrega los materiales.</small></h3>
 				</div>
 			</div>
-	    	<?php echo $this->load->view("default/_result_messages"); ?>
-	    	<!--<form action="<?=site_url('courses/update_curriculum')?>" method="post" id="updateCurriculum">
-				    <?php if(isset($errors)): ?>
-	                  <div class="alert alert-error">
-	                    <a class="close" data-dismiss="alert" href="#">×</a>
-	                        <?=$errors?>
-	                  </div>    
-	                <?php endif; ?>
-	                <input type="hidden" name="id" value="<?=$course->id?>">
-				    
-				    
-			</form>-->
-			<div id="message_result"></div>
-			<ul id="newChapter" class="item-list newChapter">
+	    	
+	    	<div id="message_result"></div>
+
+			<ul id="newChapter" class="item-list-custom newChapter">
 				<li>
 					<div class="title-chapter" id="div-add-title">
 						Agregar Capitulo
@@ -52,11 +43,19 @@
 			  	</li>
 			</ul>
 
-			<ul id="chapters" class="item-list">
+			<ul id="chapters" class="item-list-custom">
 				<?php foreach($course->chapter->order_by("order",'asc')->get() as $chapter): ?>
 					<li data-order="<?=$chapter->order?>" data-id="<?=$chapter->id?>" data-name="<?=$chapter->name?>" id="item_<?=$chapter->id?>">
-				  		<div class="title-chapter"><?=$chapter->name?> <i class="icon-pencil icon-white chapter-edit chapter-edit-hidden"></i></div>
-				  		<ul id="newLesson" class="item-list newLesson">
+				  		<div class="row title-chapter">
+				  			<div class="span6">
+					  			<?=$chapter->name?> 
+					  			<i class="icon-pencil icon-white chapter-edit chapter-edit-hidden"></i>
+					  		</div>
+					  		<div class="span6 btns-right">
+				  				<i class="icon-download icon-white chapter-bull-down chapter-bull-down-hidden" ></i>
+				  			</div>
+				  		</div>
+				  		<ul id="newLesson" class="item-list-custom newLesson newLesson-hidden">
 					  		<li>
 					  			<div class="title-lesson div-add-lesson">
 									Agregar Tema
@@ -77,95 +76,51 @@
 						  		</div>
 					  		</li>
 					  	</ul>
-					  	<ul id="lessons-<?=$chapter->id?>" class="item-list lessons">
+					  	<ul id="lessons-<?=$chapter->id?>" class="item-list-custom lessons lessons-hidden">
 					  		<?php foreach($chapter->lesson->order_by("order",'asc')->get() as $lesson): ?>
 					  			<li data-order="<?=$lesson->order?>" data-id="<?=$lesson->id?>" data-name="<?=$lesson->name?>" id="item_<?=$lesson->id?>">
-				  					<div class="title-lesson"><?=$lesson->name?> <i class="icon-pencil icon-white lesson-edit lesson-edit-hidden"></i></div>
+				  					<div class="row title-lesson">
+				  						<div class="span6">
+				  							<?=$lesson->name?> <i class="icon-pencil icon-white lesson-edit lesson-edit-hidden"></i>
+				  						</div>
+				  						<div class="span6 btns-right">
+				  							<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
+				  						</div>
+				  					</div>
+				  					<div class="row box-content box-content-hidden">
+				  						<div class="box-title">
+				  							Seleccione tipo de contenido
+				  							<div>
+				  								<a href="#" class="btnBoxRemove" title="Cerrar"><i class="icon-remove"></i></a>
+				  							</div>
+				  						</div>
+				  						<div class="span12 box">
+					  						<img src="<?=site_url()?>assets/img/text.png" class="img-rounded" title="Texto">
+					  						<img src="<?=site_url()?>assets/img/image.png" class="img-rounded" title="Imágen">
+					  						<img src="<?=site_url()?>assets/img/audio.png" class="img-rounded" title="Audio">
+					  						<img src="<?=site_url()?>assets/img/video.png" class="img-rounded" title="Video">
+					  						<img src="<?=site_url()?>assets/img/presentation.png" class="img-rounded" title="Presentación">
+					  						<img src="<?=site_url()?>assets/img/pdf.png" class="img-rounded" title="Pdf">
+				  						</div>
+				  					</div>
 				  				</li>
 					  		<?php endforeach; ?>
 					  	</ul>
 				  	</li>
 				<?php endforeach; ?>
-			  <!--<li class="item-blue" data-order="1">
-			  	<div class="title-chapter"> Item 1</div>
-			  	<ul id="lessons1" class="item-list">
-			  		<li>
-			  			<div class="title-lesson">Item 1.1</div>
-			  			<div class="lesson-content">
-			  				<div class="single-item">Contenido 1.1</div>
-			  				<div class="details">Contenido 1.2</div>
-			  				<div class="bottom-btns">Contenido 1.3</div>
-			  			</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 1.2</div>
-			  			<div class="lesson-content">
-			  				<div class="single-item">Contenido 1.1</div>
-			  				<div class="details">Contenido 1.2</div>
-			  				<div class="bottom-btns">Contenido 1.3</div>
-			  			</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 1.3</div>
-			  			<div class="lesson-content">
-			  				<div class="single-item">Contenido 1.1</div>
-			  				<div class="details">Contenido 1.2</div>
-			  				<div class="bottom-btns">Contenido 1.3</div>
-			  			</div>
-			  		</li>
-			  	</ul>
-			  </li>
-			  <li class="item-orange"  data-order="2">
-			  	<div class="title-chapter"> Item 2</div>
-			  	<ul id="lessons2" class="item-list">
-			  		<li>
-			  			<div class="title-lesson">Item 2.1</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 2.2</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 2.3</div>
-			  		</li>
-			  	</ul>
-			  </li>
-			  <li class="item-pink" data-order="3">
-			  	<div class="title-chapter"> Item 3</div>
-			  	<ul id="lessons3" class="item-list">
-			  		<li>
-			  			<div class="title-lesson">Item 3.1</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 3.2</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 3.3</div>
-			  		</li>
-			  	</ul>
-			  </li>
-			  <li class="item-green" data-order="4">
-			  	<div class="title-chapter"> Item 4</div>
-			  	<ul id="lessons4" class="item-list">
-			  		<li>
-			  			<div class="title-lesson">Item 4.1</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 4.2</div>
-			  		</li>
-			  		<li>
-			  			<div class="title-lesson">Item 4.3</div>
-			  		</li>
-			  	</ul>
-			  </li>
-			  <li>Item 5</li>-->
 			</ul>
+
+			<div class="wysiwyg-editor" id="editor1"></div>
 
 	    </div>
 	</div>
 </div><!-- /row -->
 
+
+
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function()
+	{
 		$("#chapters").sortable({
 	      placeholder: "ui-state-highlight",
 	      start:function(){
@@ -294,18 +249,79 @@
 					}
 			});
 		});
+
+		//but we want to change a few buttons colors for the third style
+		$('#editor1').ace_wysiwyg({
+			toolbar:
+			[
+				'font',
+				null,
+				'fontSize',
+				null,
+				{name:'bold', className:'btn-info'},
+				{name:'italic', className:'btn-info'},
+				{name:'strikethrough', className:'btn-info'},
+				{name:'underline', className:'btn-info'},
+				null,
+				{name:'insertunorderedlist', className:'btn-success'},
+				{name:'insertorderedlist', className:'btn-success'},
+				{name:'outdent', className:'btn-purple'},
+				{name:'indent', className:'btn-purple'},
+				null,
+				{name:'justifyleft', className:'btn-primary'},
+				{name:'justifycenter', className:'btn-primary'},
+				{name:'justifyright', className:'btn-primary'},
+				{name:'justifyfull', className:'btn-inverse'},
+				null,
+				{name:'createLink', className:'btn-pink'},
+				{name:'unlink', className:'btn-pink'},
+				null,
+				{name:'insertImage', className:'btn-success'},
+				null,
+				'foreColor',
+				null,
+				{name:'undo', className:'btn-grey'},
+				{name:'redo', className:'btn-grey'}
+			],
+			speech_button : false, //don't show the speech input button on Chrome
+			'wysiwyg': {
+				fileUploadError: showErrorAlert
+			}
+		}).prev().addClass('wysiwyg-style2');
+
+
+		function showErrorAlert (reason, detail) {
+			var msg='';
+			if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
+			else {
+				console.log("error uploading file", reason, detail);
+			}
+			$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+			 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+		}
+
 	});
 	
 	// for chapter
 	$(document).on("mouseover", "#chapters li", function(e) {
-	    $(".title-chapter .chapter-edit",this).removeClass("chapter-edit-hidden");
-	    $(".title-chapter .chapter-edit",this).fadeIn(500);
+	    $(".title-chapter .span6 .chapter-edit",this).removeClass("chapter-edit-hidden");
+	    $(".title-chapter .span6 .chapter-edit",this).fadeIn(500);
+	    $(".title-chapter .btns-right .chapter-bull-down",this).removeClass("chapter-bull-down-hidden");
+	    $(".title-chapter .btns-right .chapter-bull-down",this).fadeIn(500);
 	});
 	$(document).on("mouseleave", "#chapters li", function(e) {
-	    $(".title-chapter .chapter-edit",this).addClass("chapter-edit-hidden");
+	    $(".title-chapter .span6 .chapter-edit",this).addClass("chapter-edit-hidden");
+	    $(".title-chapter .btns-right .chapter-bull-down",this).addClass("chapter-bull-down-hidden");
 	});
-	$(document).on("click", "#chapters li .title-chapter .chapter-edit", function(e) {
-	   builtChapterEditView($(this).parent().parent());
+	$(document).on("click", "#chapters li .title-chapter .span6 .chapter-edit", function(e) {
+	   builtChapterEditView($(this).parent().parent().parent());
+	});
+	$(document).on("click", "#chapters li .title-chapter .btns-right .chapter-bull-down", function(e) {
+	   var button = this;
+	   var cList = $(button).parent().parent().parent();
+	   $(".lessons,.newLesson",cList).slideToggle(500, function(){
+	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
+	   });
 	});
 
 	$(document).on("click", "#btnCancelEditChapter", function(e) {
@@ -475,8 +491,8 @@
 	$(document).on("mouseleave", ".lessons li", function(e) {
 	    $(".title-lesson .lesson-edit",this).addClass("lesson-edit-hidden");
 	});
-	$(document).on("click", ".lessons li .title-lesson .lesson-edit", function(e) {
-	    builtLessonEditView($(this).parent().parent());
+	$(document).on("click", ".lessons li .title-lesson .span6 .lesson-edit", function(e) {
+	    builtLessonEditView($(this).parent().parent().parent());
 	});
 	$(document).on("click", ".btnCancelEditLesson", function(e) {
 	   var cList = $(this).parent().parent().parent().parent();
@@ -645,5 +661,19 @@
 	    $(".lesson-title-edit",li).remove();
 	    div.css("display","block");
 	}
+
+	//for content
+	$(document).on("click", ".lessons li .title-lesson .btns-right .btnAddContent", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   $(this).fadeOut(200);
+	   $(".box-content",cList).fadeIn(500);
+	});
+	$(document).on("click", ".lessons li .box-content .box-title div .btnBoxRemove", function(e) {
+	   var cList = $(this).parent().parent().parent().parent();
+	   $(".box-content",cList).fadeOut(200);
+	   $(".title-lesson .btns-right .btnAddContent",cList).fadeIn(500);
+	   
+	});
+
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>

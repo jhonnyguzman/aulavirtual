@@ -35,7 +35,8 @@ body {
 .btn-create-course{
 	color: #fff !important;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-	padding: 5px !important;
+	padding: 2px !important;
+	margin-top: 2px;
 }
 
 .btn-create-course:hover{
@@ -52,6 +53,42 @@ body {
 	text-align: right;
 }
 
+.box-content{
+	margin-top: 9px;
+	text-align: center;
+	background-color: #ededed;
+}
+.box-content-hidden{
+	display: none;
+}
+.box-content{
+	padding: 5px;
+	padding-right: 0px;
+}
+
+.box-title{
+	width: 30%;
+	height: 40px;
+	background-color: #ededed;
+	margin-top: -35px;
+	margin-bottom: 5px;
+	float: right;
+	font-weight: bold;
+}
+.box-title div{
+	display: inline-block;
+	float: right;
+	text-align: right;
+	padding-right: 2px;
+}
+.box img{
+	margin-left:5px;
+	margin-right: 5px; 
+	opacity: 0.6;
+}
+.box img:hover{
+	opacity: 1;
+}
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -65,7 +102,7 @@ body {
 }
 
 
-.chapter-edit-hidden, .lesson-edit-hidden{
+.chapter-edit-hidden, .chapter-bull-down-hidden, .lessons-hidden,.newLesson-hidden, .lesson-edit-hidden{
 	display: none;
 }
 
@@ -129,13 +166,13 @@ body {
 }
 
 
-.item-list {
+.item-list-custom {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.item-list>li {
+.item-list-custom>li {
 	/*border: 1px solid #DDD;*/
 	/*border-left-width: 3px;*/
 	padding: 9px;
@@ -143,25 +180,25 @@ body {
 	margin-top: -1px;
 	position: relative;
 }
-.item-list>li.item-default {
+.item-list-custom>li.item-default {
 	border-left-color: #abbac3;
 }
-.item-list>li.item-blue {
+.item-list-custom>li.item-blue {
 	border-left-color: #569add;
 }
-.item-list>li.item-orange {
+.item-list-custom>li.item-orange {
 	border-left-color: #eccb71;
 }
-.item-list>li.item-pink {
+.item-list-custom>li.item-pink {
 	border-left-color: #dd56c0;
 }
-.item-list>li.item-green {
+.item-list-custom>li.item-green {
 	border-left-color: #9ecf6a;
 }
-.item-list>li.item-red {
+.item-list-custom>li.item-red {
 	border-left-color: #e05656;
 }
-.item-list>li.item-grey {
+.item-list-custom>li.item-grey {
 	border-left-color: #999;
 }
 
@@ -217,6 +254,14 @@ body {
 	margin-bottom: 1px;
 	padding: 10px;
 	border-radius: 4px;
+}
+
+.title-chapter .span6, .title-lesson .span6{
+	line-height: 2;
+}
+
+.title-chapter .btns-right, .title-lesson .btns-right{
+	text-align: right;
 }
 
 .title-lesson{
