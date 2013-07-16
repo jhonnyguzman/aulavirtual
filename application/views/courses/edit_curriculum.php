@@ -80,28 +80,35 @@
 					  		<?php foreach($chapter->lesson->order_by("order",'asc')->get() as $lesson): ?>
 					  			<li data-order="<?=$lesson->order?>" data-id="<?=$lesson->id?>" data-name="<?=$lesson->name?>" id="item_<?=$lesson->id?>">
 				  					<div class="row title-lesson">
-				  						<div class="span6">
+				  						<div class="span6 btns-left">
 				  							<?=$lesson->name?> <i class="icon-pencil icon-white lesson-edit lesson-edit-hidden"></i>
 				  						</div>
 				  						<div class="span6 btns-right">
-				  							<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
+				  							<?php if($lesson->content_text->count() > 0): ?>
+				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
+				  							<?php else: ?>
+				  								<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
+				  							<?php endif; ?>
 				  						</div>
 				  					</div>
-				  					<div class="row box-content box-content-hidden">
-				  						<div class="box-title">
-				  							Seleccione tipo de contenido
-				  							<div>
-				  								<a href="#" class="btnBoxRemove" title="Cerrar"><i class="icon-remove"></i></a>
-				  							</div>
-				  						</div>
-				  						<div class="span12 box">
-					  						<img src="<?=site_url()?>assets/img/text.png" class="img-rounded" title="Texto">
-					  						<img src="<?=site_url()?>assets/img/image.png" class="img-rounded" title="Imágen">
-					  						<img src="<?=site_url()?>assets/img/audio.png" class="img-rounded" title="Audio">
-					  						<img src="<?=site_url()?>assets/img/video.png" class="img-rounded" title="Video">
-					  						<img src="<?=site_url()?>assets/img/presentation.png" class="img-rounded" title="Presentación">
-					  						<img src="<?=site_url()?>assets/img/pdf.png" class="img-rounded" title="Pdf">
-				  						</div>
+				  					<div class="row box-content box-content-hidden cancel">
+				  						<?php if($lesson->content_text->count() > 0): ?>
+				  							<div class="span12 box">
+					  							<div class="span12 single-item">
+					  								<div class="span6">
+						  								<img src="<?=site_url()?>assets/img/text_medium.png" class="img-circle" />
+						  								<p>
+						  									<strong>Texto</strong><br>
+						  									<a href="#" class="btnEditContent">Editar</a>
+						  								</p>
+						  							</div>
+					  							</div>
+					  							<div class="span12 more">
+					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
+					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
+					  							</div>
+				  							</div>	
+				  						<?php endif; ?>
 				  					</div>
 				  				</li>
 					  		<?php endforeach; ?>
@@ -110,7 +117,7 @@
 				<?php endforeach; ?>
 			</ul>
 
-			<div class="wysiwyg-editor" id="editor1"></div>
+			
 
 	    </div>
 	</div>
@@ -123,11 +130,12 @@
 	{
 		$("#chapters").sortable({
 	      placeholder: "ui-state-highlight",
+	      cancel: "input,button,select,textarea,option,.cancel",
 	      start:function(){
 				//alert("Estas utilizando Drag and Drop");
 				
-			},
-			stop:function(){
+		  },
+		  stop:function(){
 				 var data = $(this).sortable('toArray');
 				 $.ajax({
 					url: "<?=site_url('chapters/updateorder')?>",
@@ -150,13 +158,14 @@
 			}
 	    });
 
+
 	    $(".lessons").sortable({
 	      placeholder: "ui-state-highlight",
+	      cancel: "input,button,select,textarea,option,.cancel",
 	      start:function(){
 				//alert("Estas utilizando Drag and Drop");
-				
-			},
-			stop:function(){
+		  },
+		  stop:function(){
 				 var data = $(this).sortable('toArray');
 				 $.ajax({
 					url: "<?=site_url('lessons/updateorder')?>",
@@ -175,7 +184,7 @@
 						console.log(data);
 					}
 				});
-			}
+		   }
 	    });
 
 	    //$("#chapters").disableSelection();
@@ -249,56 +258,6 @@
 					}
 			});
 		});
-
-		//but we want to change a few buttons colors for the third style
-		$('#editor1').ace_wysiwyg({
-			toolbar:
-			[
-				'font',
-				null,
-				'fontSize',
-				null,
-				{name:'bold', className:'btn-info'},
-				{name:'italic', className:'btn-info'},
-				{name:'strikethrough', className:'btn-info'},
-				{name:'underline', className:'btn-info'},
-				null,
-				{name:'insertunorderedlist', className:'btn-success'},
-				{name:'insertorderedlist', className:'btn-success'},
-				{name:'outdent', className:'btn-purple'},
-				{name:'indent', className:'btn-purple'},
-				null,
-				{name:'justifyleft', className:'btn-primary'},
-				{name:'justifycenter', className:'btn-primary'},
-				{name:'justifyright', className:'btn-primary'},
-				{name:'justifyfull', className:'btn-inverse'},
-				null,
-				{name:'createLink', className:'btn-pink'},
-				{name:'unlink', className:'btn-pink'},
-				null,
-				{name:'insertImage', className:'btn-success'},
-				null,
-				'foreColor',
-				null,
-				{name:'undo', className:'btn-grey'},
-				{name:'redo', className:'btn-grey'}
-			],
-			speech_button : false, //don't show the speech input button on Chrome
-			'wysiwyg': {
-				fileUploadError: showErrorAlert
-			}
-		}).prev().addClass('wysiwyg-style2');
-
-
-		function showErrorAlert (reason, detail) {
-			var msg='';
-			if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-			else {
-				console.log("error uploading file", reason, detail);
-			}
-			$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
-			 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-		}
 
 	});
 	
@@ -487,9 +446,12 @@
 	$(document).on("mouseover", ".lessons li", function(e) {
 	    $(".title-lesson .lesson-edit",this).removeClass("lesson-edit-hidden");
 	    $(".title-lesson .lesson-edit",this).fadeIn(500);
+	    $(".title-lesson .btns-right .lesson-bull-down",this).removeClass("lesson-bull-down-hidden");
+	    $(".title-lesson .btns-right .lesson-bull-down",this).fadeIn(500);
 	});
 	$(document).on("mouseleave", ".lessons li", function(e) {
 	    $(".title-lesson .lesson-edit",this).addClass("lesson-edit-hidden");
+	    $(".title-lesson .btns-right .lesson-bull-down",this).addClass("lesson-bull-down-hidden");
 	});
 	$(document).on("click", ".lessons li .title-lesson .span6 .lesson-edit", function(e) {
 	    builtLessonEditView($(this).parent().parent().parent());
@@ -651,29 +613,180 @@
 	}
 
 	function updateLessonView(li,lesson){
-		var div = $(".title-lesson",li);
-		div.html(lesson.name);
 		li.attr("data-name",lesson.name);
+		var div = $(".title-lesson",li);
+		var btns_left = $(".btns-left",div);
+		
+		btns_left.html(lesson.name);
 		var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white lesson-edit lesson-edit-hidden")
 	    	.css("margin-left","3px")
-	    	.appendTo(div);
+	    	.appendTo(btns_left);
+	   
 	    $(".lesson-title-edit",li).remove();
 	    div.css("display","block");
 	}
 
 	//for content
+
 	$(document).on("click", ".lessons li .title-lesson .btns-right .btnAddContent", function(e) {
 	   var cList = $(this).parent().parent().parent();
 	   $(this).fadeOut(200);
+	   builtTypeContentView($(".box-content",cList));
 	   $(".box-content",cList).fadeIn(500);
 	});
 	$(document).on("click", ".lessons li .box-content .box-title div .btnBoxRemove", function(e) {
 	   var cList = $(this).parent().parent().parent().parent();
-	   $(".box-content",cList).fadeOut(200);
+	   $(".box-content",cList).html("").fadeOut(200);
 	   $(".title-lesson .btns-right .btnAddContent",cList).fadeIn(500);
 	   
 	});
+
+	$(document).on("click", ".lessons li .box-content .box .content-type-text", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   var box_content = $(".box-content",cList);
+	   $.ajax({
+			url: "<?=site_url('contents/text_add')?>",
+			type: "POST",
+			data: {'lesson_id': cList.data('id')},
+			success: function(data){
+				$(".box-title span",box_content).text("Agregar Texto");
+				$(".box",cList).html(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".lessons li .box-content .box .single-item .span6 p .btnEditContent", function(e) {
+	   var cList = $(this).parent().parent().parent().parent().parent().parent();
+	   var box_content = $(".box-content",cList);
+	   $.ajax({
+			url: "<?=site_url('contents/text_edit')?>",
+			type: "POST",
+			data: {'lesson_id': cList.data('id')},
+			success: function(data){
+				$(".title-lesson .btns-right",cList).text("");
+				box_content.html(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".lessons li .box-content .box .content-btns-bottom .btnSaveContentTypeText", function(e) {
+	   var form_div = $(this).parent().parent();
+	   var editor = $(".wysiwyg-editor",form_div);
+	   var lesson_id = editor.attr("id");
+	   $.ajax({
+			url: "<?=site_url('contents/text_create')?>",
+			type: "POST",
+			data: {'lesson_id': lesson_id, "text_html": htmlEntities(editor.html())},
+			dataType: "json",
+			success: function(data){
+				if(data.message_status == 'success'){
+					//cList.remove();
+					showMessageNewChapter(data.message_html);
+				}else{
+					showMessageNewChapter(data.message_html);
+				}
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".lessons li .box-content .box .content-btns-bottom .btnSaveEditContentTypeText", function(e) {
+	   var form_div = $(this).parent().parent();
+	   var editor = $(".wysiwyg-editor",form_div);
+	   var lesson_id = editor.data("lessonid");
+	   var id = editor.attr("id");
+	   $.ajax({
+			url: "<?=site_url('contents/text_update')?>",
+			type: "POST",
+			data: {'id': id, 'lesson_id': lesson_id, "text_html": htmlEntities(editor.html())},
+			dataType: "json",
+			success: function(data){
+				if(data.message_status == 'success'){
+					showMessageNewChapter(data.message_html);
+				}else{
+					showMessageNewChapter(data.message_html);
+				}
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".lessons li .title-lesson .btns-right .lesson-bull-down", function(e) {
+	   var button = this;
+	   var cList = $(button).parent().parent().parent();
+	   $(".box-content",cList).slideToggle(500, function(){
+	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
+	   });
+	});
+
+	
+	function builtTypeContentView(box_content){
+		var box_title = $("<div/>")
+			.attr("class","box-title")
+			.appendTo(box_content);
+		var span = $("<span/>")
+			.text("Seleccione tipo de contenido")
+			.appendTo(box_title);
+		var div = $("<div/>")
+			.appendTo(box_title);
+		var a = $("<a/>")
+			.attr("href","#")
+			.attr("class","btnBoxRemove")
+			.attr("title","Cerrar")
+			.appendTo(div);
+		var i = $("<i/>")
+			.attr("class","icon-remove")
+			.appendTo(a);
+		var box = $("<div/>")
+			.attr("class","span12 box")
+			.appendTo(box_content);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/text.png")
+			.attr("class","img-rounded content-type-text")
+			.attr("title","Texto")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/image.png")
+			.attr("class","img-rounded content-type-image")
+			.attr("title","Imagen")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/audio.png")
+			.attr("class","img-rounded content-type-audio")
+			.attr("title","Audio")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/video.png")
+			.attr("class","img-rounded content-type-video")
+			.attr("title","Video")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/presentation.png")
+			.attr("class","img-rounded content-type-presentation")
+			.attr("title","Presentación")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/pdf.png")
+			.attr("class","img-rounded content-type-pdf")
+			.attr("title","PDF")
+			.appendTo(box);
+	}
+	
+
+	function htmlEntities(str) {
+    	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	}
 
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>

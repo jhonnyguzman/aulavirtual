@@ -311,4 +311,5 @@ class Courses extends CI_Controller {
 			}
 		}
 	}
+
 }

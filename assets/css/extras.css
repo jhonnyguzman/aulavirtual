@@ -97,6 +97,9 @@ body {
 	width: 320px;
 }
 
+.content-btns-bottom{
+	margin-top: 5px;
+}
 .chapter-hidden, .lesson-hidden{
 	display: none;
 }
@@ -287,6 +290,18 @@ body {
 	padding: 10px;
 	border-radius: 4px;
 }
+.lesson-bull-down-hidden{
+	display: none;
+}
+.lessons li .box-content .box .wysiwyg-editor{
+	width: 95%;
+	height: 100%;
+	min-height: 250px;
+	max-height: 100%;
+}
+.lessons li .box-content .box .wysiwyg-toolbar{
+	width: 95%;
+}
 .remove-chapter{
 	display: inline-block;
 	width: 70%;
@@ -296,4 +311,15 @@ body {
 	display: inline-block;
 	width: 70%;
 	text-align: right;
+}
+.single-item,  .more{
+	text-align: left;
+}
+.single-item .span6 img{
+	float: left;
+}
+.single-item .span6 p{
+	display: inline-block;
+	float: left;
+	padding-top: 5px;
 }
