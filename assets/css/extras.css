@@ -89,6 +89,10 @@ body {
 .box img:hover{
 	opacity: 1;
 }
+
+.box .more a{
+	margin-right: 5px;
+}
 .content-hero-unit{
 	margin-left: 0px;
 }

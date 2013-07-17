@@ -1,7 +1,7 @@
 <div class="box-title">
 	<span>Editar Texto</span>
 	<div>
-		<a href="#" class="btnBoxRemove" title="Cerrar"><i class="icon-remove"></i></a>
+		<a href="#" class="btnBoxRemoveEditContentTypeText" title="Cerrar"><i class="icon-remove"></i></a>
 	</div>
 </div>
 <?php if($message_status == "success"): ?>

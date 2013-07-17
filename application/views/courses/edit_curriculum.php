@@ -711,6 +711,7 @@
 			dataType: "json",
 			success: function(data){
 				if(data.message_status == 'success'){
+					builtContentTypeText(form_div);
 					showMessageNewChapter(data.message_html);
 				}else{
 					showMessageNewChapter(data.message_html);
@@ -720,6 +721,17 @@
 				console.log(data);
 			}
 		});
+	});
+
+	$(document).on("click", ".lessons li .box-content .box .content-btns-bottom .btnCancelEditContentTypeText", function(e) {
+	   var form_div = $(this).parent().parent();
+	   builtContentTypeText(form_div);
+	});
+
+	$(document).on("click", ".lessons li .box-content .box-title div .btnBoxRemoveEditContentTypeText", function(e) {
+	   var form_div = $(this).parent().parent().parent();
+	   var box = $(".box",form_div);
+	   builtContentTypeText(box);
 	});
 
 	$(document).on("click", ".lessons li .title-lesson .btns-right .lesson-bull-down", function(e) {
@@ -783,6 +795,52 @@
 			.appendTo(box);
 	}
 	
+	function builtContentTypeText(box){
+		var li = box.parent().parent();
+		var box_content = box.parent();
+		$(".box-title",box_content).remove();
+		box.text("");
+		var single_item = $("<div/>")
+			.attr("class","span12 single-item")
+			.appendTo(box);
+		var span6 = $("<div/>")
+			.attr("class","span6")
+			.appendTo(single_item);
+		var img = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/text_medium.png")
+			.attr("class","img-circle")
+			.appendTo(span6);
+		var p = $("<p/>")
+			.appendTo(span6);
+		var strong = $("<strong/>")
+			.text("Texto")
+			.appendTo(p);
+		var br = $("<br>")
+			.appendTo(p);
+		var a = $("<a/>")
+			.attr("class","btnEditContent")
+			.attr("href","#")
+			.text("Editar")
+			.appendTo(p);
+		var more = $("<div/>")
+			.attr("class","span12 more")
+			.appendTo(single_item);
+		var a = $("<a/>")
+			.attr("class","btn btn-success btn-small")
+			.attr("href","#")
+			.text("Agregar Descripción")
+			.appendTo(more);
+		var a = $("<a/>")
+			.attr("class","btn btn-success btn-small")
+			.attr("href","#")
+			.text("Agregar Material Extra")
+			.appendTo(more);
+
+		var btns_right = $(".title-lesson .btns-right",li)
+		var i = $("<i/>")
+			.attr("class","icon-download icon-white lesson-bull-down lesson-bull-down-hidden")
+			.appendTo(btns_right);
+	}
 
 	function htmlEntities(str) {
     	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
