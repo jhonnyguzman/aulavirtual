@@ -433,12 +433,12 @@
       </Cl>
       <Fk deAc="3" nm="course_users_course_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="course_users" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="course_users" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
       <Fk deAc="3" nm="course_users_user_category_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="user_categories" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="course_users" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="course_users" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="user_category_id" prCl="id"/>
       </Fk>
       <Fk deAc="3" nm="course_users_user_profile_id" prLkCl="id" upAc="3">
@@ -519,7 +519,7 @@
       </Cl>
       <Fk deAc="3" nm="courses_course_category_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="course_categories" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="courses" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="course_category_id" prCl="id"/>
       </Fk>
       <Fk deAc="3" nm="courses_course_state_id" prLkCl="id" upAc="3">
@@ -1246,8 +1246,8 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="despatchs" x="1372" y="431"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="entry_control" x="1123" y="486"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="899" y="530"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="313" y="151"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="18" y="168"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="316" y="135"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="25" y="154"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="11" y="388"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1700" y="151"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="45" y="687"/>
