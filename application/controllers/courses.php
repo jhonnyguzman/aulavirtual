@@ -40,31 +40,44 @@ class Courses extends CI_Controller {
 	{
 		$courses = new Course();
 		$courses->where("owner_id", $this->session->userdata("user_id"))->get();
-
-
 		$courses_user = new Course_user();
 		// 1 - estudiante
 		// 2 - profesor
 		// 3 - institucion
 		$category = 1; 
 		$courses_user->where("user_category_id", $category)->where("user_id", $this->session->userdata("user_id"))->get();
-		
-		//$courses_user->where("user_category_id", $category);
-		
 		$data["courses"] = $courses;
 		$data["courses_user"] = $courses_user;
-		$data["progress"] = $this->_progress();
- 
+		$data["progress"] = $this->_progress(); 
 		$this->load->view("courses/my_courses",$data);
-
 	}
 
 
 	private function _progress(){
 
 		//TODO: Crear una manera de medir el porcentaje de prograso de un usuario para un curso
-		$progress = 10;
+		$progress = mt_rand(1,100);
 		return $progress;
+	}
+
+
+	public function learn($course_id = "")
+	{
+		if($course_id != ""){
+
+			$c = new Course_user();
+			$c->where("course_id",$course_id)->where("user_id", $this->session->userdata("user_id"))->get();;
+			if($c->exists()){
+				$data["course_user"] = $c;
+				$this->load->view("courses/learn",$data);
+			}else{
+				//show_404('page',FALSE);
+				echo "NO EXISTO EL CURSO: " .$course_id;
+			}
+		}else{
+			//show_404('page',FALSE);
+			echo "El id del curso es distinto de vacio:" .$course_id; 
+		}
 	}
 
 

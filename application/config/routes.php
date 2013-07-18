@@ -39,6 +39,7 @@
 */
 
 $route['courses/course-manage/(:num)'] = "courses/manage/$1";
+$route['courses/course-learn/(:num)'] = "courses/learn/$1";
 $route['courses/course-edit-basics/(:num)'] = "courses/edit_basics/$1";
 $route['courses/course-edit-details/(:num)'] = "courses/edit_details/$1";
 $route['courses/course-edit-price/(:num)'] = "courses/edit_price/$1";

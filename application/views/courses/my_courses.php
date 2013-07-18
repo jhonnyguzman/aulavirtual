@@ -54,17 +54,17 @@
 			  <?php foreach($courses_user as $course_user): ?>
 		            <li class="span4">
 		              <div class="thumbnail">
-		                <img src="<?=site_url()?>uploads/course_thumbnails/<?=$course->course_thumbnail->file_name?>" alt="<?=$course->title?>">
+		                <img src="<?=site_url()?>uploads/course_thumbnails/<?=$course_user->course->course_thumbnail->file_name?>" alt="<?=$course_user->course->title?>">
 		                <div class="caption">
-		                  <h3>Id del Curso: <?=$course_user->id?></h3>
-		                  <p>Categoria del Usuario: <?=$course_user->user_category_id?></p>
+		                  <h3><?=$course_user->course->title?></h3>
+		                  <p><?=$course_user->course->subtitle?></p>
 		                  <p>
 		                  	<div class="row">
 		                  		<div class="span6">
 		                  			<strong>Progreso:</strong> <?=$progress?> %
 		                  		</div>
 		                  		<div class="span6 btns-list-my-courses">
-		                  			<a href="<?=site_url('courses/course-manage/'.$course->id)?>" class="btn btn-primary">Continuar</a> 
+		                  			<a href="<?=site_url('courses/course-learn/'.$course_user->course->id)?>" class="btn btn-primary">Continuar</a> 
 		                  		</div>
 		                  	</div>
 		                  </p>
