@@ -68,15 +68,27 @@ class Courses extends CI_Controller {
 			$c = new Course_user();
 			$c->where("course_id",$course_id)->where("user_id", $this->session->userdata("user_id"))->get();;
 			if($c->exists()){
+				$chapters = new Chapter();
+				$lesson = new Lesson();
+				//$content_text = new Content_text();
+
+				$chapters->where("course_id",$course_id);
+				$lesson->where("chapter_id",$chapters->id);
+
+				$data["chapters"] = $chapters;
+				$data["lesson"] = $lesson;
 				$data["course_user"] = $c;
+				$data["progress"] = $this->_progress(); 
+			
+
 				$this->load->view("courses/learn",$data);
 			}else{
-				//show_404('page',FALSE);
-				echo "NO EXISTO EL CURSO: " .$course_id;
+				show_404('page',FALSE);
+				//echo "NO EXISTO EL CURSO: " .$course_id;
 			}
 		}else{
-			//show_404('page',FALSE);
-			echo "El id del curso es distinto de vacio:" .$course_id; 
+			show_404('page',FALSE);
+			//echo "El id del curso es distinto de vacio:" .$course_id; 
 		}
 	}
 
