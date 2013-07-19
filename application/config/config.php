@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/aulavirtual/';
+$config['base_url']	= 'http://localhost/repositorios/aulavirtual/';
 
 /*
 |--------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 		<div class="alert alert-success">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		  <p><?=$status_description?>&nbsp;</p>
-		  <a href="<?=base_url()?>signup/login">Login</a>
+		  <a href="<?=base_url()?>signin/login">Login</a>
 		</div>
 	  <?php else:  ?>
 	  	<div class="alert alert-error">
