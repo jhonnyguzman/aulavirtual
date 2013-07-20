@@ -943,15 +943,15 @@ class BasiCrud {
 	{
 		$html = "";
 		if($message_status == 'error'){
-          $html.="<div class='alert alert-error'>";
-          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          //$html.="<div class='alert alert-error'>";
+          //$html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
           $html.=$errors;
-          $html.="</div>";
+          //$html.="</div>";
         }elseif($message_status == 'success'){
-          $html.="<div class='alert alert-success'>";
-          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          //$html.="<div class='alert alert-success'>";
+          //$html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
           $html.=$message_description;
-          $html.="</div>";
+          //$html.="</div>";
         }
 	   
 	   return $html;

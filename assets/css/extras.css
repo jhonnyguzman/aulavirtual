@@ -124,6 +124,10 @@ body {
 	border-radius: 4px;
 }
 
+.icon-spinner-custom{
+	margin-left: 5px;
+}
+
 .form-signin {
 	max-width: 300px;
 	padding: 0px 19px 20px;

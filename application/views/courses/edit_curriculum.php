@@ -47,7 +47,7 @@
 				<?php foreach($course->chapter->order_by("order",'asc')->get() as $chapter): ?>
 					<li data-order="<?=$chapter->order?>" data-id="<?=$chapter->id?>" data-name="<?=$chapter->name?>" id="item_<?=$chapter->id?>">
 				  		<div class="row title-chapter">
-				  			<div class="span6">
+				  			<div class="span6 btns-left">
 					  			<?=$chapter->name?> 
 					  			<i class="icon-pencil icon-white chapter-edit chapter-edit-hidden"></i>
 					  		</div>
@@ -124,8 +124,8 @@
 </div><!-- /row -->
 
 
-
 <script type="text/javascript">
+	var isProcessing = false;
 	$(document).ready(function()
 	{
 		$("#chapters").sortable({
@@ -195,68 +195,48 @@
 	    	$(this).css("display","none");
 	    	$("#add-chapter").css("display","block");
 	    });
-	    $(".div-add-lesson").click(function(){
-	    	$(this).css("display","none");
-	    	var div = $(this).parent();
-	    	$(".add-lesson",div).css("display","block");
-	    });
 		$("#btnCancelAddChapter").click(function(){
 			$("#div-add-title").css("display","block");
 	    	$("#add-chapter").css("display","none");
 			return false;
 		});
-		$(".btnCancelAddLesson").click(function(){
-			var div = $(this).parent().parent().parent().parent();
-			$(".add-lesson",div).css("display","none");
-			$(".div-add-lesson",div).css("display","block");
-		});
+		
 		$("#btnAddChapter").click(function(){
+			var obj = $(this);
+			if(isProcessing){
+				return;
+			}
+			isProcessing = true;
 			var order = getChapterOrder();
 			$.ajax({
 					url: "<?=site_url('chapters/create')?>",
 					type: "POST",
 					data: {'name': $("#input-chapter-name").val(), 'order': order, 'course_id': <?=$course->id?> },
 					dataType: "json",
+					beforeSend: function() {
+						runSpin(obj);
+					},
 					success: function(data){
+						isProcessing = false;
 						if(data.message_status == 'success'){
+							gritterAdd("Mensaje", data.message_html, data.message_status);
 							builtChapterView(data.chapter);
-							showMessageNewChapter(data.message_html);
 							$("#input-chapter-name").val("");
 						}else{
+							gritterAdd("Mensaje", data.message_html, data.message_status);
+							isProcessing = false;
 							showMessageNewChapter(data.message_html);
 						}
 						
 					},
 					error: function(data){
 						console.log(data);
-					}
-			});
-		});
-		$(".btnAddLesson").click(function(){
-			var cList = $(this).parent().parent().parent().parent().parent().parent();
-			var chapter_id = cList.data('id');
-			var add_lesson = $(this).parent().parent().parent();
-			var lesson_name = add_lesson.find($("input[name=input-lesson-name]"));
-			var order = getLessonOrder(chapter_id);
-			$.ajax({
-					url: "<?=site_url('lessons/create')?>",
-					type: "POST",
-					data: {'name': lesson_name.val(), 'order': order, 'chapter_id': chapter_id},
-					dataType: "json",
-					success: function(data){
-						if(data.message_status == 'success'){
-							builtLessonView(data.lesson,chapter_id);
-							showMessageNewChapter(data.message_html);
-							lesson_name.val("");
-						}else{
-							showMessageNewChapter(data.message_html);
-						}
-						
 					},
-					error: function(data){
-						console.log(data);
+					complete: function() {
+						removeSpin(obj);
 					}
 			});
+			
 		});
 
 	});
@@ -283,30 +263,42 @@
 	   });
 	});
 
-	$(document).on("click", "#btnCancelEditChapter", function(e) {
+	$(document).on("click", ".chapter-title-edit .control-group .controls .btnCancelEditChapter", function(e) {
 	   var cList = $(this).parent().parent().parent().parent();
 	   $("#chapter-edit-title").remove();
 	   $(".title-chapter",cList).css("display","block");
 	   return false;
 	});
-	$(document).on("click", "#btnEditChapter", function(e) {
-	   var cList = $(this).parent().parent().parent().parent();
+	$(document).on("click", ".chapter-title-edit .control-group .controls .btnEditChapter", function(e) {
+	   if(isProcessing) return;
+	   var obj = $(this);
+	   var cList = obj.parent().parent().parent().parent();
+	   isProcessing  = true;
 	   $.ajax({
 			url: "<?=site_url('chapters/update')?>",
 			type: "POST",
 			data: {'id': cList.data('id'), name: $("#input-chapter-edit-name").val(), 'order': cList.data('order'), 'course_id': <?=$course->id?> },
 			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
 			success: function(data){
+				isProcessing = false;
 				if(data.message_status == 'success'){
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 					updateChapterView(cList, data.chapter);
-					showMessageNewChapter(data.message_html);
 				}else{
-					showMessageNewChapter(data.message_html);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}
 				
 			},
 			error: function(data){
+				isProcessing = false;
 				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
+				//$.scrollTo(obj,800);
 			}
 		});
 	});
@@ -335,21 +327,24 @@
 		}
 	});
 
+	$(document).on("click", ".newLesson li .div-add-lesson", function(e) {
+    	$(this).css("display","none");
+    	var div = $(this).parent();
+    	$(".add-lesson",div).css("display","block");
+	});
+
 	function getChapterOrder()
 	{
-		var last_li = $('#chapters li:last');
+		var last_li = $('#chapters > li:last');
 		if(last_li.data("order") != null){
 			return parseInt(last_li.data("order")) + 1;
 		}
 		else
-			return 1;
+			return 0;
 	}
 
 	function builtChapterView(chapter){
 		var cList = $('#chapters');
-		/*if (!cList.hasClass('nav-stacked')) {
-			cList.addClass('nav nav-tabs nav-stacked');
-		}*/
 		var li = $('<li/>')
 			.attr("data-order",chapter.order)
 			.attr("data-id",chapter.id)
@@ -358,20 +353,79 @@
 			.attr("class",'chapter-hidden')
 	        .appendTo(cList).fadeIn(1000);
 	    var div = $('<div/>')
-	    	.addClass("title-chapter")
-	        .html(chapter.name)
+	    	.addClass("row title-chapter")
 	        .attr("data-id",chapter.id)
 	        .appendTo(li);
+	    var btns_left = $("<div/>")
+	    	.attr("class","span6 btns-left")
+	    	.html(chapter.name)
+	    	.appendTo(div);
 	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white chapter-edit chapter-edit-hidden")
 	    	.css("margin-left","3px")
+	    	.appendTo(btns_left);
+	    var btns_right = $("<div/>")
+	    	.attr("class","span6 btns-right")
 	    	.appendTo(div);
-	
+	    var i = $("<i/>")
+	    	.attr("class","icon-download icon-white chapter-bull-down chapter-bull-down-hidden")
+	    	.appendTo(btns_right);
+	    var ul = $("<ul/>")
+	    	.attr("id","newLesson")
+	    	.attr("class","item-list-custom newLesson newLesson-hidden")
+	    	.appendTo(li);
+	    var li_lesson = $("<li/>")
+	    	.appendTo(ul);
+	    var title_lesson = $("<div/>")
+	    	.attr("class","title-lesson div-add-lesson")
+	    	.html("Agregar Tema")
+	    	.appendTo(li_lesson);
+	    var div_add_lesson = $("<div/>")
+	    	.attr("class","title-lesson add-lesson")
+	    	.appendTo(li_lesson);
+	    var control_group = $("<div/>")
+	    	.attr("class","control-group")
+	    	.appendTo(div_add_lesson);
+	    var control_label = $("<label/>")
+	    	.attr("class","control-label")
+	    	.attr("for","input-lesson-name")
+	    	.text("Agregar Tema")
+	    	.appendTo(control_group);
+	    var controls = $("<div/>")
+	    	.attr("class","controls")
+	    	.appendTo(control_group);
+	    var input_lesson_name = $("<input/>")
+	    	.attr("type","text")
+	    	.attr("name","input-lesson-name")
+	    	.attr("placeholder","Titulo")
+	    	.appendTo(controls);
+	    var control_group2 = $("<div/>")
+	    	.attr("class","control-group")
+	    	.appendTo(div_add_lesson);
+	    var controls2 = $("<div/>")
+	    	.attr("class","controls")
+	    	.appendTo(control_group2);
+	    var btn_add_lesson = $("<button/>")
+	    	.attr("type","btn")
+	    	.attr("class","btn btn-success btnAddLesson")
+	    	.text("Guardar")
+	    	.appendTo(controls2);
+	    var btn_cancel_add_lesson = $("<button/>")
+	    	.attr("type","btn")
+	    	.attr("class","btn btnCancelAddLesson")
+	    	.text("Cancelar")
+	    	.appendTo(controls2);
+		var ul_list_lesson = $("<ul/>")
+			.attr("id",chapter.id)
+			.attr("class","item-list-custom lessons lessons-hidden")
+			.appendTo(li);
+
+		$.scrollTo(li,800);
+		
 	}
 
 	function builtChapterEditView(li){
 		var cList = li;
-		var old_title = cList.data("name");
 		$(".title-chapter",cList).css("display","none");
 		var title_chapter = $("<div/>")
 			.attr("class","chapter-title-edit")
@@ -392,7 +446,7 @@
 			.attr("type","text")
 			.attr("name","input-chapter-edit-name")
 			.attr("id","input-chapter-edit-name")
-			.val(old_title)
+			.val(cList.data("name"))
 			.appendTo(controls);
 		var control_group_btns = $("<div/>")
 			.attr("class","control-group")
@@ -402,14 +456,12 @@
 			.appendTo(control_group_btns);
 		var btn_save = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btn-success")
-			.attr("id", "btnEditChapter")
+			.attr("class","btn btn-success btnEditChapter")
 			.text("Editar")
 			.appendTo(controls_btns);
 		var btn_cancel = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn")
-			.attr("id", "btnCancelEditChapter")
+			.attr("class","btn btnCancelEditChapter")
 			.text("Cancelar")
 			.css("margin-left","3px")
 			.appendTo(controls_btns);
@@ -429,19 +481,80 @@
 	}
 
 	function updateChapterView(li,chapter){
+		$(".chapter-title-edit", li).remove();
+		li.attr("data-order",chapter.order)
+			.attr("data-id",chapter.id)
+			.attr("data-name",chapter.name)
+			.attr("id",'item_'+chapter.id);
+
 		var div = $(".title-chapter",li);
-		div.html(chapter.name);
-		li.attr("data-name",chapter.name);
-		var i = $("<i/>")
+		div.empty();
+	        
+	    var btns_left = $("<div/>")
+	    	.attr("class","span6 btns-left")
+	    	.html(chapter.name)
+	    	.appendTo(div);
+	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white chapter-edit chapter-edit-hidden")
 	    	.css("margin-left","3px")
+	    	.appendTo(btns_left);
+	    var btns_right = $("<div/>")
+	    	.attr("class","span6 btns-right")
 	    	.appendTo(div);
-	    $("#chapter-edit-title").remove();
+	    var i = $("<i/>")
+	    	.attr("class","icon-download icon-white chapter-bull-down chapter-bull-down-hidden")
+	    	.appendTo(btns_right);
 	    div.css("display","block");
 	}
 
 
 	//for lesson
+
+	$(document).on("click", ".newLesson li .add-lesson .control-group .controls .btnAddLesson", function(e) {
+		var obj = $(this);
+		if(isProcessing){
+			return;
+		}
+		isProcessing = true;
+
+		var cList = $(this).parent().parent().parent().parent().parent().parent();
+		var chapter_id = cList.data('id');
+		var add_lesson = $(this).parent().parent().parent();
+		var lesson_name = add_lesson.find($("input[name=input-lesson-name]"));
+		var order = getLessonOrder(chapter_id);
+		$.ajax({
+				url: "<?=site_url('lessons/create')?>",
+				type: "POST",
+				data: {'name': lesson_name.val(), 'order': order, 'chapter_id': chapter_id},
+				dataType: "json",
+				beforeSend: function() {
+					runSpin(obj);
+				},
+				success: function(data){
+					isProcessing = false;
+					if(data.message_status == 'success'){
+						builtLessonView(data.lesson,chapter_id);
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+						lesson_name.val("");
+					}else{
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+					}
+				},
+				error: function(data){
+					isProcessing = false;
+					console.log(data);
+				},
+				complete: function() {
+					removeSpin(obj);
+				}
+		});
+	});
+
+	$(document).on("click", ".newLesson li .add-lesson .control-group .controls .btnCancelAddLesson", function(e) {
+		var div = $(this).parent().parent().parent().parent();
+		$(".add-lesson",div).css("display","none");
+		$(".div-add-lesson",div).css("display","block");
+	});
 
 	$(document).on("mouseover", ".lessons li", function(e) {
 	    $(".title-lesson .lesson-edit",this).removeClass("lesson-edit-hidden");
@@ -514,7 +627,7 @@
 
 	function getLessonOrder(chapter_id)
 	{
-		var last_li = $('#lessons-'+chapter_id+' li:last');
+		var last_li = $('#lessons-'+chapter_id+' > li:last');
 		if(last_li.data("order") != null){
 			return parseInt(last_li.data("order"));
 		}
@@ -542,15 +655,29 @@
 			.attr("class",'lesson-hidden')
 	        .appendTo(cList).fadeIn(1000);
 	    var div = $('<div/>')
-	    	.addClass("title-lesson")
-	        .html(lesson.name)
+	    	.addClass("row title-lesson")
 	        .attr("data-id",lesson.id)
 	        .appendTo(li);
+	    var btns_left = $("<div/>")
+	    	.attr("class","span6 btns-left")
+	    	.html(lesson.name)
+	    	.appendTo(div);
 	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white lesson-edit lesson-edit-hidden")
 	    	.css("margin-left","3px")
-	    	.appendTo(div);
-	
+	    	.appendTo(btns_left);
+		var btns_right = $("<div/>")
+			.attr("class","btns-right")
+			.appendTo(div);
+		var a = $("<a/>")
+			.attr("href","#")
+			.attr("class","btn btn-small btn-success btnAddContent")
+			.text("Agregar Contenido")
+			.appendTo(btns_right);
+		var box_content = $("<div/>")
+			.attr("class","row box-content box-content-hidden cancel")
+			.appendTo(li);
+		$.scrollTo(li,800);
 	}
 
 	function builtLessonEditView(li){
@@ -634,6 +761,7 @@
 	   $(this).fadeOut(200);
 	   builtTypeContentView($(".box-content",cList));
 	   $(".box-content",cList).fadeIn(500);
+	   $.scrollTo($(".box-content",cList),800);
 	});
 	$(document).on("click", ".lessons li .box-content .box-title div .btnBoxRemove", function(e) {
 	   var cList = $(this).parent().parent().parent().parent();
@@ -662,6 +790,7 @@
 	$(document).on("click", ".lessons li .box-content .box .single-item .span6 p .btnEditContent", function(e) {
 	   var cList = $(this).parent().parent().parent().parent().parent().parent();
 	   var box_content = $(".box-content",cList);
+	   $.scrollTo(cList,800);
 	   $.ajax({
 			url: "<?=site_url('contents/text_edit')?>",
 			type: "POST",
@@ -846,5 +975,33 @@
     	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 	}
 
+	function runSpin(obj){
+		obj.addClass("disabled");
+		var spin = $("<i/>")
+			.attr("class","icon-spinner icon-spin white bigger-130 icon-spinner-custom")
+			.appendTo(obj);
+	}
+
+	function removeSpin(obj){
+		obj.removeClass("disabled");
+		obj.find("i").remove();
+	}
+
+	function gritterAdd(title, message, type){
+		if(type == "success"){
+			$.gritter.add({
+				title: title,
+				text: message,
+				class_name: 'gritter-success'
+			});
+		}
+		else if(type == "error"){
+			$.gritter.add({
+				title: title,
+				text: message,
+				class_name: 'gritter-error'
+			});
+		}
+	}
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>
