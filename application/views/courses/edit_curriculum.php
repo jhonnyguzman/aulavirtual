@@ -123,6 +123,21 @@
 	</div>
 </div><!-- /row -->
 
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="<?=site_url()?>assets/js/upload/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="<?=site_url()?>assets/js/upload/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="<?=site_url()?>assets/js/upload/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+
+<!-- The File Upload audio preview plugin -->
+<script src="<?=site_url()?>assets/js/upload/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="<?=site_url()?>assets/js/upload/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="<?=site_url()?>assets/js/upload/jquery.fileupload-validate.js"></script>
+
 
 <script type="text/javascript">
 	var isProcessing = false;
@@ -225,7 +240,6 @@
 						}else{
 							gritterAdd("Mensaje", data.message_html, data.message_status);
 							isProcessing = false;
-							showMessageNewChapter(data.message_html);
 						}
 						
 					},
@@ -761,7 +775,7 @@
 	   $(this).fadeOut(200);
 	   builtTypeContentView($(".box-content",cList));
 	   $(".box-content",cList).fadeIn(500);
-	   $.scrollTo($(".box-content",cList),800);
+	   $.scrollTo(cList,800,{offset:-50});
 	});
 	$(document).on("click", ".lessons li .box-content .box-title div .btnBoxRemove", function(e) {
 	   var cList = $(this).parent().parent().parent().parent();
@@ -779,6 +793,23 @@
 			data: {'lesson_id': cList.data('id')},
 			success: function(data){
 				$(".box-title span",box_content).text("Agregar Texto");
+				$(".box",cList).html(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".lessons li .box-content .box .content-type-video", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   var box_content = $(".box-content",cList);
+	   $.ajax({
+			url: "<?=site_url('contents/video_add')?>",
+			type: "POST",
+			data: {'lesson_id': cList.data('id')},
+			success: function(data){
+				$(".box-title span",box_content).text("Agregar Video");
 				$(".box",cList).html(data);
 			},
 			error: function(data){
@@ -890,7 +921,7 @@
 			.attr("class","icon-remove")
 			.appendTo(a);
 		var box = $("<div/>")
-			.attr("class","span12 box")
+			.attr("class","box")
 			.appendTo(box_content);
 		var img_text = $("<img/>")
 			.attr("src","<?=site_url()?>assets/img/text.png")
@@ -992,6 +1023,7 @@
 			$.gritter.add({
 				title: title,
 				text: message,
+				time: 2000,
 				class_name: 'gritter-success'
 			});
 		}
@@ -999,6 +1031,7 @@
 			$.gritter.add({
 				title: title,
 				text: message,
+				time: 2000,
 				class_name: 'gritter-error'
 			});
 		}

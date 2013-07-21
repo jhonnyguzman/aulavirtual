@@ -3,6 +3,10 @@ body {
     padding-bottom: 40px;
 }
 
+.abortUploadVideo{
+	display: none;
+}
+
 .accordion-heading:hover
 {
     background-color: #FFFAD9;
@@ -310,6 +314,16 @@ body {
 .lessons li .box-content .box .wysiwyg-toolbar{
 	width: 95%;
 }
+.progress-upload-video{
+	text-align: center;
+	height: 30px;
+	margin-bottom: 0px;
+}
+.progress-upload-video .bar{
+	text-align: center;
+	font-weight: bold;
+	line-height: 2;
+}
 .remove-chapter{
 	display: inline-block;
 	width: 70%;
@@ -330,4 +344,7 @@ body {
 	display: inline-block;
 	float: left;
 	padding-top: 5px;
+}
+.video_file_name{
+	text-align: right;
 }

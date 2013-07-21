@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-responsive.min.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-skins.min.css" />
 
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/upload/jquery.fileupload-ui.css">
+
     <link href="<?=site_url()?>assets/css/extras.css" rel="stylesheet" media="screen">
     <script src="<?=site_url()?>assets/js/jquery-1.10.1.min.js"></script>
     <script src="<?=site_url()?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
