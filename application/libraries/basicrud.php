@@ -956,4 +956,13 @@ class BasiCrud {
 	   
 	   return $html;
 	}
+
+	public function builtUrlVideo($content_video){
+
+		if($content_video->type == "youtube")
+			return $content_video->url;
+		elseif($content_video->type == "local"){
+			return site_url()."uploads/contents/videos/".$content_video->file_name;
+		}
+	}
 }

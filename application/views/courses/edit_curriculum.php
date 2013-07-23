@@ -86,6 +86,8 @@
 				  						<div class="span6 btns-right">
 				  							<?php if($lesson->content_text->count() > 0): ?>
 				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
+				  							<?php elseif($lesson->content_video->count() > 0): ?>
+				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
 				  							<?php else: ?>
 				  								<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
 				  							<?php endif; ?>
@@ -109,6 +111,24 @@
 					  							</div>
 				  							</div>	
 				  						<?php endif; ?>
+				  						<?php if($lesson->content_video->count() > 0): ?>
+				  							<div class="span12 box">
+					  							<div class="span12 single-item">
+					  								<div class="span6">
+						  								<img src="<?=site_url()?>assets/img/video_medium.png" class="img-circle" />
+						  								<p>
+						  									<strong>Video</strong><br>
+						  									<a href="#" class="btnEditContent">Editar</a><br>
+						  									<a href="#" class="btnEditContentPreviewVideo" data-url="<?=$this->basicrud->builtUrlVideo($lesson->content_video)?>">Visualizar</a>
+						  								</p>
+						  							</div>
+					  							</div>
+					  							<div class="span12 more">
+					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
+					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
+					  							</div>
+				  							</div>	
+				  						<?php endif; ?>
 				  					</div>
 				  				</li>
 					  		<?php endforeach; ?>
@@ -120,6 +140,9 @@
 			
 
 	    </div>
+
+	    <!-- Modal -->
+		<div id="video-preview-edit-modal" class="modal hide fade video-preview-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 	</div>
 </div><!-- /row -->
 
@@ -900,6 +923,14 @@
 	   $(".box-content",cList).slideToggle(500, function(){
 	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
 	   });
+	});
+
+	//show video preview
+	$(document).on("click", ".lessons li .box-content .box .single-item .span6 p .btnEditContentPreviewVideo", function(e) {
+	   var url = "<?=site_url()?>contents/video_preview/"
+       var video_url = $(this).data("url");
+       loadVideoPreview(url,$("#video-preview-edit-modal"), video_url);
+       return false;
 	});
 
 	

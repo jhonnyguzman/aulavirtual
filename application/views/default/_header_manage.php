@@ -39,6 +39,9 @@
     <script src="<?=base_url()?>assets/js/ace.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.gritter.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+    <script src="<?=site_url()?>assets/js/jplayer/jwplayer.js"></script>
+    <script src="<?=site_url()?>assets/js/jplayer/jwplayer.html5.js"></script>
+    <script src="<?=base_url()?>assets/js/extras.js"></script>
 
   </head>
   <body>

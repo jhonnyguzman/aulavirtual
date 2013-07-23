@@ -137,54 +137,127 @@ class Contents extends CI_Controller {
 		echo $this->load->view("content/video_add",array("lesson_id" => $this->input->post("lesson_id")));
 	}
 
-    public function video_create() {
-        $name = $_FILES['userfile']['name'];
-        $name = strtr($name, 'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+    public function video_preview()
+    {
+        $video_url = $this->input->post("videourl");
+        echo $this->load->view("content/video_preview",array("video_url" => $video_url));   
+    }
 
-		// remplacer les caracteres autres que lettres, chiffres et point par _
-         $name = preg_replace('/([^.a-z0-9]+)/i', '_', $name);
+    public function video_create_url()
+    {
+        $post = $this->input->post(NULL,TRUE);
+        $result = array();
+        $lesson = new Lesson();
+        $lesson->where("id", $post['lesson_id'])->get();
+        if($lesson->exists()){
+            $cvu = new Content_video_url();
+            $cvu->lesson_id = $lesson->id;
+            $cvu->url = $post["video_url"];
+            $cvu->type = $post['type'];
+            if($cvu->save($lesson)){
+                $result['content_video'] = array(
+                    'id' => $cvu->id, 
+                    'url' => $cvu->url, 
+                    'type' => $cvu->type, 
+                    'lesson_id' => $cvu->lesson_id);
+                $result['message_status'] = 'success';
+                $result['message_description'] = 'Video creado correctamente';
+                $result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
+            }else{
+                $result['message_status'] = 'error';
+                $result['message_html'] = $this->basicrud->cretateHtmlMsg('error', '', $cvu->error->string);
+            }
 
+        }else{
+            //show_404('page',FALSE);
+            $result['message_status'] = 'error';
+            $result['message_description'] = 'Request failed!!';
+            $result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+        }
+
+        echo json_encode($result);
+    }
+
+    public function video_create() 
+    {
+        $result = array();
+        $lesson_id = $this->input->post("lesson_id");
+        $name = random_string('unique').'_'.$lesson_id;
         //Your upload directory, see CI user guide
         $config['upload_path'] = $this->getPath_img_upload_folder();
   
-        $config['allowed_types'] = 'mov|mpeg|mp4|avi';
+        $config['allowed_types'] = '*';
         $config['max_size'] = '5000000';
         $config['file_name'] = $name;
 
-       //Load the upload library
+        //Load the upload library
         $this->load->library('upload', $config);
 
-       if ($this->do_upload()) {
+        if ($this->do_upload()) {
             $data = $this->upload->data();
-
+            $name.=$data['file_ext'];
             //Get info 
-            $info = new stdClass();
-            
+            $info = new stdClass();    
             $info->name = $name;
             $info->size = $data['file_size'];
             $info->type = $data['file_type'];
             $info->url = $this->getPath_img_upload_folder() . $name;
-            $info->thumbnail_url = $this->getPath_img_thumb_upload_folder() . $name; //I set this to original file since I did not create thumbs.  change to thumbnail directory if you do = $upload_path_url .'/thumbs' .$name
+            //I set this to original file since I did not create thumbs.  change to thumbnail directory if you do = $upload_path_url .'/thumbs' .$name
+            $info->thumbnail_url = $this->getPath_img_thumb_upload_folder() . $name; 
             $info->delete_url = $this->getDelete_img_url() . $name;
             $info->delete_type = 'DELETE';
 
-           //Return JSON data
-           if (IS_AJAX) {   //this is why we put this in the constants to pass only json data
-                echo json_encode(array($info));
+            $lesson = new Lesson();
+            $lesson->where("id", $lesson_id)->get();
+            if($lesson->exists()){
+                $cv = new Content_video();
+                $cv->lesson_id = $lesson->id;
+                $cv->file_name = $name;
+                $cv->file_type = $data['file_type'];
+                $cv->file_size = $data['file_size'];
+                $cv->type = 'local';
+                if($cv->save($lesson)){
+                    $result['content_video'] = array(
+                        'id' => $cv->id, 
+                        'file_name' => $cv->file_name,
+                        'file_type' => $cv->file_type,
+                        'file_size' => $cv->file_size, 
+                        'type' => $cv->type, 
+                        'url'=> site_url()."uploads/contents/videos/".$cv->file_name,
+                        'lesson_id' => $cv->lesson_id);
+                    $result['message_status'] = 'success';
+                    $result['message_description'] = 'Video creado correctamente';
+                    $result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
+                }else{
+                    $result['message_status'] = 'error';
+                    $result['message_html'] = $this->basicrud->cretateHtmlMsg('error', '', $cvu->error->string);
+                }
+            }else{
+                //show_404('page',FALSE);
+                $result['message_status'] = 'error';
+                $result['message_description'] = 'Request failed!!';
+                $result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+            }
+
+            $result['upload_data'] = $info;
+            //Return JSON data
+            if (IS_AJAX) {   //this is why we put this in the constants to pass only json data
+                echo json_encode($result);
                 //this has to be the only the only data returned or you will get an error.
                 //if you don't give this a json array it will give you a Empty file upload result error
                 //it you set this without the if(IS_AJAX)...else... you get ERROR:TRUE (my experience anyway)
             } else {   // so that this will still work if javascript is not enabled
                 $file_data['upload_data'] = $this->upload->data();
-                echo json_encode(array($info));
+                echo json_encode($result);
             }
         } else {
-
-           // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
-           // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
-            $error = array('error' => $this->upload->display_errors('',''));
-
-            echo json_encode(array($error));
+            $result['error'] = $this->upload->display_errors('','');
+            $result['message_status'] = 'error';
+            $result['message_description'] = $this->upload->display_errors('','');
+            $result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+            // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
+            // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
+            echo json_encode($result);
         }
 
   }
