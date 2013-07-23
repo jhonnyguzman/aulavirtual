@@ -207,17 +207,35 @@
     <Tbl UsSo="1" nm="content_videos">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcontent_videos"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="name" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="link" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="lesson_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_name" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_size" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="url" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pause" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="content_videos_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
@@ -1227,7 +1245,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="lessons" x="645" y="826"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="contents" x="892" y="706"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_videos" x="1079" y="603"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_images" x="1080" y="720"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_images" x="1080" y="737"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_presentations" x="1080" y="816"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_documents" x="1079" y="927"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_texts" x="1084" y="1025"/>
@@ -1292,7 +1310,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="151">
+  <RnmMgr NxRnmId="154">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1674,6 +1692,15 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_texts" SupCls="Schema" SupNme="schemaA">
       <Rnm id="148" nNm="text_html" oNm="text"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_videos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="151" nNm="type" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_videos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="152" nNm="url" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_videos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="153" nNm="file_type" oNm="fie_type"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

@@ -50,7 +50,7 @@ class Course_thumbnails extends CI_Controller {
 		if($ct->exists())
 		{
 			$result = $this->do_upload($ct->course_id);
-        	if($result['error']){
+        	if(isset($result['error'])){
         		$data['course'] = new Course($ct->course_id);
         		$data['course_thumbnail'] = $ct;
         		$data['errors'] = $result['error'];
@@ -72,8 +72,9 @@ class Course_thumbnails extends CI_Controller {
 			}
 		}else{
         	$result = $this->do_upload($this->input->post("course_id"));
-        	if($result['error']){
+        	if(isset($result['error'])){
         		$data['course'] = new Course($this->input->post("course_id"));
+        		$data['course_thumbnail'] = $ct;
         		$data['errors'] = $result['error'];
 				$this->load->view('course_thumbnail/edit',$data);
         	}else{
@@ -87,6 +88,7 @@ class Course_thumbnails extends CI_Controller {
 	        		redirect('courses/course-edit-image/'.$ct_new->course_id);
 	        	}else{
 	        		$data['course'] = new Course($this->input->post("course_id"));
+	        		$data['course_thumbnail'] = $ct_new;
 	        		$data['errors'] = $ct_new->error->string;
 					$this->load->view('course_thumbnail/edit',$data);
 	        	}

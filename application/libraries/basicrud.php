@@ -868,13 +868,13 @@ class BasiCrud {
 	 }
 
 
-	public function custom_json_encode($arr)
+	/*public function custom_json_encode($arr)
 	{
 	        //convmap since 0x80 char codes so it takes all multibyte codes (above ASCII 127). So such characters are being "hidden" from normal json_encoding
 	        array_walk_recursive($arr, function (&$item, $key) { if (is_string($item)) $item = mb_encode_numericentity($item, array (0x80, 0xffff, 0, 0xffff), 'UTF-8'); });
 	        return mb_decode_numericentity(json_encode($arr), array (0x80, 0xffff, 0, 0xffff), 'UTF-8');
 
-	}
+	}*/
 
 
 	public function getPlatformGK($platforms)
@@ -943,17 +943,26 @@ class BasiCrud {
 	{
 		$html = "";
 		if($message_status == 'error'){
-          $html.="<div class='alert alert-error'>";
-          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          //$html.="<div class='alert alert-error'>";
+          //$html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
           $html.=$errors;
-          $html.="</div>";
+          //$html.="</div>";
         }elseif($message_status == 'success'){
-          $html.="<div class='alert alert-success'>";
-          $html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
+          //$html.="<div class='alert alert-success'>";
+          //$html.="<a class='close' data-dismiss='alert' href='#''>×</a>";
           $html.=$message_description;
-          $html.="</div>";
+          //$html.="</div>";
         }
 	   
 	   return $html;
+	}
+
+	public function builtUrlVideo($content_video){
+
+		if($content_video->type == "youtube")
+			return $content_video->url;
+		elseif($content_video->type == "local"){
+			return site_url()."uploads/contents/videos/".$content_video->file_name;
+		}
 	}
 }

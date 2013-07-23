@@ -40,7 +40,7 @@ class Signup extends CI_Controller {
 		$u->name = $post['name'];
 		$u->surname = $post['surname'];
 		$u->email = $post['email'];
-		$u->role_id = 1;
+		$u->role_id = 4; //rol Alumno/Profesor
 		$u->user_status_code = 4; // waiting confirmation registration
 		$u->activationcode = $this->basicrud->_random_string(50);
 		if($u->save()){

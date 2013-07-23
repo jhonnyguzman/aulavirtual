@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?=site_url()?>assets/css/font-awesome.min.css" />
     <link href="<?=site_url()?>assets/css/chosen/chosen.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/jquery.gritter.css" />
     <!--fonts-->
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-fonts.css" />
 
@@ -16,6 +17,8 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace.min.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-responsive.min.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-skins.min.css" />
+
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/upload/jquery.fileupload-ui.css">
 
     <link href="<?=site_url()?>assets/css/extras.css" rel="stylesheet" media="screen">
     <script src="<?=site_url()?>assets/js/jquery-1.10.1.min.js"></script>
@@ -34,6 +37,11 @@
     <!--ace scripts-->
     <script src="<?=base_url()?>assets/js/ace-elements.min.js"></script>
     <script src="<?=base_url()?>assets/js/ace.min.js"></script>
+    <script src="<?=base_url()?>assets/js/jquery.gritter.min.js"></script>
+    <script src="<?=base_url()?>assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+    <script src="<?=site_url()?>assets/js/jplayer/jwplayer.js"></script>
+    <script src="<?=site_url()?>assets/js/jplayer/jwplayer.html5.js"></script>
+    <script src="<?=base_url()?>assets/js/extras.js"></script>
 
   </head>
   <body>
