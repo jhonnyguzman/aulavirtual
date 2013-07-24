@@ -4,7 +4,7 @@ class User extends DataMapper {
 
 	var $table = 'users';
 	
-	var $has_many = array("course");
+	var $has_many = array("course","course_testimony");
 	var $has_one = array("role","language","user_thumbnail","user_category");
 	
 	var $created_field = 'added';

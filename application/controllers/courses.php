@@ -40,15 +40,26 @@ class Courses extends CI_Controller {
 	{
 		$courses = new Course();
 		$courses->where("owner_id", $this->session->userdata("user_id"))->get();
+		
 		$courses_user = new Course_user();
 		// 1 - estudiante
 		// 2 - profesor
 		// 3 - institucion
 		$category = 1; 
 		$courses_user->where("user_category_id", $category)->where("user_id", $this->session->userdata("user_id"))->get();
+		
+		// $faqs = new Course_faq();
+		// $faqs->where("course_id",$courses->id);
+
+		// $testimonies = new Course_testimony();
+		// $testimonies->where("course_id",$courses_id);
+
 		$data["courses"] = $courses;
 		$data["courses_user"] = $courses_user;
 		$data["progress"] = $this->_progress(); 
+		// $data["faqs"] = $faqs;
+		// $data["testimonies"] = $testimonies;
+
 		$this->load->view("courses/my_courses",$data);
 	}
 

@@ -1,94 +1,11 @@
 <?php echo $this->load->view("default/_header_manage"); ?>
 
-<!--
-<div class="row-fluid show-grid">
-	<div class="row">
-		<div class="page-header">
-          <h2><?=$course_user->course->title?> </h2>
-          <?=$course_user->course->subtitle?>
-        </div>
-	</div>
-
-<div class="leaderboard">  
-	<p>Tu progreso: <?=$progress?>%</p>  
-	<p>Capitulo Actual: <b><?=$course_user->course->chapter->name?></b></p>
-	<p><a class="btn btn-success">Continuar Estudiando</a></p> 
-	<br> 
-</div>
-
-
-<div>
-<table class="table table-striped">  
-        <thead>  
-          <tr>  
-            <th>Capitulo</th>  
-            <th>Tema</th>  
-            <th>Descripcion</th>  
-            <th>Estado</th>  
-          </tr>  
-        </thead>  
-
-		<?php   // foreach($course_user as $c_user): ?>
-  
-        <tbody>  
-          <tr>  
-            <td><?=$c_user->course->chapter->name?></td>  
-            <td><?=$c_user->course->chapter->lesson->name?></td>  
-            <td><?=$c_user->course->chapter->lesson->description?></td>  
-            <td><?=$c_user->course->chapter->lesson->content_text->text_html?></td>  
-          </tr>         
-        </tbody>
-        
-
-        <?php   // endforeach; ?>
-        <?php   // foreach($course_user as $cursos): ?>
-        <?php   //      echo $cursos->course->name;           endforeach; ?>
-          
-          
--->
-
-<!--
-  
-      </table>  
-</div>
-
-<div class="container">  
-<row class="span6">  
-<ul class="nav nav-list">  
-        <li class="nav-header">Curriculo</li>  
-        <li class="active"><a href="#"><i class="icon-white icon-home"></i> <?=$course_user->course->chapter->name ?></a></li>  
-        	<ul class="nav nav-list">
-        		<li><a href="#"><i class="icon-book"></i> <?=$course_user->course->chapter->lesson->name ?></a></li>
-        	</ul>        
-        <li><a href="#"><i class="icon-pencil"></i> Applications</a></li>  
-        <li class="nav-header">Another list header</li>  
-        <li><a href="#"><i class="icon-user"></i> Profile</a></li>  
-        <li><a href="#"><i class="icon-cog"></i> Settings</a></li>  
-        <li class="divider"></li>  
-        <li><a href="#"><i class="icon-flag"></i> Help</a></li>  
-</ul>  
-
-</div>  
-</div>  
-
--->
-
-
-
-
-<!--     DESDE AQUI ES LA NUEVA LAYOUT  -->
-
-
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="row-fluid">
 				<div class="span2">
-
-<img src="<?=site_url()?>uploads/course_thumbnails/<?=$course_user->course->course_thumbnail->file_name?>" alt="<?=$course_user->course->title?>">				
-				<!--	
-					<img alt="140x140" src="http://lorempixel.com/140/140/" />
-				-->
+					<img src="<?=site_url()?>uploads/course_thumbnails/<?=$course_user->course->course_thumbnail->file_name?>" alt="<?=$course_user->course->title?>">				
 				</div>
 				<div class="span6">
 					<h3 class="text-left">
@@ -101,10 +18,10 @@
 				<div class="span4">
 				</div>
 			</div>
-			<div class="progress">
-				<div class="bar">
-				</div>
-			</div>
+			<div class="progress progress-striped">
+				<div class="bar bar-success" style="width: 35%;"></div>
+  				<div class="bar bar-danger" style="width: 5%;"></div>			
+  			</div>
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -161,119 +78,63 @@
 			<h3>
 				Curriculo
 			</h3>
+<?php   foreach($course_user as $c_user){
+			foreach ($c_user->course->chapter as $chapter) {	
+?>
 			<ul class="nav nav-list">
 				<li class="nav-header">
-					Capitulo 1
+					<?php echo "Capitulo: " . $chapter->name ; ?>
 				</li>
-				<li class="active">
-					<a href="#">Tema</a>
+<?php			foreach ($chapter->lesson as $lesson) {
+?>				
+				<li class="">
+					<a href="#"><?=$lesson->name?></a>
 				</li>
-				<li>
-					<a href="#">Tema</a>
-				</li>
-				<li>
-					<a href="#">Tema</a>
-				</li>
-				<li class="nav-header">
-					Capitulo 2
-				</li>
-				<li>
-					<a href="#">Tema</a>
-				</li>
-				<li>
-					<a href="#">Tema</a>
-				</li>
-				<li class="divider">
-				</li>
+<?php 
+				}
+?>				
+   			</ul>
+<?php 	}             	
+            } 
+?>
+<!--
 				<li>
 					<a href="#">Evaluacion Final</a>
 				</li>
-			</ul>
+-->				
 		</div>
 		<div class="span6">
 			<h3>
 				Preguntas Frecuentes
 			</h3>
-			<div class="accordion" id="accordion-262248">
-				
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576584" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
-				
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576585" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
 
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576586" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
 
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576587" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
 
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576588" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-576584">¿Que necesito para instalar Phothoshop?</a>
-					</div>
-					<div id="accordion-element-576589" class="accordion-body collapse">
-						<div class="accordion-inner">
-							Una Computadora
-						</div>
-					</div>
-				</div>
+<div class="accordion" id="accordion2">  
+<?php   foreach($course_user as $c_user){	
+		    foreach ($c_user->course->course_faq as $faq) {
+?>
+<div class="accordion-group">
+  	<div class="accordion-heading">
+  	 	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" <?php echo "href=\"#". $faq->id ."\""; ?>>
+<?php      echo "Pregunta: " . $faq->question ;  ?>
+        </a>
+    </div>
 
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-262248" href="#accordion-element-141530">¿Puedo hacer gigantografias con Photoshop?</a>
-					</div>
-					<div id="accordion-element-141530" class="accordion-body in collapse">
-						<div class="accordion-inner">
-							Si. es posible.
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div <?php echo "id=\"". $faq->id ."\""; ?> class="accordion-body collapse in">
+      <div class="accordion-inner">
+<?php       echo "Respuesta: " . $faq->answer ;  ?>
+      </div>
+    </div> 
+    </div> 
+<?php		    
+		    }
+		} 
+?>
+
+
+</div>
+</div></div>
 
 	<div class="row-fluid">
 		<div class="span12">
@@ -282,8 +143,9 @@
 			</h3>
 			<blockquote>
 				<p>
-				Es increible lo que logre aprender con este curso. Realmente siento ahora que puedo mostrar al mundo como veo las cosas con Photoshop.
-				</p> <small>Walter E. Juarez Rivas <cite>- Primera propaganda</cite></small>
+				<?php  echo $course_user->course->course_testimony->testimony;  ?>
+				
+				</p> <small><?php  echo $course_user->course->course_testimony->user->name . " " . $course_user->course->course_testimony->user->surname;  ?></small>
 			</blockquote>
 		</div>
 	</div>
@@ -293,7 +155,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 		    <h3>
-				Capitulos Extra - Apendices
+				Capitulos Sobresalientes
 			</h3>
 			<ul class="thumbnails">
 				<li class="span4">
