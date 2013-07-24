@@ -965,4 +965,9 @@ class BasiCrud {
 			return site_url()."uploads/contents/videos/".$content_video->file_name;
 		}
 	}
+
+
+	public function builtUrlPDF($content_pdf){
+		return site_url()."uploads/contents/pdfs/".$content_pdf->file_name;
+	}
 }
