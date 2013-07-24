@@ -98,28 +98,6 @@
       </Fk>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="content_documents">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pkcontent_documents"/>
-      <Cl au="0" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="name" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="document" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="lesson_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="3" nm="lcontent_documents_lesson_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="content_documents" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="lesson_id" prCl="id"/>
-      </Fk>
-      <SchTrHis/>
-    </Tbl>
     <Tbl UsSo="1" nm="content_images">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcontent_images"/>
@@ -141,6 +119,40 @@
       <Fk deAc="3" nm="content_images_lesson_id" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="content_images" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="lesson_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="content_pdfs">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkcontent_pdfs"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="lesson_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_name" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_size" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pause" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="content_pdfs_lesson_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="content_pdfs" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="lesson_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
@@ -1247,7 +1259,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_videos" x="1079" y="603"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_images" x="1080" y="737"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_presentations" x="1080" y="816"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_documents" x="1079" y="927"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_pdfs" x="1083" y="909"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_texts" x="1084" y="1025"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_audios" x="1090" y="1119"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="materials" x="1338" y="1235"/>
@@ -1277,8 +1289,8 @@
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.chapters.chapters_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.content_documents.lcontent_documents_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_images.content_images_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.content_pdfs.content_pdfs_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_presentations.content_presentations_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_texts.content_texts_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_videos.content_videos_lesson_id"/>
@@ -1310,7 +1322,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="154">
+  <RnmMgr NxRnmId="155">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1584,7 +1596,7 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_presentations" SupCls="Schema" SupNme="schemaA">
       <Rnm id="93" nNm="lesson_id" oNm="id_lesson"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_documents" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_pdfs" SupCls="Schema" SupNme="schemaA">
       <Rnm id="94" nNm="lesson_id" oNm="id_lesson"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_texts" SupCls="Schema" SupNme="schemaA">
@@ -1701,6 +1713,9 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="content_videos" SupCls="Schema" SupNme="schemaA">
       <Rnm id="153" nNm="file_type" oNm="fie_type"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="154" nNm="content_pdfs" oNm="content_documents"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
