@@ -83,12 +83,18 @@
 ?>
 			<ul class="nav nav-list">
 				<li class="nav-header">
-					<?php echo "Capitulo: " . $chapter->name ; ?>
+					<?php 
+					$num = $chapter->order + 1; 
+					echo "Capitulo " . $num . ": " . $chapter->name ; ?>
 				</li>
 <?php			foreach ($chapter->lesson as $lesson) {
 ?>				
 				<li class="">
-					<a href="#"><?=$lesson->name?></a>
+					<a href="#"><?php 
+					$num_lesson = $lesson->order + 1;
+					echo "Tema " . $num . ".". $num_lesson .": ". $lesson->name;
+					?>
+					</a>
 				</li>
 <?php 
 				}

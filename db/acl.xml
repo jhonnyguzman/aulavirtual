@@ -397,6 +397,44 @@
       <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="course_sliders">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkcourse_sliders"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_name" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_size" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="file_type" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="title" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="subtitle" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="course_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_course_sliders_courses" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="course_sliders" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="course_status">
       <TblOpts/>
       <Pk ClNs="id" nm="pkcourse_status"/>
@@ -1354,7 +1392,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_external" x="1442" y="1229"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="material_code" x="1446" y="1268"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="courses" x="324" y="304"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_categories" x="0" y="366"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_categories" x="15" y="390"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_goals" x="634" y="271"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_audiences" x="648" y="475"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_requirements" x="640" y="388"/>
@@ -1365,7 +1403,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="notifications" x="899" y="530"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_users" x="328" y="13"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_categories" x="21" y="17"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="0" y="475"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_faqs" x="0" y="513"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_status" x="1700" y="151"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_answer" x="24" y="834"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="status_groups" x="1461" y="731"/>
@@ -1373,7 +1411,8 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_status" x="15" y="640"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_thumbnails" x="184" y="724"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="chapters" x="440" y="615"/>
-    <TbGl bkCl="ff3333ff" sch="schemaA" tbl="course_testimonies" x="20" y="146"/>
+    <TbGl bkCl="ff3333ff" sch="schemaA" tbl="course_testimonies" x="164" y="150"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_sliders" x="416" y="797"/>
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.chapters.chapters_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
@@ -1386,6 +1425,7 @@
     <FkGl bkCl="ff000000" nm="schemaA.course_faqs.course_faqs_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_goals.course_goals_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_requirements.course_requirements_course_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.course_sliders.fk_course_sliders_courses"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_testimonies.fk_course_terminies_courses"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_testimonies.fk_course_terminies_users"/>
     <FkGl bkCl="ff000000" nm="schemaA.course_thumbnails.course_thumbnails_course_id"/>
@@ -1412,7 +1452,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="163">
+  <RnmMgr NxRnmId="170">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1829,6 +1869,27 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_testimonies" SupCls="Schema" SupNme="schemaA">
       <Rnm id="162" nNm="course_id" oNm="courses_id"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="163" nNm="id" oNm="course_slidersId"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="164" nNm="course_id" oNm="course_slidersName"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="165" nNm="file_name" oNm="InsertBy"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="166" nNm="file_size" oNm="UpdateBy"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="167" nNm="file_type" oNm="InsertTime"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="168" nNm="created_at" oNm="UpdateTime"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="169" nNm="course_id" oNm="courses_id"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1852,7 +1913,7 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (54)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (55)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
     <TreePath>/Diagrams (1)/diagramA/Notes (0)</TreePath>
