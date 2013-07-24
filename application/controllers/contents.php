@@ -22,8 +22,12 @@ class Contents extends CI_Controller {
     protected $path_img_thumb_upload_folder;
     protected $path_url_img_upload_folder;
     protected $path_url_img_thumb_upload_folder;
-
     protected $delete_img_url;
+
+    protected $path_url_pdf_upload_folder;
+    protected $path_pdf_upload_folder;
+    protected $delete_pdf_url;
+    
 
   	function __construct() {
         parent::__construct();
@@ -39,6 +43,13 @@ class Contents extends CI_Controller {
 		//Set url img with Base_url()
         $this->setPath_url_img_upload_folder(base_url() . "uploads/contents/videos/");
         $this->setPath_url_img_thumb_upload_folder(base_url() . "uploads/contents/videos/thumbnails/");
+
+        //set url pdf with Base_url()
+        $this->setPath_pdf_upload_folder("uploads/contents/pdfs/");
+        $this->setPath_url_pdf_upload_folder(base_url() . "uploads/contents/pdfs/");
+
+        //Delete url pdf
+        $this->setDelete_pdf_url(base_url() . 'contents/deletePDF/');
   	}
 
 	public function text_add(){
@@ -186,7 +197,7 @@ class Contents extends CI_Controller {
         //Your upload directory, see CI user guide
         $config['upload_path'] = $this->getPath_img_upload_folder();
   
-        $config['allowed_types'] = '*';
+        $config['allowed_types'] = 'avi|mp4|mov|MOV|qt|flv';
         $config['max_size'] = '5000000';
         $config['file_name'] = $name;
 
@@ -274,6 +285,115 @@ class Contents extends CI_Controller {
         }
   }
 
+  public function pdf_preview()
+  {
+        $content_pdf_id = $this->input->post("content_pdf_id");
+        echo $this->load->view("content/pdf_preview",array("content_pdf_id" => $content_pdf_id));   
+  }
+
+  public function pdf_preview_iframe($content_pdf_id = "")
+  {
+        if($content_pdf_id != ""){
+            $content_pdf = new Content_pdf();
+            $content_pdf->where("id", $content_pdf_id)->get();
+            if($content_pdf->exists()){
+                $pdf_url = $this->basicrud->builtUrlPDF($content_pdf);
+                echo $this->load->view("content/pdf_preview_iframe",array("pdf_url" => $pdf_url));   
+            }else{
+                show_404(FALSE);
+            }
+        }else{
+            show_404(FALSE);
+        }
+  }
+
+  public function pdf_add(){
+        echo $this->load->view("content/pdf_add",array("lesson_id" => $this->input->post("lesson_id")));
+  }
+
+  public function pdf_create()
+  {
+        $result = array();
+        $lesson_id = $this->input->post("lesson_id");
+        $name = random_string('unique').'_'.$lesson_id;
+        //Your upload directory, see CI user guide
+        $config['upload_path'] = $this->getPath_pdf_upload_folder();
+  
+        $config['allowed_types'] = 'pdf';
+        $config['max_size'] = '5000000';
+        $config['file_name'] = $name;
+
+        //Load the upload library
+        $this->load->library('upload', $config);
+
+        if ($this->do_upload()) {
+            $data = $this->upload->data();
+            $name.=$data['file_ext'];
+            //Get info 
+            $info = new stdClass();    
+            $info->name = $name;
+            $info->size = $data['file_size'];
+            $info->type = $data['file_type'];
+            $info->url = $this->getPath_url_pdf_upload_folder() . $name;
+            //I set this to original file since I did not create thumbs.  change to thumbnail directory if you do = $upload_path_url .'/thumbs' .$name
+            //$info->thumbnail_url = $this->getPath_img_thumb_upload_folder() . $name; 
+            $info->delete_url = $this->getDelete_pdf_url() . $name;
+            $info->delete_type = 'DELETE';
+
+            $lesson = new Lesson();
+            $lesson->where("id", $lesson_id)->get();
+            if($lesson->exists()){
+                $cp = new Content_pdf();
+                $cp->lesson_id = $lesson->id;
+                $cp->file_name = $name;
+                $cp->file_type = $data['file_type'];
+                $cp->file_size = $data['file_size'];
+                if($cp->save($lesson)){
+                    $result['content_pdf'] = array(
+                        'id' => $cp->id, 
+                        'file_name' => $cp->file_name,
+                        'file_type' => $cp->file_type,
+                        'file_size' => $cp->file_size, 
+                        'url'       => $this->getPath_url_pdf_upload_folder() . $name,
+                        'lesson_id' => $cp->lesson_id);
+                    $result['message_status'] = 'success';
+                    $result['message_description'] = 'PDF creado correctamente';
+                    $result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
+                }else{
+                    $result['message_status'] = 'error';
+                    $result['message_html'] = $this->basicrud->cretateHtmlMsg('error', '', $cp->error->string);
+                }
+            }else{
+                //show_404('page',FALSE);
+                $result['message_status'] = 'error';
+                $result['message_description'] = 'Request failed!!';
+                $result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+            }
+
+            $result['upload_data'] = $info;
+            //Return JSON data
+            if (IS_AJAX) {   //this is why we put this in the constants to pass only json data
+                echo json_encode($result);
+                //this has to be the only the only data returned or you will get an error.
+                //if you don't give this a json array it will give you a Empty file upload result error
+                //it you set this without the if(IS_AJAX)...else... you get ERROR:TRUE (my experience anyway)
+            } else {   // so that this will still work if javascript is not enabled
+                $file_data['upload_data'] = $this->upload->data();
+                echo json_encode($result);
+            }
+        } else {
+            $result['error'] = $this->upload->display_errors('','');
+            $result['message_status'] = 'error';
+            $result['message_description'] = $this->upload->display_errors('','');
+            $result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+            // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
+            // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
+            echo json_encode($result);
+        }
+  }
+
+
+
   public function deleteImage() {
 
         //Get the name in the url
@@ -359,6 +479,22 @@ class Contents extends CI_Controller {
         $this->path_url_img_upload_folder = $path_url_img_upload_folder;
     }
 
+    public function setPath_pdf_upload_folder($path_pdf_upload_folder) {
+        $this->path_pdf_upload_folder = $path_pdf_upload_folder;
+    }
+
+    public function getPath_pdf_upload_folder() {
+        return $this->path_pdf_upload_folder;
+    }
+
+    public function setPath_url_pdf_upload_folder($path_url_pdf_upload_folder) {
+        $this->path_url_pdf_upload_folder = $path_url_pdf_upload_folder;
+    }
+
+    public function getPath_url_pdf_upload_folder() {
+        return $this->path_url_pdf_upload_folder;
+    }
+
     public function getPath_url_img_thumb_upload_folder() {
         return $this->path_url_img_thumb_upload_folder;
     }
@@ -371,8 +507,16 @@ class Contents extends CI_Controller {
         return $this->delete_img_url;
     }
 
-    public function setDelete_img_url($delete_img_url) {
-        $this->delete_img_url = $delete_img_url;
+    public function setDelete_img_url($delete_pdf_url) {
+        $this->delete_pdf_url = $delete_pdf_url;
+    }
+
+    public function getDelete_pdf_url() {
+        return $this->delete_pdf_url;
+    }
+
+    public function setDelete_pdf_url($delete_pdf_url) {
+        $this->delete_pdf_url = $delete_pdf_url;
     }
 
 

@@ -41,6 +41,7 @@
     <script src="<?=base_url()?>assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
     <script src="<?=site_url()?>assets/js/jplayer/jwplayer.js"></script>
     <script src="<?=site_url()?>assets/js/jplayer/jwplayer.html5.js"></script>
+     <script type="text/javascript" src="<?=base_url()?>assets/js/pdf/jquery.gdocsviewer.min.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>
 
   </head>

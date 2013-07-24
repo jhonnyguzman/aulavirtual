@@ -10,7 +10,7 @@ class Content_text extends DataMapper {
 	var $validation = array(
 	    'lesson_id' => array(
 	        'label' => 'Tema',
-	        'rules' => array('required')
+	        'rules' => array('required','unique')
 	    ),
 
 	);

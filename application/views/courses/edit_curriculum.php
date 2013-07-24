@@ -88,6 +88,8 @@
 				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
 				  							<?php elseif($lesson->content_video->count() > 0): ?>
 				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
+				  							<?php elseif($lesson->content_pdf->count() > 0): ?>
+				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
 				  							<?php else: ?>
 				  								<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
 				  							<?php endif; ?>
@@ -118,8 +120,26 @@
 						  								<img src="<?=site_url()?>assets/img/video_medium.png" class="img-circle" />
 						  								<p>
 						  									<strong>Video</strong><br>
-						  									<a href="#" class="btnEditContent">Editar</a><br>
+						  									<a href="#" class="btnEditContentVideo">Editar</a><br>
 						  									<a href="#" class="btnEditContentPreviewVideo" data-url="<?=$this->basicrud->builtUrlVideo($lesson->content_video)?>">Visualizar</a>
+						  								</p>
+						  							</div>
+					  							</div>
+					  							<div class="span12 more">
+					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
+					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
+					  							</div>
+				  							</div>	
+				  						<?php endif; ?>
+				  						<?php if($lesson->content_pdf->count() > 0): ?>
+				  							<div class="span12 box">
+					  							<div class="span12 single-item">
+					  								<div class="span6">
+						  								<img src="<?=site_url()?>assets/img/pdf_medium.png" class="img-circle" />
+						  								<p>
+						  									<strong>PDF</strong><br>
+						  									<a href="#" class="btnEditContentPDF">Editar</a><br>
+						  									<a href="#" class="btnEditContentPreviewPDF" data-url="" data-id="<?=$lesson->content_pdf->id?>">Visualizar</a>
 						  								</p>
 						  							</div>
 					  							</div>
@@ -143,6 +163,7 @@
 
 	    <!-- Modal -->
 		<div id="video-preview-edit-modal" class="modal hide fade video-preview-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+		<div id="pdf-preview-edit-modal" class="modal hide fade pdf-preview-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 	</div>
 </div><!-- /row -->
 
@@ -841,6 +862,23 @@
 		});
 	});
 
+	$(document).on("click", ".lessons li .box-content .box .content-type-pdf", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   var box_content = $(".box-content",cList);
+	   $.ajax({
+			url: "<?=site_url('contents/pdf_add')?>",
+			type: "POST",
+			data: {'lesson_id': cList.data('id')},
+			success: function(data){
+				$(".box-title span",box_content).text("Agregar PDF");
+				$(".box",cList).html(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
 	$(document).on("click", ".lessons li .box-content .box .single-item .span6 p .btnEditContent", function(e) {
 	   var cList = $(this).parent().parent().parent().parent().parent().parent();
 	   var box_content = $(".box-content",cList);
@@ -860,31 +898,51 @@
 	});
 
 	$(document).on("click", ".lessons li .box-content .box .content-btns-bottom .btnSaveContentTypeText", function(e) {
-	   var form_div = $(this).parent().parent();
-	   var editor = $(".wysiwyg-editor",form_div);
+	   var obj = $(this);
+	   if(isProcessing){
+			return;
+	   }
+	   isProcessing = true;
+	   
+	   var box = $(this).parent().parent();
+	   var editor = $(".wysiwyg-editor",box);
 	   var lesson_id = editor.attr("id");
 	   $.ajax({
 			url: "<?=site_url('contents/text_create')?>",
 			type: "POST",
 			data: {'lesson_id': lesson_id, "text_html": htmlEntities(editor.html())},
 			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
 			success: function(data){
+				isProcessing = false;
 				if(data.message_status == 'success'){
-					//cList.remove();
-					showMessageNewChapter(data.message_html);
+					builtContentTypeText(box);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}else{
-					showMessageNewChapter(data.message_html);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}
 			},
 			error: function(data){
+				isProcessing = false;
 				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
 			}
 		});
 	});
 
 	$(document).on("click", ".lessons li .box-content .box .content-btns-bottom .btnSaveEditContentTypeText", function(e) {
-	   var form_div = $(this).parent().parent();
-	   var editor = $(".wysiwyg-editor",form_div);
+	   var obj = $(this);
+	   if(isProcessing){
+			return;
+	   }
+	   isProcessing = true;
+
+	   var box = $(this).parent().parent();
+	   var editor = $(".wysiwyg-editor",box);
 	   var lesson_id = editor.data("lessonid");
 	   var id = editor.attr("id");
 	   $.ajax({
@@ -892,16 +950,24 @@
 			type: "POST",
 			data: {'id': id, 'lesson_id': lesson_id, "text_html": htmlEntities(editor.html())},
 			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
 			success: function(data){
+				isProcessing = false;
 				if(data.message_status == 'success'){
-					builtContentTypeText(form_div);
-					showMessageNewChapter(data.message_html);
+					builtContentTypeText(box);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}else{
-					showMessageNewChapter(data.message_html);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}
 			},
 			error: function(data){
+				isProcessing = false;
 				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
 			}
 		});
 	});
@@ -930,6 +996,14 @@
 	   var url = "<?=site_url()?>contents/video_preview/"
        var video_url = $(this).data("url");
        loadVideoPreview(url,$("#video-preview-edit-modal"), video_url);
+       return false;
+	});
+
+	//show pdf preview
+	$(document).on("click", ".lessons li .box-content .box .single-item .span6 p .btnEditContentPreviewPDF", function(e) {
+	   var url = "<?=site_url()?>contents/pdf_preview/"
+       var content_pdf_id = $(this).data("id");
+       loadPDFPreview(url,$("#pdf-preview-edit-modal"), content_pdf_id);
        return false;
 	});
 

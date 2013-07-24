@@ -271,6 +271,18 @@ function loadVideoPreview(url,obj,video_url)
     }); 
 }
 
+function loadPDFPreview(url,obj,content_pdf_id)
+{
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {content_pdf_id: content_pdf_id},  
+        success: function(data) {
+            obj.html(data).modal('show');
+        }
+    }); 
+}
+
 
 function showContentTabMenu(url, div)
 {
