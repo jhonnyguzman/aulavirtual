@@ -198,7 +198,7 @@ class Contents extends CI_Controller {
         $config['upload_path'] = $this->getPath_img_upload_folder();
   
         $config['allowed_types'] = 'avi|mp4|mov|MOV|qt|flv';
-        $config['max_size'] = '5000000';
+        $config['max_size'] = '200000000'; //200 mb
         $config['file_name'] = $name;
 
         //Load the upload library
@@ -320,7 +320,7 @@ class Contents extends CI_Controller {
         $config['upload_path'] = $this->getPath_pdf_upload_folder();
   
         $config['allowed_types'] = 'pdf';
-        $config['max_size'] = '5000000';
+        $config['max_size'] = '200000000'; //200 mb
         $config['file_name'] = $name;
 
         //Load the upload library

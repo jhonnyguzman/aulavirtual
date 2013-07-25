@@ -89,7 +89,7 @@
                   <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-create-course">Crear Curso</a></li>
                   <li class="divider-vertical"></li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->session->userdata("user_surname")." ".$this->session->userdata("user_name")?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->session->userdata("user_email")?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                           <div class="modal-login">
                             <form>

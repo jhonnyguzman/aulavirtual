@@ -64,7 +64,7 @@ $(function () {
         dataType: 'json',
         autoUpload: true,
         loadVideoFileTypes: /^video\/(avi|mov|mp4)$/,
-        maxFileSize: 5000000, // 5 MB
+        maxFileSize: 20000000, // 200 MB
         replaceFileInput: false,
         limitMultiFileUploads: 1,
         formData: {lesson_id: <?=$lesson_id?>},
@@ -122,7 +122,7 @@ $(function () {
                 'width',
                 progress + '%'
             );
-            $('span8 .progress-upload-video .bar',row).text(progress + " %");
+            $('.span8 .progress-upload-video .bar',row).text(progress + " %");
         },
         progress: function (e, data) {
             console.log(data.bitrate);

@@ -34,7 +34,7 @@ class Signin extends CI_Controller {
 		$u->where('user_status_code',1);
 		$u->get();
 
-		$u->error_message('login', 'Username or password invalid.');
+		$u->error_message('login', 'Email or password invalid.');
 
 		if($u->exists()){
 			// In caso di primo accesso

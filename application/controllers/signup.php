@@ -34,11 +34,8 @@ class Signup extends CI_Controller {
 	{
 		$u = new User();
 		$post = $this->input->post(NULL,TRUE);
-		$u->username = $post['username'];
 		$u->password = $post['password'];
 		$u->confirm_password = $post['confirm_password'];
-		$u->name = $post['name'];
-		$u->surname = $post['surname'];
 		$u->email = $post['email'];
 		$u->role_id = 4; //rol Alumno/Profesor
 		$u->user_status_code = 4; // waiting confirmation registration
@@ -48,7 +45,7 @@ class Signup extends CI_Controller {
 			{
 				$data["status_description"] = "Error to register";
 				$data["status"] = 2;
-				$this->load->view('signup/result_register',$data);
+				$this->load->view('home/index',$data);
 			}else{
 				$data["status_description"] = $this->config->item('text_notification_register_user');
 				$data["status"] = 1;
@@ -56,7 +53,7 @@ class Signup extends CI_Controller {
 			}
 		}else{
 			$data['errors'] = $u->error->string;
-			$this->load->view('signup/index',$data);
+			$this->load->view('home/index',$data);
 		}
 	}
 
@@ -74,7 +71,7 @@ class Signup extends CI_Controller {
 		$data_config['p_subject'] = $this->config->item('email_subject_register_new_user');
 		$p_message = $this->config->item('email_header1_msg_register_new_user');
 		$p_message.= $this->config->item('email_header2_msg_register_new_user');
-		$p_message.= $u->surname." ".$u->name."</h3>";
+		$p_message.= $u->email."</h3>";
 		$p_message.= $this->config->item('email_body3_msg_register_new_user');
 		$p_message.= anchor("/signup/confirm/".$u->activationcode,"Register Confirm")."<br><br>";
 		$p_message.= $this->config->item('email_body4_msg_register_new_user');

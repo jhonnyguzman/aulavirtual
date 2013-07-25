@@ -30,6 +30,7 @@ body {
 	border-bottom: 1px solid #e5e5e5;
 	padding: 2% 0;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .btn-search-child{
@@ -97,6 +98,11 @@ body {
 .box .more a{
 	margin-right: 5px;
 }
+
+.btn-register{
+	width: 100%;
+}
+
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -108,6 +114,23 @@ body {
 .content-btns-bottom{
 	margin-top: 5px;
 }
+
+.container-top{
+	/*background-image: url(../img/bg-4.jpg);*/
+	/*background-repeat: no-repeat;*/
+	/*background-position: left top;*/
+	min-height: 480px;
+	margin-top: -5px;
+
+	background: fixed;
+	background-color: #efefef;
+	background-image: -webkit-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -moz-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -o-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -ms-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+}
+
 .chapter-hidden, .lesson-hidden{
 	display: none;
 }
@@ -136,14 +159,14 @@ body {
 	max-width: 300px;
 	padding: 0px 19px 20px;
 	margin: 0 auto 20px;
-	background-color: #fff;
-	border: 1px solid #e5e5e5;
+	/*background-color: #fff;*/
+	/*border: 1px solid #e5e5e5;
 	-webkit-border-radius: 5px;
 	   -moz-border-radius: 5px;
 	        border-radius: 5px;
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
 	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	        box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	        box-shadow: 0 1px 2px rgba(0,0,0,.05);*/
 	}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -152,14 +175,17 @@ body {
 .form-signin input[type="text"],
 .form-signin input[type="password"],
 .form-signin input[type="email"] {
-	font-size: 16px;
-	height: auto;
-	margin-bottom: 15px;
+	font-size: 18px;
+	height: 45px;
+	margin-bottom: 18px;
 	padding: 7px 9px;
 }
 
 .form-signin .input-prepend .add-on {
-	height: 26px;
+	height: 30px;
+}
+.form-signin .input-prepend{
+	display: block;
 }
 
 .form-search-home {
@@ -361,4 +387,7 @@ body {
 }
 .video_file_name, .pdf_file_name{
 	text-align: right;
+}
+.top-bar-home{
+	min-height: 60px !important;
 }

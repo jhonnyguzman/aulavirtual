@@ -11,14 +11,8 @@
                         <?=$errors?>
                   </div>    
                 <?php endif; ?>
-			    <label>Nombre de usuario:</label>
-			    <input type="text" name="username" required >
 			    <label>Correo Electr&oacute;nico:</label>
 			    <input type="email" name="email" required>
-			    <label>Nombre:</label>
-			    <input type="text" name="name" required>
-			    <label>Apellido:</label>
-			    <input type="text" name="surname" required>
 			    <label>Contrase&ntilde;a:</label>
 			    <input type="password" name="password" required>
 			    <label>Confirmar Contrase&ntilde;a:</label>

@@ -492,4 +492,37 @@ function base64_decode (data) {
   return dec;
 }
 
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 
+function runSpin(obj){
+  obj.addClass("disabled");
+  var spin = $("<i/>")
+    .attr("class","icon-spinner icon-spin white bigger-130 icon-spinner-custom")
+    .appendTo(obj);
+}
+
+function removeSpin(obj){
+  obj.removeClass("disabled");
+  obj.find("i").remove();
+}
+
+function gritterAdd(title, message, type){
+  if(type == "success"){
+    $.gritter.add({
+      title: title,
+      text: message,
+      time: 2000,
+      class_name: 'gritter-success'
+    });
+  }
+  else if(type == "error"){
+    $.gritter.add({
+      title: title,
+      text: message,
+      time: 2000,
+      class_name: 'gritter-error'
+    });
+  }
+}

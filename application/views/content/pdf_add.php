@@ -32,7 +32,7 @@ $(document).ready(function(){
         dataType: 'json',
         autoUpload: true,
         acceptFileTypes: /(\.|\/)(pdf)$/i,
-        maxFileSize: 5000000, // 5 MB
+        maxFileSize: 20000000, // 200 MB
         replaceFileInput: false,
         limitMultiFileUploads: 1,
         formData: {lesson_id: <?=$lesson_id?>},
@@ -69,7 +69,7 @@ $(document).ready(function(){
                 $('<p/>').text(file.name).appendTo('#files');
             });*/
             var my_content_pdf = $(this).parent().parent().parent();
-            var cList = my_content_pdf.parent().parent().parent().parent().parent();
+            var cList = my_content_pdf.parent().parent().parent();
             var span = $(this).parent();
             if(data.result.message_status == 'success'){
                 $('.abortUploadPdf',my_content_pdf).hide();
@@ -90,7 +90,7 @@ $(document).ready(function(){
                 'width',
                 progress + '%'
             );
-            $('span8 .progress-upload-pdf .bar',row).text(progress + " %");
+            $('.span8 .progress-upload-pdf .bar',row).text(progress + " %");
         },
         progress: function (e, data) {
             console.log(data.bitrate);
@@ -125,13 +125,13 @@ function builtContentViewPDF(cList,content_pdf){
     var p = $("<p/>")
         .appendTo(span6);
     var strong = $("<strong/>")
-        .text("Video")
+        .text("PDF")
         .appendTo(p);
     var br1 = $("<br>")
         .appendTo(p);
     var btnEditContent = $("<a/>")
         .attr("href","#")
-        .attr("class","btnEditContent")
+        .attr("class","btnEditContentPDF")
         .text("Editar")
         .appendTo(p);
     var br2 = $("<br>")

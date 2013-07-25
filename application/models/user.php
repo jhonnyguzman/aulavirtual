@@ -13,7 +13,7 @@ class User extends DataMapper {
     var $validation = array(
 	    'username' => array(
 	        'label' => 'Username',
-	        'rules' => array('required', 'trim', 'unique', 'min_length' => 3, 'max_length' => 20)
+	        'rules' => array('trim', 'unique', 'min_length' => 3, 'max_length' => 20)
 	    ),
 	    'password' => array(
 	        'label' => 'Password',
