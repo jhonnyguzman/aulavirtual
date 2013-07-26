@@ -1,6 +1,6 @@
 body {
     padding-top: 50px;
-    padding-bottom: 40px;
+    /*padding-bottom: 40px;*/
 }
 
 .abortUploadVideo, .abortUploadPdf{
@@ -151,6 +151,11 @@ body {
 	border-radius: 4px;
 }
 
+.chapter-order,.lesson-order{
+	margin-right: 5px;
+	font-weight: bold;
+}
+
 .icon-spinner-custom{
 	margin-left: 5px;
 }
@@ -241,6 +246,11 @@ body {
 }
 .item-list-custom>li.item-grey {
 	border-left-color: #999;
+}
+
+.img-user-avatar{
+	width: 24px;
+	height: 24px;
 }
 
 .ui-state-highlight { 
@@ -389,5 +399,5 @@ body {
 	text-align: right;
 }
 .top-bar-home{
-	min-height: 60px !important;
+	/*min-height: 60px !important;*/
 }

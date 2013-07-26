@@ -33,12 +33,6 @@
     <script src="<?=base_url()?>assets/js/ace-elements.min.js"></script>
     <script src="<?=base_url()?>assets/js/ace.min.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>
-    <style type="text/css">
-      body {
-          padding-top: 60px;
-          /*padding-bottom: 40px;*/
-      }
-    </style>
   </head>
   <body>
   	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -92,19 +86,30 @@
   	                </ul>
   	              </li>
                 <?php else: ?>
-                  <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-create-course">Crear Curso</a></li>
+                  <li><a href="<?=site_url('courses/newTitle')?>" class="btn btn-success btn-small btn-create-course">Crear Curso</a></li>
                   <li class="divider-vertical"></li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->session->userdata("user_email")?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?=$this->session->userdata("user_avatar")?>" class="img-circle img-user-avatar"/></a>
                         <ul class="dropdown-menu">
-                          <div class="modal-login">
-                            <form>
-                                <label><?=$this->session->userdata("user_email")?></label>
-                                <a href="<?=site_url('profiles')?>">Editar Perfil</a><br>
-                                <a href="<?=site_url('courses/my_courses')?>">Mis Cursos</a><br><br>
-                                <a href="<?=site_url('login/logout')?>"><?=$this->lang->line('logout')?></a>
-                            </form>
-                          </div>
+                          <li>
+                            <a href="<?=site_url('courses/my_courses')?>">Mis cursos</a>
+                          </li>
+                          <li>
+                            <a href="<?=site_url('courses/my_courses')?>">Cursos creados por mi</a>
+                          </li>
+                          <li>
+                            <a href="<?=site_url('courses/my_courses')?>">Crear Curso</a>
+                          </li>
+                          <li>
+                            <a href="<?=site_url('courses/my_courses')?>">Monedero</a>
+                          </li>
+                          <li class="divider"></li>
+                          <li>
+                            <a href="<?=site_url('profiles')?>">Editar Cuenta</a>
+                          </li>
+                          <li>
+                            <a href="<?=site_url('login/logout')?>"><?=$this->lang->line('logout')?></a>
+                          </li>
                         </ul>
                     </li>
                 <?php endif; ?>

@@ -4,7 +4,7 @@ class Login extends DataMapper {
 
 	var $table = 'users';
 	
-	var $has_one = array("role");
+	var $has_one = array("role","user_thumbnail");
 
 	var $created_field = 'added';
     var $updated_field = 'edited';

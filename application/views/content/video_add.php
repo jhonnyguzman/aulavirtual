@@ -10,14 +10,14 @@
 					<!-- The global progress bar -->
 					<div id="progress" class="progress progress-success progress-striped progress-upload-video">
 					    <div class="bar"></div>
-					    <small>Utiliza archivos .mp4, .mov, o .wmv que no sean mayores de 1.0 GiB.</small>
+					    <small>Utiliza archivos .mp4 o .flv que no sean mayores de 1.0 GiB.</small>
 					</div>
 					<div class="video_file_name">
 						<small></small>
 					</div>
 					<div>
 						Consejo: Video is FormaNube's preferred delivery type. At least 60% of your course content 
-						should be high resolution video (720p or HD) with excellent audio and lighting. Upload your video directly to Udemy for best quality viewing 
+						should be high resolution video (720p or HD) with excellent audio and lighting. Upload your video directly to FormaNube for best quality viewing 
 						and to make full use of learning tools! Widescreen 16:9 ratio is preferred but 4:3 accepted. Average video length is between 2-15 minutes..
 					</div>
 				</div>

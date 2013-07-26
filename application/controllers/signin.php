@@ -37,9 +37,11 @@ class Signin extends CI_Controller {
 		$u->error_message('login', 'Email or password invalid.');
 
 		if($u->exists()){
+			$ut = new User_thumbnail();
+			$ut->where("user_id",$u->id)->get();
 			// In caso di primo accesso
 			$lastaccess = !empty($u->lastaccess) ? $this->basicrud->mktime_format($u->lastaccess) : '-';
-	
+			
 			$session = array(
 				'logged_in'				=> true, 
 				'user_email'			=> $u->email,
@@ -47,7 +49,8 @@ class Signin extends CI_Controller {
 				'user_name'				=> $u->name,
 				'user_surname'			=> $u->surname,
 				'user_lastaccess'		=> $lastaccess,
-				'role_id'	=> $u->role_id
+				'role_id'	=> $u->role_id,
+				'user_avatar' => $this->basicrud->get_avatar($ut)
 			);
 					
 			$u->lastaccess = mktime();

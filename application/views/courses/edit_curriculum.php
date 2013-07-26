@@ -22,12 +22,12 @@
 			<ul id="newChapter" class="item-list-custom newChapter">
 				<li>
 					<div class="title-chapter" id="div-add-title">
-						Agregar Capitulo
+						Agregar M&oacute;dulo
 					</div>
 			  		<div class="title-chapter" id="add-chapter"> 
 			  			<!--<form class="form-horizontal">-->
 						  <div class="control-group">
-						    <label class="control-label" for="input-chapter-name">Agregar Capitulo</label>
+						    <label class="control-label" for="input-chapter-name">Agregar M&oacute;dulo</label>
 						    <div class="controls">
 						      <input type="text" name= "input-chapter-name" id="input-chapter-name" placeholder="Titulo">
 						    </div>
@@ -48,7 +48,8 @@
 					<li data-order="<?=$chapter->order?>" data-id="<?=$chapter->id?>" data-name="<?=$chapter->name?>" id="item_<?=$chapter->id?>">
 				  		<div class="row title-chapter">
 				  			<div class="span6 btns-left">
-					  			<?=$chapter->name?> 
+				  				<span class="chapter-order"><?=($chapter->order + 1)?>&nbsp;-</span> 
+					  			<span class="chapter-name"><?=$chapter->name?></span>
 					  			<i class="icon-pencil icon-white chapter-edit chapter-edit-hidden"></i>
 					  		</div>
 					  		<div class="span6 btns-right">
@@ -81,7 +82,9 @@
 					  			<li data-order="<?=$lesson->order?>" data-id="<?=$lesson->id?>" data-name="<?=$lesson->name?>" id="item_<?=$lesson->id?>">
 				  					<div class="row title-lesson">
 				  						<div class="span6 btns-left">
-				  							<?=$lesson->name?> <i class="icon-pencil icon-white lesson-edit lesson-edit-hidden"></i>
+				  							<span class="lesson-order"><?=($chapter->order + 1).'.'.($lesson->order + 1)?>&nbsp;-</span> 
+				  							<span class="lesson-name"><?=$lesson->name?></span> 
+				  							<i class="icon-pencil icon-white lesson-edit lesson-edit-hidden"></i>
 				  						</div>
 				  						<div class="span6 btns-right">
 				  							<?php if($lesson->content_text->count() > 0): ?>
@@ -416,8 +419,15 @@
 	        .appendTo(li);
 	    var btns_left = $("<div/>")
 	    	.attr("class","span6 btns-left")
-	    	.html(chapter.name)
 	    	.appendTo(div);
+	    var chapter_order = $("<span/>")
+	    	.attr("class","chapter-order")
+	    	.text((parseInt(chapter.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	    var chapter_name = $("<span/>")
+	    	.attr("class","chapter-name")
+	    	.text(chapter.name)
+	    	.appendTo(btns_left);
 	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white chapter-edit chapter-edit-hidden")
 	    	.css("margin-left","3px")
@@ -478,6 +488,9 @@
 			.attr("class","item-list-custom lessons lessons-hidden")
 			.appendTo(li);
 
+		$(".lessons,.newLesson",li).slideToggle(500, function(){
+	  		$(i).toggleClass('icon-upload', $(this).is(':visible')); 	
+	    });
 		$.scrollTo(li,800);
 		
 	}
@@ -550,8 +563,18 @@
 	        
 	    var btns_left = $("<div/>")
 	    	.attr("class","span6 btns-left")
-	    	.html(chapter.name)
 	    	.appendTo(div);
+	    
+	    var chapter_order = $("<span/>")
+	    	.attr("class","chapter-order")
+	    	.text((parseInt(chapter.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	    
+	    var chapter_name = $("<span/>")
+	    	.attr("class","chapter-name")
+	    	.text(chapter.name)
+	    	.appendTo(btns_left);
+
 	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white chapter-edit chapter-edit-hidden")
 	    	.css("margin-left","3px")
@@ -634,28 +657,42 @@
 	   return false;
 	});
 	$(document).on("click", ".btnEditLesson", function(e) {
+	   var obj = $(this);
+	   if(isProcessing){
+			return;
+	   }
+	   isProcessing = true;
 	   var chapter_content = $(this).parent().parent().parent().parent().parent().parent();
 	   var chapter_id = chapter_content.data('id');
 	   var cList = $(this).parent().parent().parent().parent();
 	   var add_lesson = $(this).parent().parent().parent();
 	   var lesson_name = add_lesson.find($("input[name=input-lesson-edit-name]"));
-	   var order = getLessonOrder(chapter_id);
+	   var order = getLessonOrder(chapter_id, 'edit');
 	   $.ajax({
 			url: "<?=site_url('lessons/update')?>",
 			type: "POST",
 			data: {'id': cList.data('id'), name: lesson_name.val(), 'order': order, 'chapter_id': chapter_id },
 			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
 			success: function(data){
+				isProcessing = false;
 				if(data.message_status == 'success'){
 					updateLessonView(cList, data.lesson);
-					showMessageNewChapter(data.message_html);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
+					lesson_name.val("");
 				}else{
-					showMessageNewChapter(data.message_html);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}
 				
 			},
 			error: function(data){
+				isProcessing = false;
 				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
 			}
 		});
 	});
@@ -683,11 +720,15 @@
 		}
 	});
 
-	function getLessonOrder(chapter_id)
+	function getLessonOrder(chapter_id, action)
 	{
 		var last_li = $('#lessons-'+chapter_id+' > li:last');
 		if(last_li.data("order") != null){
-			return parseInt(last_li.data("order"));
+			if(action == "edit"){
+			 	return parseInt(last_li.data("order"));
+			}else{
+				return parseInt(last_li.data("order")) + 1;
+			}
 		}
 		else
 			return 0;
@@ -718,8 +759,15 @@
 	        .appendTo(li);
 	    var btns_left = $("<div/>")
 	    	.attr("class","span6 btns-left")
-	    	.html(lesson.name)
 	    	.appendTo(div);
+	    var lesson_order = $("<span/>")
+	    	.attr("class","chapter-order")
+	    	.text((parseInt(lesson.chapter_order) + 1)+'.'+(parseInt(lesson.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	    var lesson_name = $("<span/>")
+	    	.attr("class","chapter-name")
+	    	.text(lesson.name)
+	    	.appendTo(btns_left);
 	    var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white lesson-edit lesson-edit-hidden")
 	    	.css("margin-left","3px")
@@ -801,13 +849,22 @@
 		li.attr("data-name",lesson.name);
 		var div = $(".title-lesson",li);
 		var btns_left = $(".btns-left",div);
+		btns_left.empty();
 		
-		btns_left.html(lesson.name);
+		var lesson_order = $("<span/>")
+	    	.attr("class","chapter-order")
+	    	.text((parseInt(lesson.chapter_order) + 1)+'.'+(parseInt(lesson.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	    var lesson_name = $("<span/>")
+	    	.attr("class","chapter-name")
+	    	.text(lesson.name)
+	    	.appendTo(btns_left);
+
 		var i = $("<i/>")
 	    	.attr("class","icon-pencil icon-white lesson-edit lesson-edit-hidden")
 	    	.css("margin-left","3px")
 	    	.appendTo(btns_left);
-	   
+	   	
 	    $(".lesson-title-edit",li).remove();
 	    div.css("display","block");
 	}

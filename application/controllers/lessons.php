@@ -35,7 +35,7 @@ class Lessons extends CI_Controller {
 			$lesson->chapter_id = $this->input->post("chapter_id");
 			
 			if($lesson->save()){
-				$result['lesson'] = array('id' => $lesson->id, 'name' => $lesson->name, 'order' => $lesson->order);
+				$result['lesson'] = array('id' => $lesson->id, 'name' => $lesson->name, 'order' => $lesson->order, 'chapter_order' => $lesson->chapter->order);
 				$result['message_status'] = 'success';
 				$result['message_description'] = 'Tema creado correctamente';
 				$result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
@@ -69,7 +69,7 @@ class Lessons extends CI_Controller {
 				$lesson->order = $this->input->post("order");
 				$lesson->chapter_id = $this->input->post("chapter_id");
 				if($lesson->save()){
-					$result['lesson'] = array('id' => $lesson->id, 'name' => $lesson->name, 'order' => $lesson->order);
+					$result['lesson'] = array('id' => $lesson->id, 'name' => $lesson->name, 'order' => $lesson->order, 'chapter_order' => $lesson->chapter->order);
 					$result['message_status'] = 'success';
 					$result['message_description'] = 'Tema actualizado correctamente';
 					$result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 

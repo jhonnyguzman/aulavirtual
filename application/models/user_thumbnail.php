@@ -4,7 +4,7 @@ class User_thumbnail extends DataMapper {
 
 	var $table = 'user_thumbnails';
 	
-	var $has_one = array("user");
+	var $has_one = array("user",'login');
 
     var $validation = array(
 	    'file_name' => array(

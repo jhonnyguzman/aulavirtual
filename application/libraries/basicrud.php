@@ -970,4 +970,13 @@ class BasiCrud {
 	public function builtUrlPDF($content_pdf){
 		return site_url()."uploads/contents/pdfs/".$content_pdf->file_name;
 	}
+
+	public function get_avatar($user_thumbnail){
+		if($user_thumbnail->exists())
+		{
+			return base_url()."uploads/user_thumbnails/".$user_thumbnail->file_name;
+		}else{
+			return base_url()."assets/img/default_avatar.png";
+		}
+	}
 }

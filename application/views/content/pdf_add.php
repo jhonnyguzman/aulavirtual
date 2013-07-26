@@ -3,15 +3,14 @@
 		<!-- The global progress bar -->
 		<div id="progress" class="progress progress-success progress-striped progress-upload-pdf">
 		    <div class="bar"></div>
-		    <small>Utiliza archivos pdfs que no sean mayores de 1.0 GiB.</small>
+		    <small>Utiliza archivos .pdf que no sean mayores de 1.0 GiB.</small>
 		</div>
 		<div class="pdf_file_name">
 			<small></small>
 		</div>
 		<div>
-			Consejo: PDF is FormaNube's preferred delivery type. At least 60% of your course content 
-			should be high resolution video (720p or HD) with excellent audio and lighting. Upload your pdf directly to FormNube for best quality viewing 
-			and to make full use of learning tools! Widescreen 16:9 ratio is preferred but 4:3 accepted. Average video length is between 2-15 minutes..
+			Consejo: Una lección de documento sirve para todo tipo de documento 
+			PDF o apunte para tus alumnos. Puedes hacer que sea un documento descargable como referencia rápida y fácil. Asegurate de que todo sea legible!
 		</div>
 	</div>
 	<div class="span3 btns_upload_pdf">
