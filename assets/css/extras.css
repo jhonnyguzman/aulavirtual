@@ -301,6 +301,18 @@ body {
     margin-left:-40%; /* width/2) */
 	max-height: 800px;
 }
+.modal.video-preview-modal {
+    width: 60%; /* respsonsive width */
+    margin-left:-30%; /* width/2) */
+	max-height: 800px;
+}
+
+.modal.video-preview-modal .modal-close-boton{
+	padding: 0px !important;
+	background: #333;
+	margin-top: -5px;
+	text-align: right;
+}
 
 .title-chapter{
 	background-color: #666;

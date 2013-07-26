@@ -109,6 +109,70 @@ class Courses extends CI_Controller {
 		$this->load->view("courses/newtitle");
 	}
 
+	public function course_new()
+	{
+		$languages = new Language();
+		$course_categories = new Course_category();
+		$moneys = new Money();
+		$data['languages'] = $languages->get();
+		$data['course_categories'] = $course_categories->get();
+		$data['moneys'] = $moneys->get();
+		$this->load->view("courses/new",$data);	
+	}
+
+	public function course_create()
+	{
+		$flag = FALSE;
+		$post = $this->input->post(NULL,TRUE);
+		if (!empty($_FILES['course_thumbnail']['name'])) {
+			$result = $this->do_upload();
+			$flag = TRUE;
+		}
+    	if($flag == TRUE && isset($result['error'])){
+    		$languages = new Language();
+			$course_categories = new Course_category();
+			$moneys = new Money();
+			$data['languages'] = $languages->get();
+			$data['course_categories'] = $course_categories->get();
+			$data['moneys'] = $moneys->get();
+    		$data['errors'] = $result['error'];
+			$this->load->view("courses/new",$data);
+    	}else{
+    		$c = new Course();
+			$c->title = $post["title"];
+			$c->owner_id = $this->session->userdata("user_id");
+			$c->subtitle = $post["subtitle"];
+			$c->keywords = $post["keywords"];
+			$c->course_category_id = $post["course_category_id"];
+			$c->language_id = $post["language_id"];
+			$c->summary = $this->input->post("summary",TRUE);
+			$c->price = $post["price"];
+			$c->money_id = $post["money_id"];
+			if($c->save()){
+					if($flag){
+		        		$ct = new Course_thumbnail();
+		        		$ct->course_id = $c->id;
+		        		$ct->file_name = $result['data']['file_name'];
+			        	$ct->file_type = $result['data']['file_type'];
+			        	$ct->file_size = $result['data']['file_size'];
+						$ct->save();
+					}		        	
+		        	redirect("courses/course-manage/".$c->id);
+			}else{
+				$languages = new Language();
+				$course_categories = new Course_category();
+				$moneys = new Money();
+				$data['languages'] = $languages->get();
+				$data['course_categories'] = $course_categories->get();
+				$data['moneys'] = $moneys->get();
+				$data['errors'] = $c->error->string;
+				$this->load->view("courses/new",$data);
+			}
+    	}	
+		
+		
+	}
+
 	public function createTitle(){
 		$c = new Course();
 		$c->title = $this->input->post("title");
@@ -301,7 +365,31 @@ class Courses extends CI_Controller {
 	}
 
 
+	public function do_upload()
+	{
+		$result = array();
+		$config['upload_path'] 		= './uploads/course_thumbnails/';
+		$config['allowed_types'] 	= 'gif|jpg|png';
+		$config['max_size']			= '300';
+		$config['max_width']  		= '500';
+		$config['max_height']  		= '600';
+		$config['overwrite']  		= TRUE;
+		$config['file_name']  		= 'course_thumbnail_'.random_string('unique');
 
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('course_thumbnail'))
+		{
+			$result["error"] = $this->upload->display_errors();
+		}
+		else
+		{
+			$result['data'] = $this->upload->data();
+			$result['data']['file_name'] = $config['file_name'].$result['data']['file_ext'];
+		}
+
+		return $result;
+	}
 
 
 

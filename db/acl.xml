@@ -611,6 +611,9 @@
       <Cl au="0" df="" nm="instruction" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="money_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="" nm="created_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -767,6 +770,23 @@
     </Tbl>
     <Tbl UsSo="1" nm="materials">
       <TblOpts/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="moneys">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkmoneys"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="name" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="15" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="notifications">
@@ -1358,6 +1378,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="chapters" x="440" y="615"/>
     <TbGl bkCl="ff3333ff" sch="schemaA" tbl="course_testimonies" x="164" y="150"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_sliders" x="307" y="756"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="moneys" x="26" y="276"/>
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.chapters.chapters_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
@@ -1397,7 +1418,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="170">
+  <RnmMgr NxRnmId="174">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1769,6 +1790,9 @@
       <Rnm id="140" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="173" nNm="money_id" oNm="meney_id"/>
+      <Rnm id="172" nNm="meney_id" oNm="menoy_id"/>
+      <Rnm id="170" nNm="menoy_id" oNm="created_at"/>
       <Rnm id="143" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_audiences" SupCls="Schema" SupNme="schemaA">
@@ -1835,6 +1859,9 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_sliders" SupCls="Schema" SupNme="schemaA">
       <Rnm id="169" nNm="course_id" oNm="courses_id"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="171" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1858,7 +1885,7 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (55)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (56)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
     <TreePath>/Diagrams (1)/diagramA/Notes (0)</TreePath>

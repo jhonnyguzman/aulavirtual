@@ -49,7 +49,7 @@ class Course_thumbnails extends CI_Controller {
 		$ct->where('course_id', $this->input->post("course_id"))->get();
 		if($ct->exists())
 		{
-			$result = $this->do_upload($ct->course_id);
+			$result = $this->do_upload();
         	if(isset($result['error'])){
         		$data['course'] = new Course($ct->course_id);
         		$data['course_thumbnail'] = $ct;
@@ -71,7 +71,7 @@ class Course_thumbnails extends CI_Controller {
 	        	}	
 			}
 		}else{
-        	$result = $this->do_upload($this->input->post("course_id"));
+        	$result = $this->do_upload();
         	if(isset($result['error'])){
         		$data['course'] = new Course($this->input->post("course_id"));
         		$data['course_thumbnail'] = $ct;
@@ -97,7 +97,7 @@ class Course_thumbnails extends CI_Controller {
 	}
 
 
-	public function do_upload($course_id)
+	public function do_upload()
 	{
 		$result = array();
 		$config['upload_path'] 		= './uploads/course_thumbnails/';
@@ -106,7 +106,7 @@ class Course_thumbnails extends CI_Controller {
 		$config['max_width']  		= '500';
 		$config['max_height']  		= '600';
 		$config['overwrite']  		= TRUE;
-		$config['file_name']  		= 'course_thumbnail_'.$course_id;
+		$config['file_name']  		= 'course_thumbnail_'.random_string('unique');
 
 		$this->load->library('upload', $config);
 

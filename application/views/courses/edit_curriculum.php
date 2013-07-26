@@ -13,7 +13,7 @@
 	    <div class="span9">
 	    	<div>
 		    	<div class="page-header">
-				  <h3>Curr&iacute;culo <small>Crea el esquema de tu curso y agrega los materiales.</small></h3>
+				  <h3>Contenido <small>Crea el esquema de tu curso y agrega los materiales.</small></h3>
 				</div>
 			</div>
 	    	
@@ -111,8 +111,8 @@
 						  							</div>
 					  							</div>
 					  							<div class="span12 more">
-					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
-					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
+					  								<!--<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
+					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>-->
 					  							</div>
 				  							</div>	
 				  						<?php endif; ?>
@@ -130,7 +130,6 @@
 					  							</div>
 					  							<div class="span12 more">
 					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
-					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
 					  							</div>
 				  							</div>	
 				  						<?php endif; ?>
@@ -147,8 +146,8 @@
 						  							</div>
 					  							</div>
 					  							<div class="span12 more">
-					  								<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
-					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>
+					  								<!--<a href="#" class="btn btn-success btn-small">Agregar Descripci&oacute;n</a>
+					  								<a href="#" class="btn btn-success btn-small">Agregar Material Extra</a>-->
 					  							</div>
 				  							</div>	
 				  						<?php endif; ?>

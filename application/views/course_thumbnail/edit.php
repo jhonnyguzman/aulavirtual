@@ -33,6 +33,10 @@
               <input type="hidden" name="course_id" value="<?=$course->id?>">
     			    <label>Seleccione Im&aacute;gen:</label>
     			    <input type="file" name="course_thumbnail">
+              <div class="well well-large">
+                <h4 class="blue">Sugerencia</h4>
+                Tu imagen, clara y sin pixelar, debe tener un tamaño mínimo de 480x270. Si quieres que tenga un aspecto genial en iPad o tablet, hazla de 960x540.
+              </div>
     			    <br>
     			    <button type="submit" class="btn btn-primary">Guardar</button>
     		  </form>

@@ -5,7 +5,7 @@ class Course extends DataMapper {
 	var $table = 'courses';
 	
 	var $has_many = array("course_goal","course_audience","course_requirement","chapter", "course_user","course_faq", "course_testimony");
-	var $has_one  = array("course_thumbnail", "user");
+	var $has_one  = array("course_thumbnail", "user","money");
 
 	var $validation = array(
 	    'title' => array(
@@ -18,7 +18,7 @@ class Course extends DataMapper {
 	    ),
 		'price' => array(
 	        'label' => 'Price',
-	        'rules' => array('trim', 'max_length' => 4)
+	        'rules' => array('trim', 'required', 'max_length' => 4)
 	    ),
 
 	);

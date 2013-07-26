@@ -1,8 +1,8 @@
-<div class="modal-body modal-preview-video">
-	<div id='video_preview' class="video_preview"></div>
-</div>
-<div class="modal-footer">
-	<button class="btn btn-mini" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+<!--<div class="modal-body modal-preview-video">-->
+<div id='video_preview' class="video_preview"></div>
+<!--</div>-->
+<div class="modal-close-boton">
+	<button class="btn btn-mini btn-success" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 </div>
 
 <script type="text/javascript">
