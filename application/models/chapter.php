@@ -4,7 +4,7 @@ class Chapter extends DataMapper {
 
 	var $table = 'chapters';
 	
-	var $has_many = array("lesson");
+	var $has_many = array("lesson",'quiz');
 	var $has_one  = array("course");
 
 	var $validation = array(

@@ -42,6 +42,34 @@
       </Fk>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="answer_type_multis">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkanswer_type_multis"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="question_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="description" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="result" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="answer_type_multi_question_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="questions" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="answer_type_multis" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="question_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="chapters">
       <TblOpts/>
       <Pk ClNs="id" nm="pkchapters"/>
@@ -818,17 +846,12 @@
       <Cl au="0" df="" nm="question_type_multi_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="answer" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="question_type_multi" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="question_answer" oe="1" sch="schemaA" zr="0"/>
-        <ClPr cdCl="question_type_multi_id" prCl="id"/>
-      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="question_type_blank">
       <TblOpts/>
       <Pk ClNs="id" nm="pkquestion_type_blank"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="question" nu="0">
@@ -837,74 +860,87 @@
       <Cl au="0" df="" nm="quiz_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="question_type_blank_quiz_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="question_type_blank" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="quiz_id" prCl="id"/>
-      </Fk>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="question_type_boolean">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pkquestion_type_boolean"/>
-      <Cl au="0" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="question" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="status" nu="0">
-        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="quiz_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="3" nm="question_type_boolean_quiz_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="question_type_boolean" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="quiz_id" prCl="id"/>
-      </Fk>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="question_type_multi">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pkquestion_type_multi"/>
-      <Cl au="0" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="question" nu="0">
-        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="quiz_id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="3" nm="question_type_multi_quiz_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
-        <CdTb mn="1" nm="question_type_multi" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="quiz_id" prCl="id"/>
-      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="questions">
       <TblOpts/>
+      <Pk ClNs="id" nm="pkquestions"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="description" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="order" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="quiz_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="type" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="result" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="status" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="justification" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="questions_quiz_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="quizzes" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="questions" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="quiz_id" prCl="id"/>
+      </Fk>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="quizzes">
       <TblOpts/>
       <Pk ClNs="id" nm="pkquizzes"/>
-      <Cl au="0" df="" nm="id" nu="0">
+      <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="lesson_id" nu="0">
+      <Cl au="0" df="" nm="chapter_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="description" nu="0">
+      <Cl au="0" df="" nm="title" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="description" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="quizzes_lesson_id" prLkCl="id" upAc="3">
-        <PrTb mn="0" nm="lessons" oe="1" sch="schemaA" zr="0"/>
+      <Cl au="0" df="" nm="order" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="status" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="course_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="quizzes_chaptare_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="chapters" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="quizzes" oe="0" sch="schemaA" zr="1"/>
-        <ClPr cdCl="lesson_id" prCl="id"/>
+        <ClPr cdCl="chapter_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="quizzes_course_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="courses" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="quizzes" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="course_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
     </Tbl>
@@ -1339,11 +1375,10 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_interests" x="562" y="1284"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_links" x="562" y="1247"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="languages" x="686" y="604"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="quizzes" x="362" y="1005"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="questions" x="304" y="944"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_type_multi" x="37" y="929"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_type_blank" x="41" y="1017"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_type_boolean" x="39" y="1108"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="quizzes" x="422" y="904"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="questions" x="287" y="1080"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="answer_type_multis" x="29" y="1087"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="question_type_blank" x="38" y="1233"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="lessons" x="645" y="826"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="contents" x="892" y="706"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="content_videos" x="1079" y="603"/>
@@ -1375,11 +1410,12 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="user_thumbnails" x="611" y="10"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_status" x="15" y="640"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_thumbnails" x="145" y="711"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="chapters" x="440" y="615"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="chapters" x="498" y="616"/>
     <TbGl bkCl="ff3333ff" sch="schemaA" tbl="course_testimonies" x="164" y="150"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="course_sliders" x="307" y="756"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="moneys" x="26" y="276"/>
     <FkGl bkCl="ff000000" nm="schemaA.adresses.adresses_user_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.answer_type_multis.answer_type_multi_question_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.chapters.chapters_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_audios.content_audios_lesson_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.content_images.content_images_lesson_id"/>
@@ -1405,11 +1441,9 @@
     <FkGl bkCl="ff000000" nm="schemaA.despatchs.despatchs_adress_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.lessons.lessons_chapter_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.material_files.material_files_lesson_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_answer.answer"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_blank.question_type_blank_quiz_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_boolean.question_type_boolean_quiz_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.question_type_multi.question_type_multi_quiz_id"/>
-    <FkGl bkCl="ff000000" nm="schemaA.quizzes.quizzes_lesson_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.questions.questions_quiz_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.quizzes.quizzes_chaptare_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.quizzes.quizzes_course_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.rules.rules_role_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.user_preferences.id_user_preferences"/>
     <FkGl bkCl="ff000000" nm="schemaA.user_thumbnails.user_thumbnails_user_id"/>
@@ -1418,7 +1452,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="174">
+  <RnmMgr NxRnmId="196">
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="1" nNm="user_privacies" oNm="user_privacy"/>
     </RnmCh>
@@ -1706,15 +1740,18 @@
       <Rnm id="97" nNm="lesson" oNm="id_lesson"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="quizzes" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="174" nNm="chapter_id" oNm="lesson_id"/>
       <Rnm id="98" nNm="lesson_id" oNm="id_lesson"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_multi" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="answer_type_multis" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="185" nNm="description" oNm="de"/>
+      <Rnm id="184" nNm="de" oNm="quiz_id"/>
       <Rnm id="99" nNm="quiz_id" oNm="id_quiz"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_blank" SupCls="Schema" SupNme="schemaA">
       <Rnm id="100" nNm="quiz_id" oNm="id_quiz"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_boolean" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="answer_type_boolean" SupCls="Schema" SupNme="schemaA">
       <Rnm id="101" nNm="quiz_id" oNm="id_quiz"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_answer" SupCls="Schema" SupNme="schemaA">
@@ -1749,7 +1786,9 @@
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
       <Rnm id="117" nNm="telephones" oNm="telephone_numbers"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="question_type_boolean" SupCls="Schema" SupNme="schemaA">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="answer_type_boolean" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="179" nNm="description" oNm="correct"/>
+      <Rnm id="177" nNm="correct" oNm="status"/>
       <Rnm id="119" nNm="status" oNm="true"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="course_users" SupCls="Schema" SupNme="schemaA">
@@ -1862,6 +1901,49 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="courses" SupCls="Schema" SupNme="schemaA">
       <Rnm id="171" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="quizzes" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="175" nNm="title" oNm="description"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="answer_type_boolean" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="176" nNm="question_id" oNm="question"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="178" nNm="answer_type_boolean" oNm="question_type_boolean"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="180" nNm="result" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="186" nNm="course_id" oNm="created_at"/>
+      <Rnm id="181" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="answer_type_multis" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="183" nNm="question_id" oNm="question:id"/>
+      <Rnm id="182" nNm="question:id" oNm="question"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="189" nNm="status" oNm="created_at"/>
+      <Rnm id="187" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="188" nNm="status" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="195" nNm="answer_type_multis" oNm="question_type_multis"/>
+      <Rnm id="190" nNm="question_type_multis" oNm="question_type_multi"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="191" nNm="justification" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="questions" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="192" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="quizzes" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="193" nNm="course_id" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="quizzes" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="194" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1885,7 +1967,7 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (56)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (55)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
     <TreePath>/Diagrams (1)/diagramA/Notes (0)</TreePath>

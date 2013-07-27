@@ -255,8 +255,10 @@ class Courses extends CI_Controller {
 		if($course_id != ""){
 			$c = new Course();
 			$c->where("id", $course_id)->where("owner_id", $this->session->userdata("user_id"))->get();
-			if($c->exists()){				
+			if($c->exists()){
+				$moneys = new Money();				
 				$data["course"] = $c;				
+				$data["moneys"] = $moneys->get();				
 				$this->load->view("courses/edit_price",$data);
 			}else{
 				show_404('page',FALSE);
@@ -272,15 +274,15 @@ class Courses extends CI_Controller {
 		$c = new Course();
 		$c->where("id", $this->input->post('id') )->where("owner_id", $this->session->userdata("user_id"))->get();
 		if($c->exists()){
-			$c->summary = $this->input->post("summary",TRUE);
-			$c->instruction = $this->input->post("instruction");
 			$c->price = $post["price"];
+			$c->money_id = $post["money_id"];
 			if($c->save()){
 				$this->session->set_flashdata('flashConfirm', "Precio del Curso actualizado correctamente."); 
 				redirect("courses/course-edit-price/".$c->id);
 			}else{
-				
+				$moneys = new Money();			
 				$data["course"] = $c;
+				$data["moneys"] = $moneys->get();				
 				$data['errors'] = $c->error->string;
 				$this->load->view("courses/edit_price",$data);
 			}

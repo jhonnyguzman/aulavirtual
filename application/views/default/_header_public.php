@@ -90,7 +90,7 @@
                   <li class="divider-vertical"></li>
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?=$this->session->userdata("user_avatar")?>" class="img-circle img-user-avatar"/></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu  dropdown-menu-user-perfil">
                           <li>
                             <a href="<?=site_url('courses/my_courses')?>">Mis cursos</a>
                           </li>

@@ -17,13 +17,23 @@ body {
 .add-lesson{
 	display: none;
 }
-
 #div-add-title:hover{
 	background-color: #333;
 }
 .div-add-lesson:hover{
 	background-color: #333;
 }
+.add-quiz{
+	display: none;
+}
+#div-add-quiz:hover{
+	background-color: #333;
+}
+.div-add-quiz:hover{
+	background-color: #e5e5e5;
+}
+
+
 
 .bar-search{
 	border-top: 1px solid #e5e5e5;
@@ -69,16 +79,19 @@ body {
 .box-content{
 	padding: 5px;
 	padding-right: 0px;
+	margin: 0px;
 }
 
 .box-title{
 	width: 30%;
-	height: 40px;
+	height: 32px;
 	background-color: #ededed;
-	margin-top: -35px;
+	margin-top: -37px;
 	margin-bottom: 5px;
 	float: right;
 	font-weight: bold;
+	border-radius: 0 3px 0 0;
+	line-height: 2;
 }
 .box-title div{
 	display: inline-block;
@@ -103,6 +116,10 @@ body {
 	width: 100%;
 }
 
+.btnAddLesson{
+	margin-right: 3px;
+}
+
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -113,6 +130,9 @@ body {
 
 .content-btns-bottom{
 	margin-top: 5px;
+}
+.content-btns-bottom-questions{
+	text-align: center;
 }
 
 .container-top{
@@ -136,7 +156,8 @@ body {
 }
 
 
-.chapter-edit-hidden, .chapter-bull-down-hidden, .lessons-hidden,.newLesson-hidden, .lesson-edit-hidden{
+.chapter-edit-hidden, .chapter-bull-down-hidden, .lessons-hidden,.newLesson-hidden, .lesson-edit-hidden,
+.quizzes-hidden,.newQuiz-hidden, .quiz-edit-hidden{
 	display: none;
 }
 
@@ -211,6 +232,22 @@ body {
 	margin-bottom: 0px;
 }
 
+.dropdown-menu-user-perfil{
+	padding: 20px;
+	background: fixed;
+	border-radius: 5px;
+	background-color: #efefef;
+	background-image: -webkit-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -moz-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -o-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: -ms-radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+	background-image: radial-gradient(center 350px, circle, rgba(255, 255, 255, 0.95) 20px, rgba(240, 240, 240, 0.95) 450px, rgba(120, 120, 120, 0.98) 1200px), url('../img/stars.png');
+
+}
+
+.dropdown-menu-user-perfil li a{
+	font-size: 15px;
+}
 
 .item-list-custom {
 	margin: 0;
@@ -221,9 +258,9 @@ body {
 .item-list-custom>li {
 	/*border: 1px solid #DDD;*/
 	/*border-left-width: 3px;*/
-	padding: 9px;
+	padding: 6px;
 	background-color: #FFF;
-	margin-top: -1px;
+	margin-top: 0px;
 	position: relative;
 }
 .item-list-custom>li.item-default {
@@ -251,6 +288,26 @@ body {
 .img-user-avatar{
 	width: 24px;
 	height: 24px;
+}
+
+
+.quizzes > li {
+	padding: 3px;
+}
+.quiz-content{
+	text-align: left;
+}
+.quiz-content>p{
+	margin-top: 3px;
+	margin-bottom: 3px;
+	font-weight: bold;
+	color: #616060;
+}
+.quiz-bull-down-hidden{
+	display: none;
+}
+.questions > li{
+	margin: 0px;
 }
 
 .ui-state-highlight { 
@@ -314,45 +371,87 @@ body {
 	text-align: right;
 }
 
+.newChapter li .title-chapter{
+	padding: 5px;
+}
+
+.newLesson li .title-lesson{
+	padding: 5px;
+	margin-bottom: -4px;
+	margin-left: -3px;
+	margin-right: -3px;
+}
+.newQuiz li .title-quiz{
+	padding: 5px;
+	margin-bottom: -4px;
+	margin-left: -3px;
+	margin-right: -3px;
+}
+
 .title-chapter{
 	background-color: #666;
 	color: #fff;
 	margin-left: -9px;
 	margin-right: -9px;
 	margin-top: -9px;
-	margin-bottom: 1px;
-	padding: 10px;
+	margin-bottom: 0px;
+	padding: 3px;
 	border-radius: 4px;
+	padding-left: 3px;
 }
 
 .title-chapter .span6, .title-lesson .span6{
 	line-height: 2;
 }
 
-.title-chapter .btns-right, .title-lesson .btns-right{
+.title-chapter .btns-right, .title-lesson .btns-right, .title-quiz .btns-right{
 	text-align: right;
 }
 
 .title-lesson{
-	background-color: #f38787;
+	background-color: #438eb9;
 	color: #fff;
-	margin-left: -9px;
-	margin-right: -9px;
-	margin-bottom: -9px;
-	padding: 10px;
+	/*margin-left: -9px;
+	margin-right: -9px;*/
+	margin-bottom: -2px;
+	padding: 2px;
 	border-radius: 4px;
+	padding-left: 3px;
 }
+.title-quiz{
+	background-color: #d6d6d6;
+	color: #333;
+	/*margin-left: -9px;
+	margin-right: -9px;*/
+	margin-bottom: -2px;
+	padding: 2px;
+	border-radius: 4px;
+	padding-left: 3px;
+}
+.title-question{
+	/*background-color: #d6d6d6;*/
+	color: #333;
+	/*margin-left: -9px;
+	margin-right: -9px;*/
+	margin-bottom: -2px;
+	padding: 2px;
+	padding-left: 3px;
+}
+.type-description{
+	margin-left: 6px;
+}
+
 .lesson-content{
 	background-color: #65c465;
 	margin-top: 9px;
 	padding: 10px;
 }
 .lesson-title-edit{
-	background-color: #f38787;
+	background-color: #438eb9;
 	color: #fff;
-	margin-left: -9px;
+	/*margin-left: -9px;
 	margin-right: -9px;
-	margin-bottom: 1px;
+	margin-bottom: 1px;*/
 	padding: 10px;
 	border-radius: 4px;
 }
@@ -365,6 +464,10 @@ body {
 	min-height: 250px;
 	max-height: 100%;
 }
+.lessons > li {
+	padding: 3px;
+}
+
 .lessons li .box-content .box .wysiwyg-toolbar{
 	width: 95%;
 }
@@ -396,8 +499,10 @@ body {
 	width: 70%;
 	text-align: right;
 }
-.single-item,  .more{
+.single-item, .more{
 	text-align: left;
+	margin: 0px !important;  
+	padding-right: 5px !important;
 }
 .single-item .span6 img{
 	float: left;
@@ -410,6 +515,14 @@ body {
 .video_file_name, .pdf_file_name{
 	text-align: right;
 }
+.text-editor-questions{
+	height: 100px;
+}
 .top-bar-home{
 	/*min-height: 60px !important;*/
+}
+.vf_checks-edit label span{
+	font-size: 12px !important;
+	font-weight: bold !important;
+	color: #333;
 }
