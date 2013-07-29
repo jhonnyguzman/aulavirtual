@@ -48,17 +48,10 @@ class Courses extends CI_Controller {
 		$category = 1; 
 		$courses_user->where("user_category_id", $category)->where("user_id", $this->session->userdata("user_id"))->get();
 		
-		// $faqs = new Course_faq();
-		// $faqs->where("course_id",$courses->id);
-
-		// $testimonies = new Course_testimony();
-		// $testimonies->where("course_id",$courses_id);
-
 		$data["courses"] = $courses;
 		$data["courses_user"] = $courses_user;
 		$data["progress"] = $this->_progress(); 
-		// $data["faqs"] = $faqs;
-		// $data["testimonies"] = $testimonies;
+		$data["error_evaluation"] = $this->_error_evaluations();
 
 		$this->load->view("courses/my_courses",$data);
 	}
@@ -67,9 +60,17 @@ class Courses extends CI_Controller {
 	private function _progress(){
 
 		//TODO: Crear una manera de medir el porcentaje de prograso de un usuario para un curso
-		$progress = mt_rand(1,100);
+		$progress = mt_rand(1,100);	
 		return $progress;
 	}
+
+	private function _error_evaluations(){
+
+		//TODO: 
+		$error_evaluation = mt_rand(1,20);	
+		return $error_evaluation;
+	}
+
 
 
 	public function learn($course_id = "")
@@ -90,6 +91,7 @@ class Courses extends CI_Controller {
 				$data["lesson"] = $lesson;
 				$data["course_user"] = $c;
 				$data["progress"] = $this->_progress(); 
+				$data["error_evaluation"] = $this->_error_evaluations();
 			
 
 				$this->load->view("courses/learn",$data);

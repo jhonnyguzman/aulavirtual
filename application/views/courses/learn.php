@@ -19,60 +19,48 @@
 				</div>
 			</div>
 			<div class="progress progress-striped">
-				<div class="bar bar-success" style="width: 35%;"></div>
-  				<div class="bar bar-danger" style="width: 5%;"></div>			
+				<div class="bar bar-success" <?php echo "style=\"width: ". $progress ."%;\"";?> >
+					<?php echo "Progreso: " . $progress ."%"; ?>
+				</div>
+
+  				<div class="bar bar-danger" <?php echo "style=\"width: ". $error_evaluation ."%;\"";?> >
+  				<?php echo "Errores: ". $error_evaluation . "%"; ?>
+  				</div>			
   			</div>
 		</div>
 	</div>
-	<div class="row-fluid">
+	
+<div class="row-fluid">
 		<div class="span12">
 			<div class="carousel slide" id="carousel-993083">
-				<ol class="carousel-indicators">
-					<li data-slide-to="0" data-target="#carousel-993083">
-					</li>
-					<li data-slide-to="1" data-target="#carousel-993083" class="active">
-					</li>
-					<li data-slide-to="2" data-target="#carousel-993083">
-					</li>
-				</ol>
 				<div class="carousel-inner">
-					<div class="item">
-						<img alt="" src="http://lorempixel.com/1600/500/sports/1" />
+					
+					<?php   foreach($course_user as $c_user){
+					foreach ($c_user->course->course_slider as $slider) {	
+					?>
+
+					<div class="item">					
+                        <img src="<?=site_url()?>uploads/course_sliders/<?=$slider->file_name?>" alt="<?=$course_user->course->title?>">
 						<div class="carousel-caption">
 							<h4>
-								Imagenes Vanguardistas
+								<?=$slider->title?>
 							</h4>
 							<p>
-								Impacte con sus imagenes.
+								<?=$slider->subtitle?>
 							</p>
 						</div>
 					</div>
-					<div class="item active">
-						<img alt="" src="http://lorempixel.com/1600/500/sports/2" />
-						<div class="carousel-caption">
-							<h4>
-								Motivacion Grafica
-							</h4>
-							<p>
-								Aprenda como transmitir emociones a traves de las imagenes.
-							</p>
-						</div>
-					</div>
-					<div class="item">
-						<img alt="" src="http://lorempixel.com/1600/500/sports/3" />
-						<div class="carousel-caption">
-							<h4>
-								Una imagen vale mas que mil palabras
-							</h4>
-							<p>
-								Hacemos real el famoso refran.
-							</p>
-						</div>
-					</div>
-				</div> <a data-slide="prev" href="#carousel-993083" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-993083" class="right carousel-control">›</a>
+					<?php }} ?>
+
+				</div> 
+
+
+				<a data-slide="prev" href="#carousel-993083" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-993083" class="right carousel-control">›</a>
 			</div>
 		</div>
 	</div>
+
+
 	<div class="row-fluid">
 		<div class="span6">
 			<h3>
@@ -163,57 +151,40 @@
 		    <h3>
 				Capitulos Sobresalientes
 			</h3>
+<?php   
+	foreach($course_user->course->chapter as $chapter){
+			//foreach ($c_user->course->chapter as $chapter) {
+			?>
 			<ul class="thumbnails">
 				<li class="span4">
+
+<?php				if($chapter->special == 1) {	 ?>
 					<div class="thumbnail">
 						<img alt="300x200" src="http://lorempixel.com/600/200/people" />
 						<div class="caption">
 							<h3>
-								Da vida a las personas
+								<?php  echo $chapter->name;  ?>
 							</h3>
 							<p>
-								Es posbile crear unos efectos de animacion tridimensionales brindando la posibilidad de crear efectos tridimiencionales en cualquier imacenge que querracmos
+								<?php  echo $chapter->description;  ?>
 							</p>
 							<p>
 								<a class="btn btn-primary" href="#">Aprender</a> 
 							</p>
 						</div>
-					</div>
-				</li>
-				<li class="span4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://lorempixel.com/600/200/city" />
-						<div class="caption">
-							<h3>
-								Resaltar Ciudades
-							</h3>
-							<p>
-								Aprende todo sobre como hacer lucir una imagen de una ciudad tan real que las personas que vean tu imagen van a sentirse dentro de ella. 
-							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Aprender</a>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li class="span4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://lorempixel.com/600/200/sports" />
-						<div class="caption">
-							<h3>
-								Movimientos
-							</h3>
-							<p>
-								Aprende todo sobre las ultimas tecnicas para resaltar los movimientos de objetos, personas. No pierdas mas el tiempo y comienza a aprender ya.
-							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Aprender</a>
-							</p>
-						</div>
-					</div>
-				</li>
-			</ul>		
-		</div>
+					</div>						
+				</li>		
+<?php   
+				}
+?>					
+			</ul>	
+
+			<?php
+			 }
+		
+?>				
+</div>
+	</div>
 	</div>
 </div>
 
