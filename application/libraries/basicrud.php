@@ -979,4 +979,9 @@ class BasiCrud {
 			return base_url()."assets/img/default_avatar.png";
 		}
 	}
+
+	public function getQuestionTypeDescription($type){
+		$types = array("TF" => "Verdadero/Falso", "MULTI" => 'Opciones Múltiples');
+		return $types[$type];
+	}
 }

@@ -34,8 +34,8 @@
 						  </div>
 						  <div class="control-group">
 						  	<div class="controls">
-						  		<button type="btn" class="btn btn-success" id="btnAddChapter">Guardar</button>
-						  		<button type="btn" class="btn" id="btnCancelAddChapter">Cancelar</button>
+						  		<button type="btn" class="btn btn-small btn-success" id="btnAddChapter">Guardar</button>
+						  		<button type="btn" class="btn btn-small btn-danger" id="btnCancelAddChapter">Cancelar</button>
 						  	</div>
 						  </div>
 						<!--</form>-->
@@ -70,8 +70,8 @@
 									  </div>
 									  <div class="control-group">
 									  	<div class="controls">
-									  		<button type="btn" class="btn btn-success btnAddLesson" >Guardar</button>
-									  		<button type="btn" class="btn btnCancelAddLesson" >Cancelar</button>
+									  		<button type="btn" class="btn btn-small btn-success btnAddLesson" >Guardar</button>
+									  		<button type="btn" class="btn btn-small btn-danger btnCancelAddLesson" >Cancelar</button>
 									  	</div>
 									  </div>
 						  		</div>
@@ -94,7 +94,7 @@
 				  							<?php elseif($lesson->content_pdf->count() > 0): ?>
 				  								<i class="icon-download icon-white lesson-bull-down lesson-bull-down-hidden" ></i>
 				  							<?php else: ?>
-				  								<a href="#" class="btn btn-small btn-success btnAddContent">Agregar Contenido</a>
+				  								<a href="#" class="btn btn-mini btn-success btnAddContent">Agregar Contenido</a>
 				  							<?php endif; ?>
 				  						</div>
 				  					</div>
@@ -154,6 +154,83 @@
 				  					</div>
 				  				</li>
 					  		<?php endforeach; ?>
+					  	</ul>
+					  	<ul id="quizzes-<?=$chapter->id?>" class="item-list-custom quizzes quizzes-hidden">
+					  		<?php foreach($chapter->quiz->order_by("order",'asc')->get() as $quiz): ?>
+					  			<li data-order="<?=$quiz->order?>" data-id="<?=$quiz->id?>" data-title="<?=$quiz->title?>" id="item_<?=$quiz->id?>">
+				  					<div class="row title-quiz">
+				  						<div class="span6 btns-left">
+				  							<span class="quiz-order"><?=($chapter->order + 1).'.'.($quiz->order + 1)?>&nbsp;-</span> 
+				  							<span class="quiz-title"><strong>Autoevaluaci&oacute;n:&nbsp;</strong><?=$quiz->title?></span> 
+				  							<i class="icon-pencil icon-white quiz-edit quiz-edit-hidden"></i>
+				  						</div>
+				  						<div class="span6 btns-right">
+				  							<?php if($quiz->question->count() > 0): ?>
+				  								<i class="icon-download icon-white quiz-bull-down quiz-bull-down-hidden" ></i>
+				  							<?php else: ?>
+				  								<a href="#" class="btn btn-mini btn-success btnAddQuestion">Agregar Preguntas</a>
+				  							<?php endif; ?>
+				  						</div>
+				  					</div>
+				  					<div class="row box-content box-content-hidden cancel">
+				  						<?php if($quiz->question->count() > 0): ?>
+				  							<div class="span12 box">
+					  							<div class="span12 single-item">
+					  								<div class="span6">
+						  								<span><strong>Preguntas&nbsp;</strong></span>
+						  								<a href="#" class="btn btn-success btn-mini btnAddSingleQuestion"><i class="icon-plus icon-white"></i> Nueva Pregunta</a>
+						  							</div>
+					  							</div>
+					  							<div class="span12 more">
+					  								<ul id="questions-<?=$quiz->id?>" class="item-list-custom questions questions-hidden">
+					  									<?php foreach($quiz->question->order_by("order","asc")->get() as $question): ?>
+					  										<li data-id="<?=$question->id?>" data-order="<?=$question->order?>" data-type="<?=$question->type?>">
+					  											<div class="row title-question">
+						  											<div class="span10 btns-left">
+						  												<?=$question->description?>
+						  												<span class="label label-info arrowed-in-right arrowed type-description">
+						  													<?=$this->basicrud->getQuestionTypeDescription($question->type)?>
+						  												</span>
+						  											</div>
+						  											<div class="span2 btns-right">
+						  											</div>
+						  										</div>
+					  										</li>
+					  									<?php endforeach; ?>
+					  								</ul>
+					  							</div>
+				  							</div>	
+				  						<?php endif; ?>
+				  					</div>
+				  				</li>
+				  			<?php endforeach; ?>
+					  	</ul>
+					  	<ul id="newQuiz" class="item-list-custom newQuiz newQuiz-hidden">
+					  		<li>
+					  			<div class="title-quiz div-add-quiz">
+									Agregar Autoevaluaci&oacute;n
+								</div>
+						  		<div class="title-quiz add-quiz" >
+									  <div class="control-group">
+									    <label class="control-label" for="input-quiz-title">Agregar Autoevaluaci&oacute;n:</label>
+									    <div class="controls">
+									      <input type="text" name="input-quiz-title" placeholder="Titulo">
+									    </div>
+									  </div>
+									  <div class="control-group">
+									  	<label class="control-label" for="input-quiz-description">Descripci&oacute;n:</label>
+									    <div class="controls">
+									      <textarea name="input-quiz-description" class="autosize-transition span12"></textarea>
+									    </div>
+									  </div>
+									  <div class="control-group">
+									  	<div class="controls">
+									  		<button type="btn" class="btn btn-small btn-success btnAddQuiz" >Guardar</button>
+									  		<button type="btn" class="btn btn-small btn-danger btnCancelAddQuiz" >Cancelar</button>
+									  	</div>
+									  </div>
+						  		</div>
+					  		</li>
 					  	</ul>
 				  	</li>
 				<?php endforeach; ?>
@@ -312,14 +389,23 @@
 	    $(".title-chapter .span6 .chapter-edit",this).addClass("chapter-edit-hidden");
 	    $(".title-chapter .btns-right .chapter-bull-down",this).addClass("chapter-bull-down-hidden");
 	});
-	$(document).on("click", "#chapters li .title-chapter .span6 .chapter-edit", function(e) {
+
+	$(document).on("click", "#chapters li .title-chapter .btns-left .chapter-edit", function(e) {
 	   builtChapterEditView($(this).parent().parent().parent());
 	});
 	$(document).on("click", "#chapters li .title-chapter .btns-right .chapter-bull-down", function(e) {
 	   var button = this;
 	   var cList = $(button).parent().parent().parent();
-	   $(".lessons,.newLesson",cList).slideToggle(500, function(){
+	   $(".lessons,.newLesson,.quizzes,.newQuiz",cList).slideToggle(500, function(){
 	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
+	   });
+	});
+
+	$(document).on("click", "#chapters li .title-chapter .btns-right", function(e) {
+	   var btns_right = $(this);
+	   var cList = btns_right.parent().parent();
+	   $(".lessons,.newLesson,.quizzes,.newQuiz",cList).slideToggle(500, function(){
+	  		$(".chapter-bull-down",btns_right).toggleClass('icon-upload', $(this).is(':visible')); 	
 	   });
 	});
 
@@ -391,6 +477,7 @@
     	$(this).css("display","none");
     	var div = $(this).parent();
     	$(".add-lesson",div).css("display","block");
+    	$.scrollTo($(".add-lesson",div),800);
 	});
 
 	function getChapterOrder()
@@ -474,20 +561,20 @@
 	    	.appendTo(control_group2);
 	    var btn_add_lesson = $("<button/>")
 	    	.attr("type","btn")
-	    	.attr("class","btn btn-success btnAddLesson")
+	    	.attr("class","btn btn-small btn-success btnAddLesson")
 	    	.text("Guardar")
 	    	.appendTo(controls2);
 	    var btn_cancel_add_lesson = $("<button/>")
 	    	.attr("type","btn")
-	    	.attr("class","btn btnCancelAddLesson")
+	    	.attr("class","btn btn-small btn-danger btnCancelAddLesson")
 	    	.text("Cancelar")
 	    	.appendTo(controls2);
 		var ul_list_lesson = $("<ul/>")
-			.attr("id",chapter.id)
-			.attr("class","item-list-custom lessons lessons-hidden")
+			.attr("id","lessons-"+chapter.id)
+			.attr("class","item-list-custom lessons ")
 			.appendTo(li);
 
-		$(".lessons,.newLesson",li).slideToggle(500, function(){
+		$(".newLesson",li).slideToggle(500, function(){
 	  		$(i).toggleClass('icon-upload', $(this).is(':visible')); 	
 	    });
 		$.scrollTo(li,800);
@@ -526,12 +613,12 @@
 			.appendTo(control_group_btns);
 		var btn_save = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btn-success btnEditChapter")
+			.attr("class","btn btn-small btn-success btnEditChapter")
 			.text("Editar")
 			.appendTo(controls_btns);
 		var btn_cancel = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btnCancelEditChapter")
+			.attr("class","btn btn-small btn-danger btnCancelEditChapter")
 			.text("Cancelar")
 			.css("margin-left","3px")
 			.appendTo(controls_btns);
@@ -541,7 +628,7 @@
 			.appendTo(controls_btns);
 		var btn_trash = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btnDeleteChapter")
+			.attr("class","btn btn-small btnDeleteChapter")
 			.attr("id", "btnDeleteChapter")
 			.appendTo(div_trash);
 
@@ -776,12 +863,13 @@
 			.appendTo(div);
 		var a = $("<a/>")
 			.attr("href","#")
-			.attr("class","btn btn-small btn-success btnAddContent")
+			.attr("class","btn btn-mini btn-success btnAddContent")
 			.text("Agregar Contenido")
 			.appendTo(btns_right);
 		var box_content = $("<div/>")
 			.attr("class","row box-content box-content-hidden cancel")
 			.appendTo(li);
+
 		$.scrollTo(li,800);
 	}
 
@@ -818,13 +906,13 @@
 			.appendTo(control_group_btns);
 		var btn_save = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btn-success btnEditLesson")
+			.attr("class","btn btn-small btn-success btnEditLesson")
 			.attr("id", "btnEditLesson")
 			.text("Editar")
 			.appendTo(controls_btns);
 		var btn_cancel = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btnCancelEditLesson")
+			.attr("class","btn btn-small btn-danger btnCancelEditLesson")
 			.attr("id", "btnCancelEditLesson")
 			.text("Cancelar")
 			.css("margin-left","3px")
@@ -835,7 +923,7 @@
 			.appendTo(controls_btns);
 		var btn_trash = $("<button/>")
 			.attr("type","button")
-			.attr("class","btn btnDeleteLesson")
+			.attr("class","btn btn-small btnDeleteLesson")
 			.attr("id", "btnDeleteLesson")
 			.appendTo(div_trash);
 
@@ -1163,6 +1251,250 @@
 			.appendTo(btns_right);
 	}
 
+	// for quizzes
+
+	$(document).on("click", ".newQuiz li .div-add-quiz", function(e) {
+    	$(this).css("display","none");
+    	var div = $(this).parent();
+    	$(".add-quiz",div).css("display","block");
+    	$.scrollTo($(".add-quiz",div),800,{offset:-100});
+	});
+	$(document).on("click", ".newQuiz li .add-quiz .control-group .controls .btnCancelAddQuiz", function(e) {
+		var div = $(this).parent().parent().parent().parent();
+		$(".add-quiz",div).css("display","none");
+		$(".div-add-quiz",div).css("display","block");
+		$.scrollTo(div,800,{offset:-50});
+	});
+
+	$(document).on("click", ".newQuiz li .add-quiz .control-group .controls .btnAddQuiz", function(e) {
+		var obj = $(this);
+		if(isProcessing){
+			return;
+		}
+		isProcessing = true;
+
+		var cList = $(this).parent().parent().parent().parent().parent().parent();
+		var chapter_id = cList.data('id');
+		var add_quiz = $(this).parent().parent().parent();
+		var quiz_title = add_quiz.find($("input[name=input-quiz-title]"));
+		var quiz_description = add_quiz.find($("textarea[name=input-quiz-description]"));
+		var order = getQuizOrder(chapter_id);
+		$.ajax({
+				url: "<?=site_url('quizzes/create')?>",
+				type: "POST",
+				data: {'title': quiz_title.val(), 'description': quiz_description.val(), 'order': order, 'chapter_id': chapter_id},
+				dataType: "json",
+				beforeSend: function() {
+					runSpin(obj);
+				},
+				success: function(data){
+					isProcessing = false;
+					if(data.message_status == 'success'){
+						builtQuizView(data.quiz,chapter_id);
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+						quiz_title.val("");
+						quiz_description.val("");
+					}else{
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+					}
+				},
+				error: function(data){
+					isProcessing = false;
+					console.log(data);
+				},
+				complete: function() {
+					removeSpin(obj);
+				}
+		});
+	});
 	
+	$(document).on("click", ".quizzes li .box-content .box .quiz-content .content-btns-bottom .btnSaveQuestionTypeTF", function(e) {
+	   var obj = $(this);
+	   if(isProcessing){
+			return;
+	   }
+	   
+	   var box = $(this).parent().parent().parent();
+	   var result = $('.quiz-content .vf_checks-edit input:radio[name=result]:checked',box);
+	   if(!result.val()) {
+	   		return;
+	   }
+	   
+	   var editor = $(".wysiwyg-editor",box);
+	   var quiz_id = editor.attr("id");
+	   //var order = getQuestionOrder(chapter_id);
+	   isProcessing = true;
+	   $.ajax({
+			url: "<?=site_url('questions/tf_create')?>",
+			type: "POST",
+			data: {'quiz_id': quiz_id, "description": htmlEntities(editor.html()), 'result': result.val(), 'type': "TF"},
+			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
+			success: function(data){
+				isProcessing = false;
+				if(data.message_status == 'success'){
+					//builtQuestionTypeTF(box);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
+				}else{
+					gritterAdd("Mensaje", data.message_html, data.message_status);
+				}
+			},
+			error: function(data){
+				isProcessing = false;
+				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
+			}
+		});
+	});
+
+	$(document).on("click", ".quizzes li .title-quiz .btns-right .btnAddQuestion", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   $(this).fadeOut(200);
+	   builtTypeQuestionView($(".box-content",cList));
+	   $(".box-content",cList).fadeIn(500);
+	   $.scrollTo(cList,800,{offset:-100});
+	});
+
+	$(document).on("click", ".quizzes li .box-content .box-title div .btnBoxRemove", function(e) {
+	   var cList = $(this).parent().parent().parent().parent();
+	   $(".box-content",cList).html("").fadeOut(200);
+	   $(".title-quiz .btns-right .btnAddQuestion",cList).fadeIn(500);
+	   
+	});
+
+	$(document).on("click", ".quizzes li .box-content .box .question-type-tf", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   var box_content = $(".box-content",cList);
+	   $.ajax({
+			url: "<?=site_url('questions/tf_add')?>",
+			type: "POST",
+			data: {'quiz_id': cList.data('id')},
+			success: function(data){
+				$(".box-title span",box_content).text("Verdadero/Falso");
+				$(".box",cList).html(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+	$(document).on("mouseover", ".quizzes li", function(e) {
+		//$(".title-quiz .quiz-edit",this).removeClass("quiz-edit-hidden");
+	    $(".title-quiz .quiz-edit",this).fadeIn(200);
+	    $(".title-quiz .btns-right .quiz-bull-down",this).removeClass("quiz-bull-down-hidden");
+	    $(".title-quiz .btns-right .quiz-bull-down",this).fadeIn(500);
+	});
+	$(document).on("mouseleave", ".quizzes li", function(e) {
+		$(".title-quiz .quiz-edit",this).fadeOut(200);
+	    //$(".title-quiz .quiz-edit",this).addClass("quiz-edit-hidden");
+	    $(".title-quiz .btns-right .quiz-bull-down",this).addClass("quiz-bull-down-hidden");
+	});
+	$(document).on("click", ".quizzes li .title-quiz .btns-right .quiz-bull-down", function(e) {
+	   var button = this;
+	   var cList = $(button).parent().parent().parent();
+	   $(".box-content",cList).slideToggle(500, function(){
+	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
+	   });
+	});
+
+	function builtQuizView(quiz, chapter_id){
+		var cList = $('#quizzes-'+chapter_id);
+		/*if (!cList.hasClass('nav-stacked')) {
+			cList.addClass('nav nav-tabs nav-stacked');
+		}*/
+		var li = $('<li/>')
+			.attr("data-id",quiz.id)
+			.attr("data-order",quiz.order)
+			.attr("data-title",quiz.name)
+			.attr("id",'item_'+quiz.id)
+			.attr("class",'quiz-hidden')
+	        .appendTo(cList);
+
+	    var div = $('<div/>')
+	    	.addClass("row title-quiz")
+	        .attr("data-id",quiz.id)
+	        .appendTo(li);
+	    var btns_left = $("<div/>")
+	    	.attr("class","span6 btns-left")
+	    	.appendTo(div);
+	    var lesson_order = $("<span/>")
+	    	.attr("class","chapter-order")
+	    	.text((parseInt(quiz.chapter_order) + 1)+'.'+(parseInt(quiz.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	    var quiz_title = $("<span/>")
+	    	.attr("class","quiz-title")
+	    	.html("<strong>Autoevaluación: </strong>" + quiz.title)
+	    	.appendTo(btns_left);
+	    var i = $("<i/>")
+	    	.attr("class","icon-pencil icon-white quiz-edit quiz-edit-hidden")
+	    	.css("margin-left","3px")
+	    	.appendTo(btns_left);
+		var btns_right = $("<div/>")
+			.attr("class","btns-right")
+			.appendTo(div);
+		var a = $("<a/>")
+			.attr("href","#")
+			.attr("class","btn btn-mini btn-success btnAddQuestion")
+			.text("Agregar Preguntas")
+			.appendTo(btns_right);
+		var box_content = $("<div/>")
+			.attr("class","row box-content box-content-hidden cancel")
+			.appendTo(li);
+
+		cList.fadeIn(1000);
+
+		$.scrollTo(cList,800,{'offset': -100});
+	}
+
+	function builtTypeQuestionView(box_content){
+		var box_title = $("<div/>")
+			.attr("class","box-title")
+			.appendTo(box_content);
+		var span = $("<span/>")
+			.text("Seleccione tipo de Pregunta")
+			.appendTo(box_title);
+		var div = $("<div/>")
+			.appendTo(box_title);
+		var a = $("<a/>")
+			.attr("href","#")
+			.attr("class","btnBoxRemove")
+			.attr("title","Cerrar")
+			.appendTo(div);
+		var i = $("<i/>")
+			.attr("class","icon-remove")
+			.appendTo(a);
+		var box = $("<div/>")
+			.attr("class","box")
+			.appendTo(box_content);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/question_tf.png")
+			.attr("class","img-rounded question-type-tf")
+			.attr("title","Verdadero/Falso")
+			.appendTo(box);
+		var img_text = $("<img/>")
+			.attr("src","<?=site_url()?>assets/img/question_multi.png")
+			.attr("class","img-rounded question-type-multi")
+			.attr("title","Múltiples opciones")
+			.appendTo(box);
+	}
+
+	function getQuizOrder(chapter_id, action)
+	{
+		var last_li = $('#quizzes-'+chapter_id+' > li:last');
+		if(last_li.data("order") != null){
+			if(action == "edit"){
+			 	return parseInt(last_li.data("order"));
+			}else{
+				return parseInt(last_li.data("order")) + 1;
+			}
+		}
+		else
+			return 0;
+	}
+
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>
