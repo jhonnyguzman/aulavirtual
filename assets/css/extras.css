@@ -119,7 +119,9 @@ body {
 .btnAddLesson{
 	margin-right: 3px;
 }
-
+.btnAddSingleQuestion{
+	margin-left: 5px;
+}
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -308,6 +310,9 @@ body {
 }
 .questions > li{
 	margin: 0px;
+}
+.question-order{
+	font-weight: bold;
 }
 
 .ui-state-highlight { 
@@ -520,6 +525,9 @@ body {
 }
 .top-bar-home{
 	/*min-height: 60px !important;*/
+}
+.type-description{
+	margin-left: 11px !important;
 }
 .vf_checks-edit label span{
 	font-size: 12px !important;

@@ -3,6 +3,8 @@
 class Question extends DataMapper {
 
 	var $table = 'questions';
+	var $extensions = array('array');
+	var $types = array("TF" => "Verdadero/Falso", "MULTI" => 'Opciones Múltiples');
 	
 	//var $has_many = array("content_text");
 	var $has_one  = array("quiz");
@@ -18,7 +20,13 @@ class Question extends DataMapper {
 	    ),
 	    'type' => array(
 	        'label' => 'Tipo',
-	        'rules' => array('required', 'trim')
+	        'rules' => array('required', 'trim'),
+	        'get_rules' => array('formatType')
+	    ),
+	    'type_description' => array(
+	    	'field' => 'type_description',
+	        'label' => 'Tipo',
+	      	'rules' => array('trim')  
 	    ),
 
 	);
@@ -27,6 +35,12 @@ class Question extends DataMapper {
     {
         parent::__construct($id);
     }
+
+    // Validation prepping function to encrypt passwords
+	function _formatType($field) 
+	{
+	  $this->type_description = html_entity_decode($this->types[$this->{$field}]);
+	}
 }
 
 /* End of file course.php */

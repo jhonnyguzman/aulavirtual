@@ -172,24 +172,25 @@
 				  							<?php endif; ?>
 				  						</div>
 				  					</div>
-				  					<div class="row box-content box-content-hidden cancel">
+				  					<div class="row box-content box-content-hidden ">
 				  						<?php if($quiz->question->count() > 0): ?>
-				  							<div class="span12 box">
-					  							<div class="span12 single-item">
+				  							<div class="span12 box-question">
+					  							<div class="span12 single-item cancel">
 					  								<div class="span6">
-						  								<span><strong>Preguntas&nbsp;</strong></span>
+						  								<span><strong>Preguntas</strong></span>
 						  								<a href="#" class="btn btn-success btn-mini btnAddSingleQuestion"><i class="icon-plus icon-white"></i> Nueva Pregunta</a>
 						  							</div>
 					  							</div>
 					  							<div class="span12 more">
 					  								<ul id="questions-<?=$quiz->id?>" class="item-list-custom questions questions-hidden">
 					  									<?php foreach($quiz->question->order_by("order","asc")->get() as $question): ?>
-					  										<li data-id="<?=$question->id?>" data-order="<?=$question->order?>" data-type="<?=$question->type?>">
+					  										<li data-id="<?=$question->id?>" data-order="<?=$question->order?>" data-type="<?=$question->type?>" id="item_<?=$question->id?>">
 					  											<div class="row title-question">
 						  											<div class="span10 btns-left">
-						  												<?=$question->description?>
+						  												<span class="question-order"><?=($question->order +  1)." - "?></span>
+						  												<span class="question-description"><?=$question->description?></span>
 						  												<span class="label label-info arrowed-in-right arrowed type-description">
-						  													<?=$this->basicrud->getQuestionTypeDescription($question->type)?>
+						  													<?=$question->type_description?>
 						  												</span>
 						  											</div>
 						  											<div class="span2 btns-right">
@@ -314,7 +315,37 @@
 						if(data.message_status == 'success'){
 							console.log(data);
 						}else{
-							showMessageNewChapter(data.message_html);
+							//showMessageNewChapter(data.message_html);
+							console.log(data);
+						}
+					},
+					error: function(data){
+						console.log(data);
+					}
+				});
+		   }
+	    });
+
+	    $(".questions").sortable({
+	      placeholder: "ui-state-highlight",
+	      cancel: "input,button,select,textarea,option,.cancel",
+	      start:function(){
+				//alert("Estas utilizando Drag and Drop");
+		  },
+		  stop:function(){
+				 var data = $(this).sortable('toArray');
+				 var elem = $(this);
+				 $.ajax({
+					url: "<?=site_url('questions/updateorder')?>",
+					type: "POST",
+					data: {'arrOrder': data },
+					dataType: "json",
+					success: function(data){
+						if(data.message_status == 'success'){
+							updateQuestionsOrder(elem,data.pos)
+							console.log(data);
+						}else{
+							//showMessageNewChapter(data.message_html);
 							console.log(data);
 						}
 					},
@@ -326,9 +357,10 @@
 	    });
 
 	    //$("#chapters").disableSelection();
-	    $("#lessons1,#lessons2").sortable({
+	    /*$("#lessons1,#lessons2").sortable({
 	      placeholder: "ui-state-highlight"
-	    });
+	    });*/
+
 	    $("#div-add-title").click(function(){
 	    	$(this).css("display","none");
 	    	$("#add-chapter").css("display","block");
@@ -1308,7 +1340,7 @@
 		});
 	});
 	
-	$(document).on("click", ".quizzes li .box-content .box .quiz-content .content-btns-bottom .btnSaveQuestionTypeTF", function(e) {
+	$(document).on("click", ".quizzes li .box-content .box-type-question .box .quiz-content .content-btns-bottom .btnSaveQuestionTypeTF", function(e) {
 	   var obj = $(this);
 	   if(isProcessing){
 			return;
@@ -1322,7 +1354,7 @@
 	   
 	   var editor = $(".wysiwyg-editor",box);
 	   var quiz_id = editor.attr("id");
-	   //var order = getQuestionOrder(chapter_id);
+	   //var order = getQuestionOrder(quiz_id);
 	   isProcessing = true;
 	   $.ajax({
 			url: "<?=site_url('questions/tf_create')?>",
@@ -1335,7 +1367,7 @@
 			success: function(data){
 				isProcessing = false;
 				if(data.message_status == 'success'){
-					//builtQuestionTypeTF(box);
+					builtQuestionsView(box.parent().parent(), data.questions);
 					gritterAdd("Mensaje", data.message_html, data.message_status);
 				}else{
 					gritterAdd("Mensaje", data.message_html, data.message_status);
@@ -1355,26 +1387,37 @@
 	   var cList = $(this).parent().parent().parent();
 	   $(this).fadeOut(200);
 	   builtTypeQuestionView($(".box-content",cList));
-	   $(".box-content",cList).fadeIn(500);
+	   $(".box-content .box-type-question",cList).fadeIn(500);
+	   $.scrollTo(cList,800,{offset:-100});
+	});
+	$(document).on("click", ".quizzes li .box-content .box-question .single-item .span6 .btnAddSingleQuestion", function(e) {
+	   var cList = $(this).parent().parent().parent().parent().parent();
+	   var box_question = $(this).parent().parent().parent();
+	   box_question.fadeOut(200);
+	   builtTypeQuestionView($(".box-content",cList));
+	   //$(".box-content",cList).fadeIn(500);
 	   $.scrollTo(cList,800,{offset:-100});
 	});
 
-	$(document).on("click", ".quizzes li .box-content .box-title div .btnBoxRemove", function(e) {
-	   var cList = $(this).parent().parent().parent().parent();
-	   $(".box-content",cList).html("").fadeOut(200);
+	$(document).on("click", ".quizzes li .box-content .box-type-question .box-title div .btnBoxRemove", function(e) {
+	   var cList = $(this).parent().parent().parent().parent().parent();
+	   var box_question = $(".box-content .box-question",cList);
+	   $(".box-type-question",cList).html("").fadeOut(200);
 	   $(".title-quiz .btns-right .btnAddQuestion",cList).fadeIn(500);
+	   box_question.fadeIn(500);
+	   $.scrollTo(box_question,800,{offset:-100});
 	   
 	});
 
-	$(document).on("click", ".quizzes li .box-content .box .question-type-tf", function(e) {
-	   var cList = $(this).parent().parent().parent();
-	   var box_content = $(".box-content",cList);
+	$(document).on("click", ".quizzes li .box-content .box-type-question .box .question-type-tf", function(e) {
+	   var cList = $(this).parent().parent().parent().parent();
+	   var box_type_question = $(".box-content .box-type-question",cList);
 	   $.ajax({
 			url: "<?=site_url('questions/tf_add')?>",
 			type: "POST",
 			data: {'quiz_id': cList.data('id')},
 			success: function(data){
-				$(".box-title span",box_content).text("Verdadero/Falso");
+				$(".box-title span",box_type_question).text("Verdadero/Falso");
 				$(".box",cList).html(data);
 			},
 			error: function(data){
@@ -1451,9 +1494,15 @@
 	}
 
 	function builtTypeQuestionView(box_content){
+		
+		//box_content.empty();
+		var box_type_question = $("<div/>")
+			.attr("class","box-type-question cancel")
+			.appendTo(box_content);
+
 		var box_title = $("<div/>")
 			.attr("class","box-title")
-			.appendTo(box_content);
+			.appendTo(box_type_question);
 		var span = $("<span/>")
 			.text("Seleccione tipo de Pregunta")
 			.appendTo(box_title);
@@ -1469,7 +1518,7 @@
 			.appendTo(a);
 		var box = $("<div/>")
 			.attr("class","box")
-			.appendTo(box_content);
+			.appendTo(box_type_question);
 		var img_text = $("<img/>")
 			.attr("src","<?=site_url()?>assets/img/question_tf.png")
 			.attr("class","img-rounded question-type-tf")
@@ -1480,6 +1529,77 @@
 			.attr("class","img-rounded question-type-multi")
 			.attr("title","Múltiples opciones")
 			.appendTo(box);
+	}
+
+	function builtQuestionsView(box_content, questions){
+		$(".box-type-question",box_content).remove();
+		$(".box-question",box_content).remove();
+
+		var box = $("<div/>")
+			.attr("class","span12 box-question")
+			.appendTo(box_content);
+		var single_item = $("<div/>")
+			.attr("class","span12 single-item cancel")
+			.appendTo(box);
+		var span6 = $("<div/>")
+			.attr("class","span6")
+			.appendTo(single_item);
+		var span = $("<span/>").appendTo(span6);
+		var strong = $("<strong/>").text("Preguntas").appendTo(span);
+		var a = $("<a/>")
+			.attr("href","#")
+			.html("<i class='icon-plus icon-white'><i/> Nueva Pregunta")
+			.attr("class","btn btn-success btn-mini btnAddSingleQuestion")
+			.appendTo(span6);
+
+		var more = $("<div/>")
+			.attr("class","span12 more").appendTo(box);
+		var ul = $("<ul/>")
+			.attr("class","item-list-custom ui-sortable questions questions-hidden")
+			.attr("id","questions-"+questions[0].quiz_id)
+			.appendTo(more);
+
+		jQuery.each(questions, function (i, question) { 
+		   var li = $("<li/>")
+		   	.attr("id","item_"+question.id)
+		   	.attr("data-id",question.id)
+		   	.attr("data-order",question.order)
+		   	.attr("data-type",question.type)
+		   	.appendTo(ul);
+		   var title_question = $("<div/>")
+		   	.attr("class","row title-question")
+		   	.appendTo(li);
+		   var btns_left = $("<div/>")
+		   	.attr("class","span10 btns-left")
+		   	.appendTo(title_question);
+		   
+		   var question_order = $("<span/>")
+	    	.attr("class","question-order")
+	    	.text((parseInt(question.order) + 1) + ' - ')
+	    	.appendTo(btns_left);
+	       var question_description = $("<span/>")
+		   	.attr("class","question-description")
+		   	.text(question.description)
+		   	.appendTo(btns_left);
+		   var type_description = $("<span/>")
+		   	.attr("class","label label-info arrowed-in-right arrowed type-description")
+		   	.text(question.type_description)
+		   	.appendTo(btns_left);
+
+		   var btns_right = $("<div/>")
+		   	.attr("class","span2 btns-right")
+		   	.appendTo(title_question);
+		});
+		
+		createDraggable(ul);
+	}
+
+	function updateQuestionsOrder(ul, pos)
+	{
+		$("li .title-question .btns-left .question-order",ul).each(function(index, value) { 
+		    $(this).text(parseInt(pos[index] + 1) + ' - ');
+		});
+
 	}
 
 	function getQuizOrder(chapter_id, action)
@@ -1496,5 +1616,49 @@
 			return 0;
 	}
 
+	function getQuestionOrder(quiz_id, action)
+	{
+		var last_li = $('#questions-'+quiz_id+' > li:last');
+		if(last_li.data("order") != null){
+			if(action == "edit"){
+			 	return parseInt(last_li.data("order"));
+			}else{
+				return parseInt(last_li.data("order")) + 1;
+			}
+		}
+		else
+			return 0;
+	}
+
+	function createDraggable(ul){
+		$(ul).sortable({
+	      placeholder: "ui-state-highlight",
+	      cancel: "input,button,select,textarea,option,.cancel",
+	      start:function(){
+				//alert("Estas utilizando Drag and Drop");
+		  },
+		  stop:function(){
+				 var data = $(this).sortable('toArray');
+				 $.ajax({
+					url: "<?=site_url('questions/updateorder')?>",
+					type: "POST",
+					data: {'arrOrder': data },
+					dataType: "json",
+					success: function(data){
+						if(data.message_status == 'success'){
+							updateQuestionsOrder(ul, data.pos);
+							console.log(data);
+						}else{
+							//showMessageNewChapter(data.message_html);
+							console.log(data);
+						}
+					},
+					error: function(data){
+						console.log(data);
+					}
+				});
+		   }
+	    });
+	}
 </script>
 <?php echo $this->load->view("default/_footer_manage"); ?>

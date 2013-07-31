@@ -1,7 +1,7 @@
 <div class="quiz-content">
 	<p>Introduce tu pregunta, marca la respuesta correcta y haz clic en guardar.</p>
 	<p>Pregunta:</p>
-	<div class="wysiwyg-editor text-editor-questions text-editor-<?=$quiz_id?>" id="<?=$quiz_id?>"></div>
+	<div class="wysiwyg-editor cancel text-editor-questions text-editor-quiz-<?=$quiz_id?>" id="<?=$quiz_id?>"></div>
 	<p class="vf_checks-edit">
 		<label>
 			<input name="result" type="radio" value="1" />
@@ -21,7 +21,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	//but we want to change a few buttons colors for the third style
-	$('.text-editor-<?=$quiz_id?>').ace_wysiwyg({
+	$('.text-editor-quiz-<?=$quiz_id?>').ace_wysiwyg({
 		toolbar:
 		[
 			'font',

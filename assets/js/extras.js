@@ -495,7 +495,6 @@ function base64_decode (data) {
 function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-
 function runSpin(obj){
   obj.addClass("disabled");
   var spin = $("<i/>")
