@@ -193,7 +193,9 @@
 						  													<?=$question->type_description?>
 						  												</span>
 						  											</div>
-						  											<div class="span2 btns-right">
+						  											<div class="span2 btns-right btns-question">
+						  												<i class="icon-pencil icon-white question-edit question-edit-hidden"></i>
+						  												<i class="icon-trash icon-white question-remove question-remove-hidden"></i>
 						  											</div>
 						  										</div>
 					  										</li>
@@ -1383,6 +1385,52 @@
 		});
 	});
 
+	$(document).on("click", ".quizzes li .box-content .box-type-question .box .quiz-content .content-btns-bottom .btnSaveEditQuestionTypeTF", function(e) {
+	   var obj = $(this);
+	   if(isProcessing){
+			return;
+	   }
+	   
+	   var box = $(this).parent().parent().parent();
+	   var result = $('.quiz-content .vf_checks-edit input:radio[name=result]:checked',box);
+	   if(!result.val()) {
+	   		return;
+	   }
+	   
+	   var question_id = $('.quiz-content input[name=question_id]',box);
+	   var editor = $(".wysiwyg-editor",box);
+	   var quiz_id = editor.attr("id");
+	   //var order = getQuestionOrder(quiz_id);
+	   isProcessing = true;
+	   $.ajax({
+			url: "<?=site_url('questions/tf_update')?>",
+			type: "POST",
+			data: {'id': question_id.val(),'quiz_id': quiz_id, "description": htmlEntities(editor.html()), 'result': result.val(), 'type': "TF"},
+			dataType: "json",
+			beforeSend: function() {
+				runSpin(obj);
+			},
+			success: function(data){
+				isProcessing = false;
+				if(data.message_status == 'success'){
+					builtQuestionsView(box.parent().parent(), data.questions);
+					gritterAdd("Mensaje", data.message_html, data.message_status);
+				}else{
+					gritterAdd("Mensaje", data.message_html, data.message_status);
+				}
+			},
+			error: function(data){
+				isProcessing = false;
+				console.log(data);
+			},
+			complete: function() {
+				removeSpin(obj);
+			}
+		});
+		
+	});
+
+
 	$(document).on("click", ".quizzes li .title-quiz .btns-right .btnAddQuestion", function(e) {
 	   var cList = $(this).parent().parent().parent();
 	   $(this).fadeOut(200);
@@ -1402,7 +1450,7 @@
 	$(document).on("click", ".quizzes li .box-content .box-type-question .box-title div .btnBoxRemove", function(e) {
 	   var cList = $(this).parent().parent().parent().parent().parent();
 	   var box_question = $(".box-content .box-question",cList);
-	   $(".box-type-question",cList).html("").fadeOut(200);
+	   $(".box-type-question",cList).remove();
 	   $(".title-quiz .btns-right .btnAddQuestion",cList).fadeIn(500);
 	   box_question.fadeIn(500);
 	   $.scrollTo(box_question,800,{offset:-100});
@@ -1433,8 +1481,15 @@
 	});
 	$(document).on("mouseleave", ".quizzes li", function(e) {
 		$(".title-quiz .quiz-edit",this).fadeOut(200);
-	    //$(".title-quiz .quiz-edit",this).addClass("quiz-edit-hidden");
 	    $(".title-quiz .btns-right .quiz-bull-down",this).addClass("quiz-bull-down-hidden");
+	});
+	$(document).on("mouseover", ".questions li", function(e) {
+	    $(".title-question .btns-question .question-edit",this).fadeIn(100);
+	    $(".title-question .btns-question .question-remove",this).fadeIn(100);
+	});
+	$(document).on("mouseleave", ".quizzes li", function(e) {
+		$(".title-question .btns-question .question-edit",this).fadeOut(20);
+		$(".title-question .btns-question .question-remove",this).fadeOut(20);
 	});
 	$(document).on("click", ".quizzes li .title-quiz .btns-right .quiz-bull-down", function(e) {
 	   var button = this;
@@ -1442,6 +1497,54 @@
 	   $(".box-content",cList).slideToggle(500, function(){
 	  		$(button).toggleClass('icon-upload', $(this).is(':visible')); 	
 	   });
+	});
+	$(document).on("click", ".questions li .title-question .btns-question .question-edit", function(e) {
+	   var cList = $(this).parent().parent().parent();
+	   var box_question = cList.parent().parent().parent();
+	   	   box_question.fadeOut(50);
+	   var box_content = box_question.parent();
+	   var box_type_question = $("<div/>")
+			.attr("class","box-type-question cancel")
+			.appendTo(box_content);
+	   $.ajax({
+			url: "<?=site_url('questions/tf_edit')?>",
+			type: "POST",
+			data: {'question_id': cList.data('id')},
+			success: function(data){
+				box_type_question.html(data);
+				$.scrollTo(cList,800,{'offset':-100});
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+	$(document).on("click", ".questions li .title-question .btns-question .question-remove", function(e) {
+	   if(confirm("Are you sure?")){
+		   var cList = $(this).parent().parent().parent();
+		   var ul = cList.parent();
+		   $.ajax({
+				url: "<?=site_url('questions/tf_delete')?>",
+				type: "POST",
+				data: {'id': cList.data('id')},
+				dataType: "json",
+				success: function(data){
+					if(data.message_status == 'success'){
+						cList.remove();
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+						$.scrollTo(ul,800,{'offset':-100});
+						
+					}else{
+						gritterAdd("Mensaje", data.message_html, data.message_status);
+					}
+					
+				},
+				error: function(data){
+					console.log(data);
+				}
+			});
+		 }
 	});
 
 	function builtQuizView(quiz, chapter_id){
@@ -1495,7 +1598,6 @@
 
 	function builtTypeQuestionView(box_content){
 		
-		//box_content.empty();
 		var box_type_question = $("<div/>")
 			.attr("class","box-type-question cancel")
 			.appendTo(box_content);
@@ -1587,8 +1689,14 @@
 		   	.appendTo(btns_left);
 
 		   var btns_right = $("<div/>")
-		   	.attr("class","span2 btns-right")
+		   	.attr("class","span2 btns-right btns-question")
 		   	.appendTo(title_question);
+		   var question_edit = $("<i/>")
+		   	.attr("class","icon-pencil icon-white question-edit question-edit-hidden")
+		   	.appendTo(btns_right);
+		   var question_remove = $("<i/>")
+		   	.attr("class","icon-trash icon-white question-remove question-remove-hidden")
+		   	.appendTo(btns_right);		   	
 		});
 		
 		createDraggable(ul);

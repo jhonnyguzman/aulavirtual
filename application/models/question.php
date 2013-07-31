@@ -12,7 +12,8 @@ class Question extends DataMapper {
 	var $validation = array(
 	    'description' => array(
 	        'label' => 'Descripción',
-	        'rules' => array('required', 'trim')
+	        'rules' => array('required', 'trim'),
+	        'get_rules' => array('formatDescription')
 	    ),
 	    'quiz_id' => array(
 	        'label' => 'Autoevaluación',
@@ -40,6 +41,10 @@ class Question extends DataMapper {
 	function _formatType($field) 
 	{
 	  $this->type_description = html_entity_decode($this->types[$this->{$field}]);
+	}
+	function _formatDescription($field) 
+	{
+	  $this->{$field} = html_entity_decode($this->{$field});
 	}
 }
 

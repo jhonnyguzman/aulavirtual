@@ -61,6 +61,78 @@ class Questions extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function tf_edit(){
+		$data = array();
+		$question = new Question();
+		$question->where("id", $this->input->post('question_id'))->get();
+		if($question->exists()){
+			$data['message_status'] = 'success';
+			$data['question'] = $question;
+			echo $this->load->view("questions/tf_edit",$data);
+		}else{
+			$data['message_status'] = 'error';
+			echo $this->load->view("questions/tf_edit",$data);
+		}
+
+	}
+
+	public function tf_update(){
+		$post = $this->input->post(NULL,TRUE);
+		$result = array();
+		$quiz = new Quiz();
+		$quiz->where("id", $post['quiz_id'])->get();
+		if($quiz->exists()){
+			$question = new Question();
+			$question->where("id",$post["id"])->get();
+			if($question->exists()){
+				$question->quiz_id = $quiz->id;
+				$question->description = $post["description"];
+				$question->result = $post["result"];
+				$question->type = $post["type"];
+				if($question->save()){
+					$questions = new Question();
+					$result['questions'] = $questions->where("quiz_id", $post['quiz_id'])->order_by("order","asc")->get()->all_to_array(
+						array('id','description','result','order','type', 'type_description','quiz_id'));
+					$result['message_status'] = 'success';
+					$result['message_description'] = 'Pregunta Actualizada correctamente';
+					$result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
+				}else{
+					$result['message_status'] = 'error';
+					$result['message_html'] = $this->basicrud->cretateHtmlMsg('error', '', $question->error->string);
+				}	
+			}else{
+				$result['message_status'] = 'error';
+				$result['message_html'] = $this->basicrud->cretateHtmlMsg('error', '', $question->error->string);
+			}
+		}else{
+			//show_404('page',FALSE);
+			$result['message_status'] = 'error';
+			$result['message_description'] = 'Request failed!!';
+			$result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+		}
+
+		echo json_encode($result);
+	}
+
+	public function tf_delete()
+	{
+		$result = array();
+		$question = new Question();
+		$question->where("id", $this->input->post('id') )->get();
+		if($question->exists()){
+			$question->delete();
+			$result['message_status'] = 'success';
+			$result['message_description'] = 'Pregunta eliminada correctamente';
+			$result['message_html'] = $this->basicrud->cretateHtmlMsg('success', $result['message_description']); 
+		}else{
+			$result['message_status'] = 'error';
+			$result['message_description'] = 'Request failed!!';
+			$result['message_html'] = $this->basicrud->cretateHtmlMsg('error',$result['message_description'],$result['message_description']);
+		}
+
+		echo json_encode($result);
+	}
+
 	public function updateorder()
 	{
 		$result = array();

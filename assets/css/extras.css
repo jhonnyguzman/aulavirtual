@@ -122,6 +122,12 @@ body {
 .btnAddSingleQuestion{
 	margin-left: 5px;
 }
+.btns-question{
+	text-align: right;
+}
+.btns-question i{
+	padding-left: 5px;
+}
 .content-hero-unit{
 	margin-left: 0px;
 }
@@ -308,13 +314,23 @@ body {
 .quiz-bull-down-hidden{
 	display: none;
 }
+.quiz-order{
+	font-weight: bold;
+}
 .questions > li{
 	margin: 0px;
 }
+.questions > li:hover{
+	background-color: rgb(228, 228, 228);
+}
+
 .question-order{
 	font-weight: bold;
 }
 
+.question-edit-hidden,.question-remove-hidden{
+	display: none;
+}
 .ui-state-highlight { 
 	background-color: #F6F698 !important; 
 	height: 1.5em; 
